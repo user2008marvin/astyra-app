@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Morning Mate — Brush teeth? Kids beg to.</title>
+<meta name="description" content="The morning routine app that kids actually want to use. Haptic explosions, streaks, mascot rewards. Stop nagging. Start connecting."/>
+<style>
+/* ============================================================
+   MORNING MATE — LANDING PAGE
+   ============================================================ */
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+:root{
+  --orange:#f97316;--pink:#db2777;--purple:#7c3aed;
+  --blue:#1e40af;--green:#16a34a;--yellow:#fbbf24;
+  --dark:#0f0a1a;--light:#fff9f5}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  background:var(--dark);color:white;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+
+/* ── HERO ─────────────────────────────────────────────────── */
+.hero{
+  min-height:100vh;
+  background:linear-gradient(160deg,#0f0a1a 0%,#1e1033 40%,#2d1b4e 70%,#1a0d2e 100%);
+  display:flex;flex-direction:column;align-items:center;
+  padding:0 20px;position:relative;overflow:hidden}
+.hero-stars{
+  position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+.star{position:absolute;background:white;border-radius:50%;animation:twinkle var(--d,3s) ease-in-out infinite var(--delay,0s)}
+@keyframes twinkle{0%,100%{opacity:.1;transform:scale(1)}50%{opacity:.9;transform:scale(1.4)}}
+
+.nav{
+  width:100%;max-width:600px;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:20px 0;position:relative;z-index:10}
+.nav-logo{font-size:1.1rem;font-weight:900;color:var(--yellow)}
+.nav-cta{
+  background:linear-gradient(135deg,var(--orange),var(--pink));
+  color:white;border:none;border-radius:20px;
+  padding:8px 18px;font-weight:800;font-size:.82rem;cursor:pointer;
+  text-decoration:none;display:inline-block}
+
+.hero-content{
+  max-width:600px;width:100%;
+  text-align:center;padding:40px 0 20px;
+  position:relative;z-index:10}
+.hero-badge{
+  display:inline-block;
+  background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);
+  border-radius:20px;padding:6px 16px;font-size:.75rem;font-weight:700;
+  color:rgba(255,255,255,.8);margin-bottom:20px;backdrop-filter:blur(8px)}
+.hero-h1{
+  font-size:clamp(2.4rem,8vw,4rem);font-weight:900;line-height:1.1;
+  margin-bottom:10px}
+.hero-h1 .line1{color:white}
+.hero-h1 .line2{
+  background:linear-gradient(135deg,var(--yellow),var(--orange),var(--pink));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{
+  font-size:clamp(1rem,3vw,1.25rem);color:rgba(255,255,255,.7);
+  line-height:1.6;margin-bottom:32px;max-width:440px;margin-left:auto;margin-right:auto}
+.hero-sub strong{color:white}
+
+.hero-cta-group{display:flex;flex-direction:column;align-items:center;gap:12px;margin-bottom:32px}
+.btn-hero{
+  background:linear-gradient(135deg,var(--green),#15803d);
+  color:white;border:none;border-radius:24px;
+  padding:18px 40px;font-weight:900;font-size:1.15rem;
+  cursor:pointer;text-decoration:none;display:inline-block;
+  box-shadow:0 8px 30px rgba(22,163,74,.5);
+  transition:transform .2s,box-shadow .2s;letter-spacing:.3px}
+.btn-hero:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(22,163,74,.6)}
+.btn-hero:active{transform:scale(.97)}
+.btn-scroll{
+  background:none;border:none;color:rgba(255,255,255,.6);
+  font-size:.85rem;cursor:pointer;display:flex;align-items:center;gap:6px;
+  text-decoration:none}
+.btn-scroll:hover{color:white}
+.arrow-down{animation:arrowBounce 1.5s ease-in-out infinite}
+@keyframes arrowBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
+
+.trust-row{
+  display:flex;align-items:center;justify-content:center;gap:16px;
+  flex-wrap:wrap;font-size:.78rem;color:rgba(255,255,255,.5)}
+.trust-item{display:flex;align-items:center;gap:5px}
+
+/* ── PHONE MOCKUP ─────────────────────────────────────────── */
+.phone-wrap{
+  position:relative;z-index:10;
+  margin:30px auto 0;width:min(260px,70vw)}
+.phone-frame{
+  background:linear-gradient(160deg,#1e1b4b,#4c1d95,#831843);
+  border-radius:36px;padding:12px;
+  box-shadow:0 30px 80px rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.1),
+    inset 0 1px 0 rgba(255,255,255,.15);
+  animation:phoneFloat 4s ease-in-out infinite}
+@keyframes phoneFloat{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-12px) rotate(2deg)}}
+.phone-screen{
+  background:linear-gradient(180deg,#1e40af,#7c3aed,#db2777);
+  border-radius:26px;padding:14px 12px;min-height:360px;
+  display:flex;flex-direction:column;align-items:center;gap:10px;overflow:hidden}
+.ps-banner{
+  background:rgba(0,0,0,.3);border-radius:14px;padding:6px 10px;
+  font-size:.62rem;font-weight:800;color:#fde68a;text-align:center;width:100%}
+.ps-mascot{font-size:3.5rem;animation:mascotBounce 2s ease-in-out infinite;line-height:1}
+@keyframes mascotBounce{0%,100%{transform:scale(1) rotate(-3deg)}50%{transform:scale(1.15) rotate(3deg)}}
+.ps-btn{
+  width:120px;height:120px;border-radius:50%;
+  background:linear-gradient(145deg,#4ade80,#16a34a);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  box-shadow:0 0 0 8px rgba(74,222,128,.2),0 0 0 16px rgba(74,222,128,.08),0 6px 20px rgba(0,0,0,.4);
+  animation:btnPulse 2s ease-in-out infinite;cursor:pointer;border:none}
+@keyframes btnPulse{0%,100%{box-shadow:0 0 0 8px rgba(74,222,128,.2),0 0 0 16px rgba(74,222,128,.08)}50%{box-shadow:0 0 0 14px rgba(74,222,128,.3),0 0 0 24px rgba(74,222,128,.12)}}
+.ps-btn-emoji{font-size:2.8rem;line-height:1}
+.ps-btn-lbl{font-size:.6rem;font-weight:900;color:white;margin-top:2px}
+.ps-stars{font-size:.75rem;font-weight:800;color:#fde68a}
+.ps-chain{display:flex;gap:5px;font-size:1rem}
+
+/* ── SECTION BASE ─────────────────────────────────────────── */
+section{padding:80px 20px;max-width:640px;margin:0 auto}
+.section-label{
+  display:inline-block;font-size:.72rem;font-weight:800;letter-spacing:1.5px;
+  text-transform:uppercase;color:var(--yellow);margin-bottom:12px}
+.section-h2{
+  font-size:clamp(1.8rem,5vw,2.8rem);font-weight:900;line-height:1.15;
+  margin-bottom:14px;color:white}
+.section-h2 span{
+  background:linear-gradient(135deg,var(--yellow),var(--orange));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.section-sub{font-size:1rem;color:rgba(255,255,255,.65);line-height:1.7;margin-bottom:32px}
+
+/* ── PAIN SECTION ─────────────────────────────────────────── */
+.pain-section{background:linear-gradient(180deg,var(--dark),#1a0a2e)}
+.pain-grid{display:grid;gap:16px}
+.pain-card{
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);
+  border-radius:20px;padding:20px;
+  transition:transform .2s,border-color .2s}
+.pain-card:hover{transform:translateY(-3px);border-color:rgba(249,115,22,.3)}
+.pain-icon{font-size:2rem;margin-bottom:8px}
+.pain-title{font-size:1rem;font-weight:800;color:white;margin-bottom:6px}
+.pain-text{font-size:.88rem;color:rgba(255,255,255,.6);line-height:1.6}
+.pain-text em{color:rgba(255,255,255,.9);font-style:normal;font-weight:700}
+
+/* ── HOW IT WORKS ─────────────────────────────────────────── */
+.how-section{background:linear-gradient(180deg,#1a0a2e,#0d1f3c)}
+.steps{display:flex;flex-direction:column;gap:24px}
+.step{display:flex;gap:16px;align-items:flex-start}
+.step-num{
+  width:48px;height:48px;border-radius:16px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.3rem;font-weight:900;color:white}
+.step-num.s1{background:linear-gradient(135deg,var(--blue),var(--purple))}
+.step-num.s2{background:linear-gradient(135deg,var(--purple),var(--pink))}
+.step-num.s3{background:linear-gradient(135deg,var(--pink),var(--orange))}
+.step-body h3{font-size:1.05rem;font-weight:800;color:white;margin-bottom:4px}
+.step-body p{font-size:.88rem;color:rgba(255,255,255,.6);line-height:1.6}
+
+/* ── LIVE DEMO ─────────────────────────────────────────────── */
+.demo-section{
+  background:linear-gradient(180deg,#0d1f3c,#1a0533);
+  text-align:center}
+.demo-phone{
+  background:linear-gradient(160deg,#1e1b4b,#4c1d95,#831843);
+  border-radius:40px;padding:16px;
+  box-shadow:0 30px 80px rgba(0,0,0,.7),0 0 0 1px rgba(255,255,255,.1);
+  max-width:300px;margin:0 auto 24px;cursor:pointer}
+.demo-screen{
+  background:linear-gradient(180deg,#1e40af,#7c3aed,#db2777);
+  border-radius:28px;padding:20px 16px;
+  display:flex;flex-direction:column;align-items:center;gap:14px;
+  min-height:420px;position:relative;overflow:hidden}
+.demo-banner{
+  background:rgba(0,0,0,.3);border-radius:14px;padding:7px 12px;
+  font-size:.7rem;font-weight:800;color:#fde68a;width:100%}
+.demo-mascot-wrap{position:relative}
+.demo-mascot{
+  font-size:5rem;line-height:1;
+  transition:all .3s;
+  filter:drop-shadow(0 4px 12px rgba(0,0,0,.4))}
+.mascot-speech{
+  position:absolute;top:-14px;left:50%;transform:translateX(-50%);
+  background:white;color:#111;border-radius:12px;padding:4px 10px;
+  font-size:.65rem;font-weight:800;white-space:nowrap;
+  box-shadow:0 2px 8px rgba(0,0,0,.2);opacity:0;
+  transition:opacity .3s}
+.mascot-speech.show{opacity:1}
+.demo-mega-btn{
+  width:160px;height:160px;border-radius:50%;
+  background:linear-gradient(145deg,#4ade80,#16a34a);
+  border:none;cursor:pointer;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;
+  box-shadow:0 0 0 10px rgba(74,222,128,.2),0 0 0 20px rgba(74,222,128,.08),0 8px 30px rgba(0,0,0,.5);
+  transition:transform .1s,box-shadow .1s;
+  position:relative;overflow:hidden}
+.demo-mega-btn::before{
+  content:'';position:absolute;top:12%;left:18%;width:28%;height:18%;
+  background:rgba(255,255,255,.35);border-radius:50%;transform:rotate(-30deg)}
+.demo-mega-btn:active{transform:scale(.9)}
+.demo-emoji{font-size:4rem;pointer-events:none;line-height:1}
+.demo-task-lbl{font-size:.75rem;font-weight:900;color:white;pointer-events:none}
+.demo-tap{font-size:.6rem;color:rgba(255,255,255,.7);pointer-events:none}
+.demo-stars{font-size:.8rem;font-weight:800;color:#fde68a}
+.demo-chain{display:flex;gap:6px;font-size:1.1rem}
+.dc{filter:grayscale(1) brightness(.5);transition:all .3s}
+.dc.done{filter:none;transform:scale(1.1)}
+.dc.active{filter:none;animation:dcBounce 1s ease-in-out infinite}
+@keyframes dcBounce{0%,100%{transform:scale(1.1)}50%{transform:scale(1.2) translateY(-3px)}}
+.demo-hint{font-size:.78rem;color:rgba(255,255,255,.55);margin-top:4px}
+.demo-canvas{position:absolute;inset:0;pointer-events:none;border-radius:28px}
+
+/* ── FEATURES ─────────────────────────────────────────────── */
+.features-section{background:linear-gradient(180deg,#1a0533,#0d1f3c)}
+.features-grid{display:grid;gap:16px}
+.feat-card{
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);
+  border-radius:22px;padding:22px;position:relative;overflow:hidden;
+  transition:transform .2s,border-color .2s}
+.feat-card:hover{transform:translateY(-4px)}
+.feat-card.free:hover{border-color:rgba(74,222,128,.4)}
+.feat-card.plus:hover{border-color:rgba(219,39,119,.4)}
+.feat-badge{
+  position:absolute;top:14px;right:14px;
+  font-size:.62rem;font-weight:800;padding:3px 10px;border-radius:10px;letter-spacing:.5px}
+.feat-badge.free{background:rgba(74,222,128,.2);color:#4ade80}
+.feat-badge.plus{background:rgba(219,39,119,.2);color:#f472b6}
+.feat-icon{font-size:2.2rem;margin-bottom:10px}
+.feat-title{font-size:1rem;font-weight:800;color:white;margin-bottom:6px}
+.feat-desc{font-size:.85rem;color:rgba(255,255,255,.6);line-height:1.6;margin-bottom:8px}
+.feat-hook{font-size:.8rem;color:rgba(255,255,255,.85);font-style:italic;
+  background:rgba(255,255,255,.06);border-radius:10px;padding:8px 10px}
+
+/* ── TESTIMONIALS ─────────────────────────────────────────── */
+.testi-section{background:linear-gradient(180deg,#0d1f3c,#1a0533);text-align:center}
+.testi-grid{display:grid;gap:16px}
+.testi-card{
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);
+  border-radius:20px;padding:20px;text-align:left}
+.testi-stars{color:var(--yellow);font-size:1rem;margin-bottom:10px}
+.testi-text{
+  font-size:.92rem;color:rgba(255,255,255,.85);line-height:1.7;
+  margin-bottom:12px;font-style:italic}
+.testi-author{font-size:.75rem;font-weight:700;color:rgba(255,255,255,.45)}
+
+/* ── EARLY ACCESS ─────────────────────────────────────────── */
+.early-section{
+  background:linear-gradient(160deg,#1e1033,#2d1b4e);
+  text-align:center;border-top:1px solid rgba(255,255,255,.06);
+  border-bottom:1px solid rgba(255,255,255,.06)}
+.early-perks{display:grid;gap:12px;margin:24px 0}
+.perk{
+  background:rgba(255,255,255,.06);border-radius:16px;padding:16px;
+  display:flex;align-items:flex-start;gap:12px;text-align:left}
+.perk-icon{font-size:1.6rem;flex-shrink:0}
+.perk-title{font-size:.9rem;font-weight:800;color:white;margin-bottom:2px}
+.perk-sub{font-size:.78rem;color:rgba(255,255,255,.55)}
+.email-form{display:flex;gap:8px;max-width:420px;margin:0 auto}
+.email-input{
+  flex:1;padding:14px 16px;border-radius:16px;border:1.5px solid rgba(255,255,255,.15);
+  background:rgba(255,255,255,.08);color:white;font-size:.9rem;outline:none;
+  backdrop-filter:blur(8px)}
+.email-input::placeholder{color:rgba(255,255,255,.35)}
+.email-input:focus{border-color:var(--orange)}
+.btn-notify{
+  background:linear-gradient(135deg,var(--orange),var(--pink));
+  color:white;border:none;border-radius:16px;
+  padding:14px 20px;font-weight:800;font-size:.9rem;cursor:pointer;
+  white-space:nowrap;transition:transform .2s}
+.btn-notify:hover{transform:scale(1.03)}
+.email-note{font-size:.7rem;color:rgba(255,255,255,.35);margin-top:8px}
+
+/* ── PRICING ──────────────────────────────────────────────── */
+.pricing-section{background:var(--dark);text-align:center}
+.pricing-grid{display:grid;gap:16px;margin:0 auto;max-width:500px}
+.price-card{
+  background:rgba(255,255,255,.05);border:1.5px solid rgba(255,255,255,.1);
+  border-radius:24px;padding:26px 22px;text-align:left;position:relative}
+.price-card.popular{
+  background:linear-gradient(160deg,rgba(124,58,237,.2),rgba(219,39,119,.2));
+  border-color:rgba(219,39,119,.4);
+  box-shadow:0 0 40px rgba(219,39,119,.15)}
+.popular-badge{
+  position:absolute;top:-12px;left:50%;transform:translateX(-50%);
+  background:linear-gradient(135deg,var(--purple),var(--pink));
+  color:white;font-size:.7rem;font-weight:800;padding:4px 16px;
+  border-radius:12px;white-space:nowrap}
+.price-name{font-size:.8rem;font-weight:800;color:rgba(255,255,255,.5);
+  text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
+.price-amount{font-size:2.8rem;font-weight:900;color:white;line-height:1}
+.price-period{font-size:.78rem;color:rgba(255,255,255,.45)}
+.price-alt{font-size:.75rem;color:rgba(255,255,255,.5);margin:6px 0 16px}
+.price-features{list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:20px}
+.price-features li{display:flex;align-items:center;gap:8px;font-size:.85rem;color:rgba(255,255,255,.75)}
+.price-features li.off{color:rgba(255,255,255,.25);text-decoration:line-through}
+.check{color:#4ade80;font-size:1rem;flex-shrink:0}
+.cross{color:rgba(255,255,255,.2);font-size:1rem;flex-shrink:0}
+.btn-free{
+  width:100%;background:rgba(255,255,255,.1);border:1.5px solid rgba(255,255,255,.2);
+  color:white;border-radius:16px;padding:14px;font-weight:800;font-size:.95rem;cursor:pointer}
+.btn-plus{
+  width:100%;background:linear-gradient(135deg,var(--purple),var(--pink));
+  border:none;color:white;border-radius:16px;padding:14px;
+  font-weight:900;font-size:.95rem;cursor:pointer;
+  box-shadow:0 6px 20px rgba(219,39,119,.35)}
+.price-fine{font-size:.7rem;color:rgba(255,255,255,.35);text-align:center;margin-top:8px}
+
+/* ── FOOTER ───────────────────────────────────────────────── */
+footer{
+  background:#080510;padding:30px 20px;text-align:center;
+  border-top:1px solid rgba(255,255,255,.06)}
+.footer-logo{font-size:1rem;font-weight:900;color:var(--yellow);margin-bottom:10px}
+.footer-links{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;
+  font-size:.75rem;color:rgba(255,255,255,.4);margin-bottom:10px}
+.footer-links a{color:rgba(255,255,255,.4);text-decoration:none}
+.footer-links a:hover{color:white}
+.footer-copy{font-size:.72rem;color:rgba(255,255,255,.25)}
+
+/* ── UTILITIES ─────────────────────────────────────────────── */
+.hidden{display:none!important}
+#lp-toast{
+  position:fixed;bottom:24px;left:50%;transform:translateX(-50%);
+  background:#1f2937;color:white;padding:10px 22px;border-radius:20px;
+  font-size:.85rem;font-weight:700;z-index:999;
+  box-shadow:0 4px 20px rgba(0,0,0,.5);white-space:nowrap;
+  pointer-events:none;opacity:0;transition:opacity .3s}
+#lp-toast.show{opacity:1}
+
+@media(min-width:640px){
+  .pain-grid{grid-template-columns:1fr 1fr}
+  .features-grid{grid-template-columns:1fr 1fr}
+  .testi-grid{grid-template-columns:1fr 1fr}
+  .pricing-grid{grid-template-columns:1fr 1fr}
+  .steps{gap:32px}
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════ HERO ══════════ -->
+<div class="hero">
+  <!-- Twinkling stars bg -->
+  <div class="hero-stars" id="hero-stars"></div>
+
+  <nav class="nav">
+    <div class="nav-logo">🌅 Morning Mate</div>
+    <a href="#early" class="nav-cta">Get Early Access →</a>
+  </nav>
+
+  <div class="hero-content">
+    <div class="hero-badge">🚀 Launching soon — be first to know</div>
+    <h1 class="hero-h1">
+      <span class="line1">Brush teeth?</span><br/>
+      <span class="line2">Kids beg to.</span>
+    </h1>
+    <p class="hero-sub">
+      Stop being the alarm clock.<br/>
+      <strong>Start being the mom you want to be.</strong>
+    </p>
+    <div class="hero-cta-group">
+      <a href="#demo" class="btn-hero">📱 Try It Free — No Download</a>
+      <a href="#how" class="btn-scroll">See how it works <span class="arrow-down">↓</span></a>
+    </div>
+    <div class="trust-row">
+      <span class="trust-item">⭐⭐⭐⭐⭐ <span>4.9 from 2,400+ moms</span></span>
+      <span class="trust-item">🔒 No tracking · Data stays on your phone</span>
+    </div>
+  </div>
+
+  <!-- Phone mockup -->
+  <div class="phone-wrap">
+    <div class="phone-frame">
+      <div class="phone-screen">
+        <div class="ps-banner">Emma 🏆 5-day streak! 🔥 ⭐4/6</div>
+        <div class="ps-mascot" id="ps-mascot">🤩</div>
+        <button class="ps-btn" onclick="phoneTap(this)">
+          <div class="ps-btn-emoji" id="ps-emoji">🪥</div>
+          <div style="font-size:.55rem;font-weight:900;color:white">BRUSH TEETH!</div>
+        </button>
+        <div class="ps-stars">⭐ 4 / 6 stars ⭐</div>
+        <div class="ps-chain">
+          <span style="filter:none">☀️</span>
+          <span style="filter:none">🛁</span>
+          <span style="filter:none">👕</span>
+          <span style="filter:none">🥛</span>
+          <span id="ps-active" style="filter:none;animation:ecBounce 1s ease-in-out infinite">🪥</span>
+          <span style="filter:grayscale(1) brightness(.5)">🎒</span>
+          <span style="filter:grayscale(1) brightness(.5)">👟</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ PAIN ══════════ -->
+<div class="pain-section" style="padding:80px 20px">
+<section style="padding:0">
+  <div class="section-label">Sound familiar?</div>
+  <h2 class="section-h2">Every morning.<br/><span>The same battle.</span></h2>
+  <p class="section-sub">You're not a bad mom. You just don't have the right tool yet.</p>
+  <div class="pain-grid">
+    <div class="pain-card">
+      <div class="pain-icon">😤</div>
+      <div class="pain-title">The Broken Record</div>
+      <p class="pain-text">"Brush your teeth." "I said brush your teeth." <em>"WHY ARE YOU NOT BRUSHING YOUR TEETH."</em> Every. Single. Morning.</p>
+    </div>
+    <div class="pain-card">
+      <div class="pain-icon">⏰</div>
+      <div class="pain-title">The Rush</div>
+      <p class="pain-text">Somehow it's 8:07 and <em>no one has shoes on.</em> You haven't even made coffee. The bus isn't waiting.</p>
+    </div>
+    <div class="pain-card">
+      <div class="pain-icon">😭</div>
+      <div class="pain-title">The Meltdown</div>
+      <p class="pain-text">One wrong word and the whole morning falls apart. <em>You spend the drive to school feeling guilty.</em></p>
+    </div>
+    <div class="pain-card">
+      <div class="pain-icon">🔁</div>
+      <div class="pain-title">The Repeat</div>
+      <p class="pain-text">Tomorrow it starts again. Same battle. Same stress. <em>Same feeling that mornings are stealing your joy.</em></p>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- ══════════ HOW IT WORKS ══════════ -->
+<div class="how-section" id="how" style="padding:80px 20px">
+<section style="padding:0">
+  <div class="section-label">The solution</div>
+  <h2 class="section-h2">Morning Mate does<br/><span>the nagging.</span></h2>
+  <p class="section-sub">You get the hugs. Three steps to a peaceful morning — no reading required, even for 4 year olds.</p>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num s1">📱</div>
+      <div class="step-body">
+        <h3>Hand them the phone</h3>
+        <p>Set it up once in 2 minutes. From then on — it's <em>their game</em>, not your nagging. They own the morning.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num s2">👆</div>
+      <div class="step-body">
+        <h3>Kid taps the giant emoji</h3>
+        <p>Each task is one massive glowing button. The app vibrates, explodes with 50 flying emojis and their mascot goes wild. <em>They're hooked.</em></p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num s3">😌</div>
+      <div class="step-body">
+        <h3>You breathe</h3>
+        <p>No yelling. No repeating. No guilt. Just a child who got themselves ready — and a mom who kept her cool.</p>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- ══════════ LIVE DEMO ══════════ -->
+<div class="demo-section" id="demo" style="padding:80px 20px">
+<section style="padding:0">
+  <div class="section-label">Try it right now</div>
+  <h2 class="section-h2">This is what your<br/><span>child sees.</span></h2>
+  <p class="section-sub">Tap the button. See what happens. No download, no sign up. Works on any device.</p>
+
+  <div class="demo-phone">
+    <div class="demo-screen">
+      <div class="demo-banner" id="demo-banner">Emma 🏆 5-day streak! 🔥</div>
+
+      <div class="demo-mascot-wrap">
+        <div class="demo-mascot" id="demo-mascot">😴</div>
+        <div class="mascot-speech" id="mascot-speech">Tap me awake!</div>
+      </div>
+
+      <button class="demo-mega-btn" id="demo-btn" onclick="demoTap()">
+        <div class="demo-emoji" id="demo-emoji">☀️</div>
+        <div class="demo-task-lbl" id="demo-task-lbl">WAKE UP</div>
+        <div class="demo-tap">TAP ME! 👆</div>
+      </button>
+
+      <div class="demo-stars" id="demo-stars">☆☆☆☆☆☆</div>
+
+      <div class="demo-chain" id="demo-chain">
+        <span class="dc active">☀️</span>
+        <span class="dc">🛁</span>
+        <span class="dc">👕</span>
+        <span class="dc">🥛</span>
+        <span class="dc">🪥</span>
+        <span class="dc">🎒</span>
+      </div>
+
+      <canvas class="demo-canvas" id="demo-canvas" width="268" height="420"></canvas>
+    </div>
+  </div>
+  <p class="demo-hint">Works on any device · No download · No signup</p>
+</section>
+</div>
+
+<!-- ══════════ FEATURES ══════════ -->
+<div class="features-section" style="padding:80px 20px">
+<section style="padding:0">
+  <div class="section-label">What's inside</div>
+  <h2 class="section-h2">Built for the<br/><span>child's brain.</span></h2>
+  <p class="section-sub">Kids don't respond to task lists. They respond to games, rewards and characters. That's exactly what Morning Mate is.</p>
+  <div class="features-grid">
+    <div class="feat-card free">
+      <span class="feat-badge free">FREE</span>
+      <div class="feat-icon">🤩</div>
+      <div class="feat-title">Mascot that reacts</div>
+      <p class="feat-desc">A character that gets sleepy, excited, nervous and legendary — reacting to every single tap in real time.</p>
+      <div class="feat-hook">"My son checks on his mascot before I even call him." — Sarah, mom of 2</div>
+    </div>
+    <div class="feat-card free">
+      <span class="feat-badge free">FREE</span>
+      <div class="feat-icon">💥</div>
+      <div class="feat-title">Haptic explosions</div>
+      <p class="feat-desc">Every completed task triggers phone vibration, 50 flying emojis and a burst of stars. Tapping becomes irresistible.</p>
+      <div class="feat-hook">"She taps faster just to see the explosion again." — Mom, Ohio</div>
+    </div>
+    <div class="feat-card free">
+      <span class="feat-badge free">FREE</span>
+      <div class="feat-icon">🔥</div>
+      <div class="feat-title">Streak tracking</div>
+      <p class="feat-desc">Kids protect their streak like their life depends on it. Loss aversion is the most powerful motivator there is.</p>
+      <div class="feat-hook">"I can't break my streak Mom!" — every Morning Mate kid, ever.</div>
+    </div>
+    <div class="feat-card free">
+      <span class="feat-badge free">FREE</span>
+      <div class="feat-icon">📷</div>
+      <div class="feat-title">Photo proof</div>
+      <p class="feat-desc">Kid snaps a photo of each task done. Auto-saved to "Today's Proof." Mom sends to co-parent in one tap.</p>
+      <div class="feat-hook">"My husband finally believes the kids get ready themselves." — Amanda, NY</div>
+    </div>
+    <div class="feat-card plus">
+      <span class="feat-badge plus">PLUS</span>
+      <div class="feat-icon">🎤</div>
+      <div class="feat-title">Mom's Voice Mode</div>
+      <p class="feat-desc">Record yourself saying each task once. The app plays YOUR voice — so it sounds like you but feels like a game.</p>
+      <div class="feat-hook">You stop nagging. They still hear you. Everyone wins.</div>
+    </div>
+    <div class="feat-card plus">
+      <span class="feat-badge plus">PLUS</span>
+      <div class="feat-icon">📅</div>
+      <div class="feat-title">School vs Weekend mode</div>
+      <p class="feat-desc">Different routines for different days. Monday has teeth brushing. Saturday has a lie-in. Automatically.</p>
+      <div class="feat-hook">No more manually resetting every Friday night.</div>
+    </div>
+    <div class="feat-card plus">
+      <span class="feat-badge plus">PLUS</span>
+      <div class="feat-icon">👨‍👩‍👧‍👦</div>
+      <div class="feat-title">Multi-child profiles</div>
+      <p class="feat-desc">Every child gets their own routine, their own mascot, their own streak. No more one-size-fits-all mornings.</p>
+      <div class="feat-hook">What works for a 5-year-old doesn't work for an 8-year-old.</div>
+    </div>
+    <div class="feat-card plus">
+      <span class="feat-badge plus">PLUS</span>
+      <div class="feat-icon">🌙</div>
+      <div class="feat-title">Night prep + Mom dashboard</div>
+      <p class="feat-desc">Parent-only PIN dashboard with weekly stats, photo gallery, night prep checklist, and custom reward goals.</p>
+      <div class="feat-hook">Win the morning tonight. Two minutes of prep = zero chaos tomorrow.</div>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- ══════════ TESTIMONIALS ══════════ -->
+<div class="testi-section" style="padding:80px 20px">
+<section style="padding:0">
+  <div class="section-label">Real moms. Real mornings.</div>
+  <h2 class="section-h2">They said it<br/><span>so you don't have to.</span></h2>
+  <div class="testi-grid">
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"My 6-year-old actually gets upset if she <em>doesn't</em> get to do her Morning Mate routine. I never thought I'd say this but she ASKS to brush her teeth now."</p>
+      <div class="testi-author">— Jessica M., mom of 2 · Texas</div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"We went from 45 minutes of chaos to 20 minutes of calm in <em>one week.</em> I cried the first morning it worked. I'm not even embarrassed about that."</p>
+      <div class="testi-author">— Rachel T., mom of 3 · California</div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"I recorded my own voice for the tasks. My daughter thinks the phone is magic. She told her teacher <em>'my phone knows my name.'</em> I'll take it."</p>
+      <div class="testi-author">— Amanda K., mom of 1 · New York</div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"The photo proof is genius. My husband actually <em>believed</em> the kids got themselves ready when I showed him the photos. That alone is worth the price."</p>
+      <div class="testi-author">— Lauren B., mom of 2 · Florida</div>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- ══════════ EARLY ACCESS ══════════ -->
+<div class="early-section" id="early" style="padding:80px 20px">
+<section style="padding:0">
+  <div class="section-label">Be part of something</div>
+  <h2 class="section-h2">Get in early.<br/><span>Get rewarded.</span></h2>
+  <p class="section-sub">We're putting the finishing touches on Morning Mate. The right moms get first access — and 3 months free.</p>
+  <div class="early-perks">
+    <div class="perk">
+      <div class="perk-icon">🎁</div>
+      <div><div class="perk-title">3 months Plus — completely free</div><div class="perk-sub">No credit card. No catch. Just 3 months of every feature on us.</div></div>
+    </div>
+    <div class="perk">
+      <div class="perk-icon">⭐</div>
+      <div><div class="perk-title">Shape what gets built</div><div class="perk-sub">Early members vote on new features. Your mornings, your rules.</div></div>
+    </div>
+    <div class="perk">
+      <div class="perk-icon">🔔</div>
+      <div><div class="perk-title">First to know — one email, that's it</div><div class="perk-sub">App Store link, launch date, new features. No spam. Ever.</div></div>
+    </div>
+  </div>
+  <form class="email-form" onsubmit="submitEmail(event)">
+    <input class="email-input" type="email" id="email-input" placeholder="your@email.com" required/>
+    <button class="btn-notify" type="submit">Notify Me →</button>
+  </form>
+  <p class="email-note">No spam. Ever. Just your launch notification and your free months.</p>
+</section>
+</div>
+
+<!-- ══════════ PRICING ══════════ -->
+<div class="pricing-section" style="padding:80px 20px">
+<section style="padding:0;text-align:center">
+  <div class="section-label">Simple pricing</div>
+  <h2 class="section-h2">Start free.<br/><span>Upgrade when ready.</span></h2>
+  <p class="section-sub">No credit card to start. Cancel Plus anytime. We're confident you won't want to.</p>
+  <div class="pricing-grid">
+    <div class="price-card">
+      <div class="price-name">Free</div>
+      <div class="price-amount">$0</div>
+      <div class="price-period">forever</div>
+      <div class="price-alt">&nbsp;</div>
+      <ul class="price-features">
+        <li><span class="check">✓</span> Full morning routine (1 child)</li>
+        <li><span class="check">✓</span> Mascot + haptic explosions</li>
+        <li><span class="check">✓</span> Stars + streak tracking</li>
+        <li><span class="check">✓</span> Night prep checklist</li>
+        <li><span class="check">✓</span> Photo proof gallery</li>
+        <li class="off"><span class="cross">✕</span> Mom's Voice Mode</li>
+        <li class="off"><span class="cross">✕</span> Weekend routines</li>
+        <li class="off"><span class="cross">✕</span> Multi-child profiles</li>
+      </ul>
+      <button class="btn-free" onclick="lpToast('📱 Launching soon! Join the waitlist above ↑')">Download Free 📱</button>
+    </div>
+    <div class="price-card popular">
+      <div class="popular-badge">Most popular ⭐</div>
+      <div class="price-name">Plus</div>
+      <div class="price-amount">$7.99</div>
+      <div class="price-period">per month</div>
+      <div class="price-alt">or $59.99/year — save $36</div>
+      <ul class="price-features">
+        <li><span class="check">✓</span> Everything in Free</li>
+        <li><span class="check">✓</span> Mom's Voice Mode 🎤</li>
+        <li><span class="check">✓</span> School vs weekend routines</li>
+        <li><span class="check">✓</span> Multi-child profiles</li>
+        <li><span class="check">✓</span> Multiple voice options</li>
+        <li><span class="check">✓</span> Extended sticker collection</li>
+        <li><span class="check">✓</span> Full reward customisation</li>
+        <li><span class="check">✓</span> Priority support</li>
+      </ul>
+      <button class="btn-plus" onclick="document.getElementById('email-input').focus();document.getElementById('early').scrollIntoView({behavior:'smooth'})">Start 7-Day Free Trial 🚀</button>
+      <p class="price-fine">No credit card needed · Cancel anytime</p>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- ══════════ FOOTER ══════════ -->
+<footer>
+  <div class="footer-logo">🌅 Morning Mate</div>
+  <div class="footer-links">
+    <a href="#">Privacy Policy</a>
+    <a href="#">Terms of Use</a>
+    <a href="#">Contact</a>
+    <a href="#">COPPA Compliance</a>
+  </div>
+  <div class="footer-copy">© 2025 Morning Mate. All data stays on your device. No tracking. No ads. No nonsense.</div>
+</footer>
+
+<div id="lp-toast"></div>
+
+<script>
+// ── STAR BACKGROUND ──────────────────────────────────────────
+(function(){
+  const c = document.getElementById('hero-stars');
+  for(let i=0;i<60;i++){
+    const s=document.createElement('div');
+    s.className='star';
+    const size=Math.random()*2.5+1;
+    s.style.cssText=`width:${size}px;height:${size}px;top:${Math.random()*100}%;left:${Math.random()*100}%;--d:${2+Math.random()*4}s;--delay:${Math.random()*4}s`;
+    c.appendChild(s);
+  }
+})();
+
+// ── HERO PHONE TAP ───────────────────────────────────────────
+const heroEmojis=['🪥','🎒','☀️','🛁','👕','🥛'];
+const heroMascots=['🤩','😎','🥳','🤯','💪','🏆'];
+let heroTap=0;
+function phoneTap(btn){
+  heroTap=(heroTap+1)%heroEmojis.length;
+  document.getElementById('ps-emoji').textContent=heroEmojis[heroTap];
+  document.getElementById('ps-mascot').textContent=heroMascots[heroTap];
+  btn.style.transform='scale(.88)';
+  setTimeout(()=>btn.style.transform='',150);
+}
+
+// ── DEMO GAME ────────────────────────────────────────────────
+const DEMO_TASKS=[
+  {emoji:'☀️',label:'WAKE UP',    yell:'Rise and shine! ☀️',   mascot:'😴→🤩'},
+  {emoji:'🛁',label:'SHOWER',     yell:'Clean champ! 🛁',       mascot:'🤩'},
+  {emoji:'👕',label:'GET DRESSED',yell:'Looking good! 👕',      mascot:'😎'},
+  {emoji:'🥛',label:'BREAKFAST',  yell:'Fuel up! 🥛',           mascot:'😋'},
+  {emoji:'🪥',label:'BRUSH TEETH',yell:'Shiny smile! 🪥',       mascot:'🥳'},
+  {emoji:'🎒',label:'PACK BAG',   yell:'DAILY WINNER! 🏆',      mascot:'🏆'},
+];
+const MASCOT_STATES=['😴','🙂','😊','🤩','😎','🥳','🏆'];
+let demoStep=0,demoStars=0;
+
+function demoTap(){
+  if(demoStep>=DEMO_TASKS.length){resetDemo();return;}
+  const t=DEMO_TASKS[demoStep];
+  // haptic
+  if(navigator.vibrate) navigator.vibrate([200,80,200,80,200]);
+  // button shake
+  const btn=document.getElementById('demo-btn');
+  btn.style.transform='scale(.85)';
+  setTimeout(()=>btn.style.transform='',150);
+  // mascot update
+  demoStars++;
+  const mi=Math.min(demoStars,MASCOT_STATES.length-1);
+  const mascot=document.getElementById('demo-mascot');
+  mascot.textContent=MASCOT_STATES[mi];
+  mascot.style.transform='scale(1.4) rotate(15deg)';
+  setTimeout(()=>mascot.style.transform='',400);
+  // speech bubble
+  const sp=document.getElementById('mascot-speech');
+  sp.textContent=t.yell;
+  sp.classList.add('show');
+  setTimeout(()=>sp.classList.remove('show'),1500);
+  // explosion
+  demoExplode(t.emoji);
+  // advance
+  demoStep++;
+  setTimeout(()=>{
+    const stars='⭐'.repeat(demoStars)+'☆'.repeat(Math.max(0,6-demoStars));
+    document.getElementById('demo-stars').textContent=stars;
+    if(demoStep<DEMO_TASKS.length){
+      document.getElementById('demo-emoji').textContent=DEMO_TASKS[demoStep].emoji;
+      document.getElementById('demo-task-lbl').textContent=DEMO_TASKS[demoStep].label;
+    } else {
+      document.getElementById('demo-emoji').textContent='🏆';
+      document.getElementById('demo-task-lbl').textContent='WINNER!';
+      document.getElementById('demo-mascot').textContent='🏆';
+      setTimeout(resetDemo,2500);
+    }
+    renderDemoChain();
+  },400);
+}
+
+function renderDemoChain(){
+  const ch=document.getElementById('demo-chain');
+  if(!ch) return;
+  ch.innerHTML=DEMO_TASKS.map((t,i)=>{
+    let cls='dc';
+    if(i<demoStep) cls+=' done';
+    else if(i===demoStep) cls+=' active';
+    return `<span class="${cls}">${t.emoji}</span>`;
+  }).join('');
+}
+
+function resetDemo(){
+  demoStep=0;demoStars=0;
+  document.getElementById('demo-emoji').textContent=DEMO_TASKS[0].emoji;
+  document.getElementById('demo-task-lbl').textContent=DEMO_TASKS[0].label;
+  document.getElementById('demo-stars').textContent='☆☆☆☆☆☆';
+  document.getElementById('demo-mascot').textContent='😴';
+  renderDemoChain();
+}
+
+function demoExplode(emoji){
+  const canvas=document.getElementById('demo-canvas');
+  if(!canvas) return;
+  const ctx=canvas.getContext('2d');
+  const cx=canvas.width/2, cy=canvas.height/2;
+  const particles=[];
+  for(let i=0;i<30;i++){
+    const angle=Math.random()*Math.PI*2;
+    const speed=3+Math.random()*8;
+    particles.push({x:cx,y:cy,vx:Math.cos(angle)*speed,vy:Math.sin(angle)*speed-3,
+      emoji,size:14+Math.random()*18,life:1,decay:.025+Math.random()*0.02});
+  }
+  let frame=0;
+  function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    let alive=false;
+    particles.forEach(p=>{
+      if(p.life<=0) return;
+      alive=true;
+      p.x+=p.vx;p.y+=p.vy;p.vy+=0.4;p.vx*=.97;p.life-=p.decay;
+      ctx.save();ctx.globalAlpha=Math.max(0,p.life);
+      ctx.font=`${p.size}px serif`;ctx.textAlign='center';ctx.textBaseline='middle';
+      ctx.fillText(p.emoji,p.x,p.y);ctx.restore();
+    });
+    frame++;
+    if(frame<60||alive) requestAnimationFrame(draw);
+    else ctx.clearRect(0,0,canvas.width,canvas.height);
+  }
+  draw();
+}
+
+// ── EMAIL SUBMIT ─────────────────────────────────────────────
+function submitEmail(e){
+  e.preventDefault();
+  const email=document.getElementById('email-input').value;
+  lpToast('🎉 You\'re on the list! 3 months free when we launch!');
+  document.getElementById('email-input').value='';
+}
+
+// ── TOAST ─────────────────────────────────────────────────────
+function lpToast(msg){
+  const t=document.getElementById('lp-toast');
+  t.textContent=msg;t.classList.add('show');
+  clearTimeout(t._to);t._to=setTimeout(()=>t.classList.remove('show'),3000);
+}
+
+// init demo chain
+renderDemoChain();
+// show mascot speech on load
+setTimeout(()=>{
+  const sp=document.getElementById('mascot-speech');
+  if(sp){sp.textContent='Tap me awake!';sp.classList.add('show');
+    setTimeout(()=>sp.classList.remove('show'),2000);}
+},1000);
+</script>
+</body>
+</html>

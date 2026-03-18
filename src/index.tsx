@@ -2,6 +2,7 @@ import { Hono } from 'hono'
 import { serveStatic } from 'hono/cloudflare-workers'
 const app = new Hono()
 app.use('/static/*', serveStatic({ root: './' }))
+app.get('/landing', (c) => c.redirect('/static/landing.html'))
 app.get('/', (c) => c.html(`<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -113,6 +114,12 @@ app.get('/', (c) => c.html(`<!DOCTYPE html>
       ⏰ <span id="kid-cd-num">--</span> min to school
     </div>
 
+    <!-- MASCOT -->
+    <div class="mascot-wrap">
+      <div class="mascot-char" id="mascot-char">😴</div>
+      <div class="mascot-bubble hidden" id="mascot-bubble">Tap me awake!</div>
+    </div>
+
     <!-- THE MEGA EMOJI BUTTON -->
     <button class="mega-btn" id="mega-btn" onclick="tapTask()">
       <div class="mega-emoji" id="mega-emoji">🥛</div>
@@ -188,6 +195,13 @@ app.get('/', (c) => c.html(`<!DOCTYPE html>
     <div class="p-card">
       <h3 class="p-card-title">🌙 Tonight's Prep <span class="p-pill">2 mins → easier morning</span></h3>
       <div id="p-night-tasks" class="p-task-list"></div>
+    </div>
+
+    <!-- Mom's Voice Mode -->
+    <div class="p-card" style="background:linear-gradient(135deg,rgba(124,58,237,.15),rgba(219,39,119,.15));border:1.5px solid rgba(219,39,119,.3)">
+      <h3 class="p-card-title">🎤 Mom's Voice Mode <span class="p-pill" style="background:rgba(219,39,119,.2);color:#f472b6">PLUS</span></h3>
+      <p style="font-size:.82rem;color:rgba(255,255,255,.7);margin-bottom:12px;line-height:1.5">Record your voice for each task. The app plays YOUR voice — so it sounds like you but feels like a game.</p>
+      <div id="voice-tasks" style="display:flex;flex-direction:column;gap:8px"></div>
     </div>
 
     <!-- Settings -->

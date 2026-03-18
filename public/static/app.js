@@ -11,7 +11,48 @@ const MOTTOS = [
   'Chores they crave → kid cheers.'
 ];
 
-// ── EMOJI TASK CHAIN (6 steps) ──────────────────────────────
+// ── MASCOT STATES ────────────────────────────────────────────
+const MASCOT_STATES = ['😴','🙂','😊','🤩','😎','🥳','🏆'];
+const MASCOT_CLASSES = ['','','','excited','excited','excited','legendary'];
+const MASCOT_SPEECH = [
+  'Tap me awake! 👆',
+  'Nice one! Keep going! 🌟',
+  'You\'re on fire! 🔥',
+  'YASSS! I\'m so hyped! 🤩',
+  'Nothing can stop us! 💪',
+  'Almost LEGENDARY! 🥳',
+  'LEGENDARY STATUS! 🏆✨',
+];
+
+function updateMascot(starsCount) {
+  const idx = Math.min(starsCount, MASCOT_STATES.length - 1);
+  const el = document.getElementById('mascot-char');
+  const bubble = document.getElementById('mascot-bubble');
+  if (!el) return;
+  el.textContent = MASCOT_STATES[idx];
+  el.className = 'mascot-char ' + (MASCOT_CLASSES[idx] || '');
+  // bounce animation
+  el.style.transform = 'scale(1.5) rotate(20deg)';
+  setTimeout(() => { el.style.transform = ''; }, 400);
+  if (bubble) {
+    bubble.textContent = MASCOT_SPEECH[idx];
+    bubble.classList.remove('hidden');
+    clearTimeout(bubble._to);
+    bubble._to = setTimeout(() => bubble.classList.add('hidden'), 2000);
+  }
+}
+
+// Show initial mascot speech on load
+function initMascot() {
+  const bubble = document.getElementById('mascot-bubble');
+  if (bubble) {
+    bubble.textContent = MASCOT_SPEECH[0];
+    bubble.classList.remove('hidden');
+    setTimeout(() => bubble.classList.add('hidden'), 2500);
+  }
+}
+
+
 const TASKS = [
   { emoji: '☀️', label: 'WAKE UP',    yell: 'Rise and shine! ☀️',   sound: 'sunburst'  },
   { emoji: '🛁', label: 'SHOWER',     yell: 'Clean champ! 🛁',      sound: 'splash'    },
@@ -136,6 +177,7 @@ function launchKidApp() {
   startCountdown();
   setMotto();
   hideAllDone();
+  setTimeout(initMascot, 800);
 }
 
 // ── COUNTDOWN ────────────────────────────────────────────────
@@ -242,6 +284,9 @@ function tapTask() {
   S.starsToday++;
   S.totalStars++;
   save();
+
+  // 7. Update mascot
+  updateMascot(S.starsToday);
 
   // 7. Show next task after animation
   setTimeout(() => {
@@ -538,6 +583,9 @@ function renderParentDash() {
   // Night tasks
   renderNightTasks();
 
+  // Mom's Voice Mode
+  renderVoiceMode();
+
   // Pre-fill settings
   const pk = $('p-kname'); if (pk) pk.value = S.kidName;
   const ph = $('p-hr');    if (ph) ph.value = S.leaveHour;
@@ -545,6 +593,71 @@ function renderParentDash() {
   const pa = $('p-ap');    if (pa) pa.value = S.leaveAmPm;
   const pg2 = $('p-goal'); if (pg2) pg2.value = S.starGoal;
   const pr = $('p-reward'); if (pr) pr.value = S.reward;
+}
+
+// ── MOM'S VOICE MODE ─────────────────────────────────────────
+function renderVoiceMode() {
+  const el = $('voice-tasks');
+  if (!el) return;
+  if (!S.voiceClips) S.voiceClips = {};
+  el.innerHTML = TASKS.map((t, i) => {
+    const hasClip = !!S.voiceClips[i];
+    return `<div style="display:flex;align-items:center;gap:10px;padding:10px;background:rgba(255,255,255,.05);border-radius:14px;border:1px solid rgba(255,255,255,.1)">
+      <span style="font-size:1.4rem">${t.emoji}</span>
+      <span style="flex:1;font-size:.82rem;font-weight:700;color:white">${t.label}</span>
+      ${hasClip
+        ? `<button onclick="playVoice(${i})" style="background:rgba(74,222,128,.2);border:1px solid #4ade80;color:#4ade80;border-radius:10px;padding:5px 10px;font-size:.72rem;font-weight:800;cursor:pointer">▶ Play</button>
+           <button onclick="deleteVoice(${i})" style="background:rgba(239,68,68,.15);border:1px solid #f87171;color:#f87171;border-radius:10px;padding:5px 8px;font-size:.72rem;cursor:pointer">✕</button>`
+        : `<button onclick="recordVoice(${i})" style="background:rgba(219,39,119,.2);border:1px solid #f472b6;color:#f472b6;border-radius:10px;padding:5px 10px;font-size:.72rem;font-weight:800;cursor:pointer">🎤 Record</button>`
+      }
+    </div>`;
+  }).join('');
+}
+
+function recordVoice(taskIdx) {
+  if (!navigator.mediaDevices?.getUserMedia) {
+    toast('🎤 Microphone not available on this device');
+    return;
+  }
+  toast(`🎤 Recording "${TASKS[taskIdx].label}"... tap Stop when done`);
+  navigator.mediaDevices.getUserMedia({ audio: true }).then(stream => {
+    const recorder = new MediaRecorder(stream);
+    const chunks = [];
+    recorder.ondataavailable = e => chunks.push(e.data);
+    recorder.onstop = () => {
+      const blob = new Blob(chunks, { type: 'audio/webm' });
+      const reader = new FileReader();
+      reader.onload = ev => {
+        if (!S.voiceClips) S.voiceClips = {};
+        S.voiceClips[taskIdx] = ev.target.result;
+        save();
+        renderVoiceMode();
+        toast(`✅ Voice saved for ${TASKS[taskIdx].label}!`);
+      };
+      reader.readAsDataURL(blob);
+      stream.getTracks().forEach(t => t.stop());
+    };
+    recorder.start();
+    // Auto-stop after 5 seconds
+    setTimeout(() => { if (recorder.state === 'recording') recorder.stop(); }, 5000);
+    // Show stop button via toast
+    setTimeout(() => toast('⏹ Recording saved!'), 5100);
+  }).catch(() => toast('🎤 Microphone permission denied'));
+}
+
+function playVoice(taskIdx) {
+  if (!S.voiceClips?.[taskIdx]) return;
+  const audio = new Audio(S.voiceClips[taskIdx]);
+  audio.play().catch(() => toast('Could not play audio'));
+}
+
+function deleteVoice(taskIdx) {
+  if (S.voiceClips) {
+    delete S.voiceClips[taskIdx];
+    save();
+    renderVoiceMode();
+    toast('🗑 Voice clip deleted');
+  }
 }
 
 // ── NIGHT PREP ───────────────────────────────────────────────
