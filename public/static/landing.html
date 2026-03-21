@@ -209,6 +209,57 @@ section{padding:80px 20px;max-width:640px;margin:0 auto}
 .demo-hint{font-size:.78rem;color:rgba(255,255,255,.55);margin-top:4px}
 .demo-canvas{position:absolute;inset:0;pointer-events:none;border-radius:28px}
 
+/* ── FOUNDER ──────────────────────────────────────────────── */
+.founder-section{
+  padding:80px 20px;
+  background:linear-gradient(160deg,#1a0533,#0d1f3c);
+  max-width:100%}
+.founder-section section{max-width:640px;margin:0 auto}
+.founder-card{
+  background:linear-gradient(160deg,rgba(124,58,237,.15),rgba(219,39,119,.12));
+  border:1.5px solid rgba(219,39,119,.25);
+  border-radius:28px;padding:32px 28px;
+  position:relative;overflow:hidden;
+  box-shadow:0 20px 60px rgba(0,0,0,.3)}
+.founder-card::before{
+  content:'';position:absolute;top:-60px;right:-60px;
+  width:200px;height:200px;border-radius:50%;
+  background:radial-gradient(circle,rgba(219,39,119,.12),transparent 70%)}
+.founder-avatar{
+  font-size:4.5rem;
+  width:88px;height:88px;
+  background:linear-gradient(135deg,rgba(124,58,237,.3),rgba(219,39,119,.3));
+  border:2.5px solid rgba(219,39,119,.4);
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:20px;
+  box-shadow:0 8px 24px rgba(0,0,0,.3)}
+.founder-quote{position:relative;margin-bottom:20px}
+.founder-open-quote{
+  font-size:5rem;line-height:.6;color:rgba(219,39,119,.4);
+  font-family:Georgia,serif;position:absolute;top:-8px;left:-8px}
+.founder-close-quote{
+  font-size:5rem;line-height:.3;color:rgba(219,39,119,.4);
+  font-family:Georgia,serif;text-align:right;margin-top:6px}
+.founder-text{
+  font-size:clamp(1rem,3.5vw,1.25rem);
+  font-weight:700;color:rgba(255,255,255,.92);
+  line-height:1.7;padding:0 16px;
+  position:relative;z-index:1}
+.founder-text em{
+  color:#f9a8d4;font-style:normal;
+  background:linear-gradient(135deg,#ec4899,#a855f7);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.founder-byline{
+  display:flex;align-items:center;gap:12px;
+  padding-top:16px;border-top:1px solid rgba(255,255,255,.08)}
+.founder-title-tag{
+  background:linear-gradient(135deg,#7c3aed,#db2777);
+  color:white;font-size:.72rem;font-weight:800;
+  padding:4px 12px;border-radius:10px;letter-spacing:.5px;
+  text-transform:uppercase;white-space:nowrap}
+.founder-sub{font-size:.82rem;color:rgba(255,255,255,.5);font-weight:600}
+
 /* ── FEATURES ─────────────────────────────────────────────── */
 .features-section{background:linear-gradient(180deg,#1a0533,#0d1f3c)}
 .features-grid{display:grid;gap:16px}
@@ -556,6 +607,25 @@ footer{
       <div class="feat-title">Night prep + Mom dashboard</div>
       <p class="feat-desc">Parent-only PIN dashboard with weekly stats, photo gallery, night prep checklist, and custom reward goals.</p>
       <div class="feat-hook">Win the morning tonight. Two minutes of prep = zero chaos tomorrow.</div>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- ══════════ FOUNDER ══════════ -->
+<div class="founder-section">
+<section style="padding:0">
+  <div class="section-label">Why Morning Mate exists</div>
+  <div class="founder-card">
+    <div class="founder-avatar">👩</div>
+    <div class="founder-quote">
+      <div class="founder-open-quote">"</div>
+      <p class="founder-text">I raised my child alone. I know what 7am really looks like — the chaos, the guilt, the exhaustion before the day even starts. Morning Mate exists because <em>I needed it to.</em></p>
+      <div class="founder-close-quote">"</div>
+    </div>
+    <div class="founder-byline">
+      <span class="founder-title-tag">The Founder</span>
+      <span class="founder-sub">Single parent · Built this for us</span>
     </div>
   </div>
 </section>

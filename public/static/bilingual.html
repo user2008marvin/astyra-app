@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+<title>Morning Mate ☀️ — Bilingual Edition</title>
+<style>
+/* ============================================================
+   MORNING MATE — BILINGUAL EDITION (EN/ES)
+   Golden Hour gradients · ElevenLabs V3 voice · Brain Power tracker
+   ============================================================ */
+:root{
+  --sunrise-top:#1a0050;
+  --sunrise-mid:#7c2d93;
+  --sunrise-bot:#ff6b35;
+  --gold:#FFD700;
+  --gold-dark:#ccac00;
+  --green:#4ade80;
+  --blue:#60a5fa;
+  --warm-white:#fffcf9;
+  --text-dark:#1a0050}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;margin:0;padding:0;
+  -webkit-user-select:none;user-select:none}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  background:linear-gradient(180deg,var(--sunrise-top) 0%,var(--sunrise-mid) 55%,var(--sunrise-bot) 100%);
+  min-height:100vh;display:flex;flex-direction:column;
+  color:white;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+
+/* ── TOP NAV ─────────────────────────────────────────────── */
+.top-nav{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:16px 18px 10px;position:relative;z-index:10}
+.stats-pill{
+  background:rgba(255,255,255,.18);backdrop-filter:blur(12px);
+  padding:8px 16px;border-radius:24px;
+  font-weight:900;font-size:.88rem;
+  border:1.5px solid rgba(255,255,255,.3);
+  display:flex;align-items:center;gap:6px;min-width:70px;justify-content:center;
+  box-shadow:0 4px 12px rgba(0,0,0,.15)}
+.lang-btn{
+  background:var(--gold);border:none;
+  padding:8px 16px;border-radius:16px;
+  font-weight:900;font-size:.82rem;
+  cursor:pointer;color:#1a0050;
+  box-shadow:0 4px 0 var(--gold-dark),0 6px 20px rgba(255,215,0,.3);
+  transition:all .15s;letter-spacing:.5px}
+.lang-btn:active{transform:translateY(3px);box-shadow:0 1px 0 var(--gold-dark)}
+
+/* ── MAIN STAGE ──────────────────────────────────────────── */
+.main-stage{
+  flex:1;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  padding:10px 20px 0;gap:14px;position:relative}
+
+/* Mascot */
+.mascot-display{font-size:3.8rem;line-height:1;transition:all .3s;
+  animation:mascotFloat 3s ease-in-out infinite;
+  filter:drop-shadow(0 6px 16px rgba(0,0,0,.3))}
+@keyframes mascotFloat{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-10px) rotate(4deg)}}
+.mascot-display.excited{animation:mascotExcite .4s ease infinite alternate}
+@keyframes mascotExcite{0%{transform:scale(1) rotate(-8deg)}100%{transform:scale(1.3) rotate(8deg)}}
+
+/* Speech bubble */
+.speech-bubble{
+  background:rgba(255,255,255,.95);
+  color:#1a0050;
+  padding:16px 22px;border-radius:22px;
+  width:min(88vw,360px);
+  font-weight:700;font-size:clamp(.9rem,3.5vw,1.1rem);
+  text-align:center;line-height:1.5;
+  box-shadow:0 8px 30px rgba(0,0,0,.2);
+  position:relative;
+  animation:bubbleIn .4s cubic-bezier(.175,.885,.32,1.275)}
+@keyframes bubbleIn{0%{transform:scale(0.8) translateY(10px);opacity:0}100%{transform:scale(1);opacity:1}}
+.speech-bubble::after{
+  content:'';position:absolute;bottom:-13px;left:50%;
+  border-left:13px solid transparent;border-right:13px solid transparent;
+  border-top:13px solid rgba(255,255,255,.95);
+  transform:translateX(-50%)}
+
+/* ── TIMER RING + MEGA BUTTON ────────────────────────────── */
+.tap-zone{
+  position:relative;
+  width:min(70vw,260px);height:min(70vw,260px);
+  display:flex;align-items:center;justify-content:center}
+.timer-svg{position:absolute;top:0;left:0;transform:rotate(-90deg)}
+#ring-bg{fill:none;stroke:rgba(255,255,255,.12);stroke-width:10}
+#ring-progress{
+  fill:none;stroke:var(--gold);stroke-width:10;stroke-linecap:round;
+  stroke-dasharray:706; /* 2*PI*112 */
+  stroke-dashoffset:0;
+  transition:stroke-dashoffset 1s linear,stroke .5s}
+.tap-btn{
+  width:min(56vw,200px);height:min(56vw,200px);
+  background:radial-gradient(circle at 38% 35%,#fff9c0,#FFD700 40%,#FFA500);
+  border-radius:50%;border:6px solid rgba(255,255,255,.8);
+  font-size:min(18vw,68px);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;
+  cursor:pointer;
+  box-shadow:0 0 0 10px rgba(255,215,0,.15),0 0 0 20px rgba(255,215,0,.07),
+    0 15px 40px rgba(0,0,0,.3),inset 0 -6px 16px rgba(200,120,0,.25);
+  transition:transform .1s,box-shadow .1s;
+  position:relative;z-index:2;overflow:hidden}
+.tap-btn::before{
+  content:'';position:absolute;top:10%;left:15%;width:32%;height:20%;
+  background:rgba(255,255,255,.5);border-radius:50%;transform:rotate(-30deg)}
+.tap-btn:active{transform:scale(.88);box-shadow:0 0 0 4px rgba(255,215,0,.2),0 4px 16px rgba(0,0,0,.3)}
+.tap-hint{font-size:.55rem;font-weight:900;color:rgba(255,255,255,.9);letter-spacing:.5px;z-index:1}
+
+/* ── TASK LABEL ──────────────────────────────────────────── */
+.task-label{
+  font-size:clamp(1.4rem,7vw,2rem);font-weight:900;
+  color:white;text-align:center;
+  text-shadow:0 4px 16px rgba(0,0,0,.3);
+  letter-spacing:.5px;transition:all .3s}
+
+/* ── BRAIN POWER (Academic Tracker) ─────────────────────── */
+.brain-section{
+  width:min(82vw,340px);
+  background:rgba(255,255,255,.1);backdrop-filter:blur(8px);
+  border-radius:20px;padding:14px 18px;
+  border:1px solid rgba(255,255,255,.2)}
+.brain-header{
+  display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.brain-label{font-size:.72rem;font-weight:800;color:rgba(255,255,255,.85);
+  text-transform:uppercase;letter-spacing:1px}
+.brain-pts{font-size:.72rem;font-weight:900;color:var(--gold)}
+.brain-bar-bg{
+  background:rgba(0,0,0,.2);height:10px;border-radius:10px;overflow:hidden;
+  border:1px solid rgba(255,255,255,.1)}
+.brain-bar-fill{
+  height:100%;
+  background:linear-gradient(90deg,#00C9FF,#92FE9D);
+  border-radius:10px;
+  transition:width .6s cubic-bezier(.34,1.56,.64,1)}
+.brain-sub{font-size:.65rem;color:rgba(255,255,255,.55);margin-top:5px;text-align:center}
+
+/* ── STARS + STREAK ROW ─────────────────────────────────── */
+.stats-row{
+  display:flex;gap:14px;justify-content:center;width:100%}
+.stat-bubble{
+  background:rgba(255,255,255,.15);backdrop-filter:blur(8px);
+  border:1.5px solid rgba(255,255,255,.25);border-radius:20px;
+  padding:10px 20px;font-weight:900;font-size:1rem;
+  display:flex;align-items:center;gap:7px;
+  box-shadow:0 4px 14px rgba(0,0,0,.15)}
+
+/* ── EMOJI CHAIN ─────────────────────────────────────────── */
+.emoji-chain{
+  display:flex;gap:8px;align-items:center;
+  background:rgba(0,0,0,.2);border-radius:20px;
+  padding:9px 18px;backdrop-filter:blur(6px)}
+.ec{font-size:1.4rem;filter:grayscale(1) brightness(.45);transition:all .35s;transform:scale(.9)}
+.ec.done{filter:none;transform:scale(1.05)}
+.ec.active{filter:none;animation:ecPop 1s ease-in-out infinite;transform:scale(1.15)}
+@keyframes ecPop{0%,100%{transform:scale(1.1)}50%{transform:scale(1.25) translateY(-4px)}}
+
+/* ── EXPLOSION CANVAS ────────────────────────────────────── */
+.explode-canvas{
+  position:fixed;inset:0;pointer-events:none;z-index:200;display:none}
+.explode-canvas.active{display:block}
+
+/* ── YELL TEXT ───────────────────────────────────────────── */
+.yell-text{
+  position:fixed;top:50%;left:50%;
+  transform:translate(-50%,-50%) scale(0);
+  font-size:min(14vw,58px);font-weight:900;
+  color:white;text-shadow:0 0 30px rgba(255,220,50,.9),0 4px 12px rgba(0,0,0,.5);
+  z-index:300;pointer-events:none;text-align:center;white-space:nowrap}
+.yell-text.pop{animation:yellPop .8s cubic-bezier(.175,.885,.32,1.275) forwards}
+@keyframes yellPop{
+  0%{transform:translate(-50%,-50%) scale(0);opacity:0}
+  40%{transform:translate(-50%,-50%) scale(1.3);opacity:1}
+  70%{transform:translate(-50%,-50%) scale(1.1);opacity:1}
+  100%{transform:translate(-50%,-50%) scale(1);opacity:0}}
+
+/* ── ALL DONE SCREEN ─────────────────────────────────────── */
+.all-done{
+  position:fixed;inset:0;z-index:400;
+  background:linear-gradient(135deg,#1a0050,#7c2d93,#ff6b35);
+  display:flex;align-items:center;justify-content:center;
+  flex-direction:column;gap:12px;text-align:center;padding:30px}
+.all-done.hidden{display:none}
+.all-done-rocket{font-size:5rem;animation:rocketUp 1s ease forwards}
+@keyframes rocketUp{0%{transform:translateY(40px);opacity:0}100%{transform:translateY(0);opacity:1}}
+.all-done-title{font-size:clamp(2rem,10vw,3.5rem);font-weight:900;
+  background:linear-gradient(135deg,var(--gold),#ff6b35);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.all-done-sub{font-size:1.1rem;color:rgba(255,255,255,.85);font-weight:700}
+.all-done-btn{
+  background:white;color:#1a0050;font-weight:900;font-size:1rem;
+  border:none;border-radius:20px;padding:14px 32px;cursor:pointer;margin-top:8px;
+  box-shadow:0 6px 24px rgba(0,0,0,.25)}
+
+/* ── PARENT LOCK BTN ─────────────────────────────────────── */
+.parent-lock{
+  position:fixed;bottom:18px;right:16px;
+  background:rgba(0,0,0,.35);backdrop-filter:blur(8px);
+  border:1.5px solid rgba(255,255,255,.2);
+  color:white;font-size:1.1rem;
+  border-radius:50%;width:42px;height:42px;
+  cursor:pointer;z-index:100;border-style:solid}
+
+/* ── PIN MODAL ───────────────────────────────────────────── */
+.pin-overlay{
+  position:fixed;inset:0;background:rgba(0,0,0,.75);
+  display:flex;align-items:center;justify-content:center;
+  z-index:500;backdrop-filter:blur(10px)}
+.pin-overlay.hidden{display:none}
+.pin-box{
+  background:linear-gradient(160deg,#1e1b4b,#2d1b69);
+  border:1.5px solid rgba(255,255,255,.15);
+  border-radius:28px;padding:28px 24px;
+  width:min(85vw,320px);
+  box-shadow:0 30px 70px rgba(0,0,0,.5)}
+.pin-title{font-size:1.15rem;font-weight:900;color:white;text-align:center;margin-bottom:14px}
+.pin-display{
+  font-size:2rem;font-weight:900;letter-spacing:16px;
+  color:white;text-align:center;margin-bottom:16px;
+  background:rgba(255,255,255,.08);border-radius:14px;padding:12px;font-family:monospace}
+.pin-pad{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;max-width:230px;margin:0 auto 12px}
+.pin-btn{
+  padding:15px;font-size:1.4rem;font-weight:900;
+  border:2px solid rgba(255,255,255,.15);border-radius:16px;
+  background:rgba(255,255,255,.08);cursor:pointer;color:white;transition:all .15s}
+.pin-btn:active{background:rgba(255,215,0,.2);border-color:var(--gold);transform:scale(.93)}
+.pin-clear{color:#f87171;border-color:rgba(248,113,113,.3)}
+.pin-ok{background:linear-gradient(135deg,#22c55e,#16a34a);color:white;border-color:#22c55e}
+.pin-cancel{width:100%;background:none;border:none;color:rgba(255,255,255,.4);
+  font-size:.85rem;cursor:pointer;padding:8px;text-align:center}
+
+/* ── VOICE INDICATOR ─────────────────────────────────────── */
+.voice-indicator{
+  position:fixed;top:70px;right:14px;
+  background:rgba(255,215,0,.2);border:1.5px solid rgba(255,215,0,.4);
+  border-radius:12px;padding:5px 10px;
+  font-size:.65rem;font-weight:800;color:var(--gold);
+  z-index:50;opacity:0;transition:opacity .3s}
+.voice-indicator.show{opacity:1}
+
+/* ── TOAST ───────────────────────────────────────────────── */
+#toast{
+  position:fixed;bottom:24px;left:50%;transform:translateX(-50%);
+  background:rgba(26,0,80,.9);color:white;padding:10px 22px;border-radius:20px;
+  font-size:.85rem;font-weight:700;z-index:600;
+  box-shadow:0 4px 20px rgba(0,0,0,.5);white-space:nowrap;
+  pointer-events:none;opacity:0;transition:opacity .3s}
+#toast.show{opacity:1}
+
+::-webkit-scrollbar{width:0}
+@media(min-width:480px){body{max-width:480px;margin:0 auto}}
+</style>
+</head>
+<body>
+
+<!-- TOP NAV -->
+<div class="top-nav">
+  <div class="stats-pill">⭐ <span id="star-count">0</span></div>
+  <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN / ES</button>
+  <div class="stats-pill">🔥 <span id="streak-count">0</span></div>
+</div>
+
+<!-- MAIN STAGE -->
+<div class="main-stage">
+
+  <!-- Mascot -->
+  <div class="mascot-display" id="mascot">😴</div>
+
+  <!-- Speech bubble -->
+  <div class="speech-bubble" id="speech-bubble">Good morning, champion! Ready to go?</div>
+
+  <!-- Timer ring + tap button -->
+  <div class="tap-zone">
+    <svg class="timer-svg" id="timer-svg" width="260" height="260">
+      <circle id="ring-bg" cx="130" cy="130" r="112"/>
+      <circle id="ring-progress" cx="130" cy="130" r="112"/>
+    </svg>
+    <button class="tap-btn" id="tap-btn" onclick="handleTap()">
+      <span id="task-emoji">🧼</span>
+      <span class="tap-hint" id="tap-hint">TAP ME! 👆</span>
+    </button>
+  </div>
+
+  <!-- Task label -->
+  <div class="task-label" id="task-label">WASH FACE</div>
+
+  <!-- Stars + Streak -->
+  <div class="stats-row">
+    <div class="stat-bubble">⭐ <span id="stars-display">0</span> stars</div>
+    <div class="stat-bubble">🔥 <span id="streak-display">0</span> days</div>
+  </div>
+
+  <!-- Emoji chain -->
+  <div class="emoji-chain" id="emoji-chain"></div>
+
+  <!-- Brain Power -->
+  <div class="brain-section">
+    <div class="brain-header">
+      <span class="brain-label">🧠 Brain Power</span>
+      <span class="brain-pts" id="brain-pts">0 pts</span>
+    </div>
+    <div class="brain-bar-bg">
+      <div class="brain-bar-fill" id="brain-bar" style="width:0%"></div>
+    </div>
+    <div class="brain-sub" id="brain-sub">Executive Function · Focus · Independence</div>
+  </div>
+
+</div>
+
+<!-- Explosion canvas -->
+<canvas class="explode-canvas" id="explode-canvas"></canvas>
+
+<!-- Yell text -->
+<div class="yell-text" id="yell-text">🏆</div>
+
+<!-- All Done screen -->
+<div class="all-done hidden" id="all-done-screen">
+  <div class="all-done-rocket">🚀</div>
+  <div class="all-done-title" id="all-done-title">DAILY WINNER!</div>
+  <div class="all-done-sub" id="all-done-sub">You crushed it today! 🏆</div>
+  <div style="font-size:2.5rem">⭐⭐⭐⭐⭐⭐</div>
+  <button class="all-done-btn" onclick="resetDay()" id="all-done-btn">See you tomorrow! 👋</button>
+</div>
+
+<!-- Parent lock -->
+<button class="parent-lock" onclick="showPin()">🔒</button>
+
+<!-- Voice indicator -->
+<div class="voice-indicator" id="voice-indicator">🎤 Speaking...</div>
+
+<!-- PIN Modal -->
+<div class="pin-overlay hidden" id="pin-modal">
+  <div class="pin-box">
+    <div class="pin-title">🔒 Parent PIN</div>
+    <div class="pin-display" id="pin-display">_ _ _ _</div>
+    <div class="pin-pad">
+      <button class="pin-btn" onclick="pinTap(1)">1</button>
+      <button class="pin-btn" onclick="pinTap(2)">2</button>
+      <button class="pin-btn" onclick="pinTap(3)">3</button>
+      <button class="pin-btn" onclick="pinTap(4)">4</button>
+      <button class="pin-btn" onclick="pinTap(5)">5</button>
+      <button class="pin-btn" onclick="pinTap(6)">6</button>
+      <button class="pin-btn" onclick="pinTap(7)">7</button>
+      <button class="pin-btn" onclick="pinTap(8)">8</button>
+      <button class="pin-btn" onclick="pinTap(9)">9</button>
+      <button class="pin-btn pin-clear" onclick="pinClear()">✕</button>
+      <button class="pin-btn" onclick="pinTap(0)">0</button>
+      <button class="pin-btn pin-ok" onclick="pinSubmit()">✓</button>
+    </div>
+    <button class="pin-cancel" onclick="closePin()">Cancel</button>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script>
+// ============================================================
+// MORNING MATE — BILINGUAL EDITION
+// EN/ES · ElevenLabs V3 voice · Brain Power tracker · Haptics
+// ============================================================
+
+// ── TASK DATA (bilingual) ────────────────────────────────────
+const TASKS = [
+  {
+    emoji:'🧼', dur:60,
+    en:{ label:'WASH FACE',    speech:"Rise and shine! Let's splash that face and wake up!" },
+    es:{ label:'LÁVATE LA CARA', speech:"¡Buenos días! A lavarse la carita para despertar bien." },
+    mascot:'😴', mascotAfter:'🙂',
+    yell_en:'Rise and shine! ☀️', yell_es:'¡Arriba! ☀️'
+  },
+  {
+    emoji:'🪥', dur:120,
+    en:{ label:'BRUSH TEETH',    speech:"Scrub scrub scrub! Make those teeth sparkle like a superstar!" },
+    es:{ label:'LÁVATE LOS DIENTES', speech:"¡A cepillar! Que brillen esos dientes como estrellas." },
+    mascot:'🙂', mascotAfter:'🤩',
+    yell_en:'Shiny smile! 🪥', yell_es:'¡Qué sonrisa! 🪥'
+  },
+  {
+    emoji:'👕', dur:180,
+    en:{ label:'GET DRESSED',  speech:"Looking great! Time to put on your favorite outfit and own the day!" },
+    es:{ label:'VÍSTETE',      speech:"¡A vestirse! Ponte tu ropa favorita. ¡Hoy es tu día!" },
+    mascot:'🤩', mascotAfter:'😎',
+    yell_en:'Looking good! 👕', yell_es:'¡Qué guapo/a! 👕'
+  },
+  {
+    emoji:'🥛', dur:300,
+    en:{ label:'EAT BREAKFAST', speech:"Fuel up champion! Eat up so your brain is ready to learn!" },
+    es:{ label:'DESAYUNA',      speech:"¡A desayunar campeón! Come bien para que tu cerebro esté listo." },
+    mascot:'😎', mascotAfter:'🥳',
+    yell_en:'Fuel up! 🥛', yell_es:'¡A comer! 🥛'
+  },
+  {
+    emoji:'🎒', dur:90,
+    en:{ label:'PACK BAG',     speech:"Check your folders, your homework, everything in! You are ready for school!" },
+    es:{ label:'PREPARA TU MOCHILA', speech:"¡Revisa tus cuadernos! Todo dentro. ¡Ya casi listos para la escuela!" },
+    mascot:'🥳', mascotAfter:'🏆',
+    yell_en:'Ready to fly! 🎒', yell_es:'¡Listo para volar! 🎒'
+  },
+  {
+    emoji:'🚀', dur:30,
+    en:{ label:'SCHOOL TIME!', speech:"You did it! Daily winner! Have the most amazing day at school!" },
+    es:{ label:'¡A LA ESCUELA!', speech:"¡Lo lograste! ¡Ganador del día! ¡Que tengas un día increíble en la escuela!" },
+    mascot:'🏆', mascotAfter:'🏆',
+    yell_en:'DAILY WINNER! 🏆', yell_es:'¡GANADOR DEL DÍA! 🏆'
+  },
+];
+
+const MASCOT_STATES = ['😴','🙂','🤩','😎','🥳','🏆','🌟'];
+const BRAIN_LABELS_EN = [
+  'Executive Function · Focus · Independence',
+  'Self-regulation skills building! 🧠',
+  'Attention + sequencing improving! 💡',
+  'Time management skills growing! ⏰',
+  'Independence milestone reached! 🌟',
+  'Academic readiness: EXCELLENT! 🏆',
+];
+const BRAIN_LABELS_ES = [
+  'Función ejecutiva · Enfoque · Independencia',
+  '¡Habilidades de autocontrol en desarrollo! 🧠',
+  '¡Mejorando atención y secuenciación! 💡',
+  '¡Habilidades de gestión del tiempo creciendo! ⏰',
+  '¡Hito de independencia alcanzado! 🌟',
+  '¡Preparación académica: EXCELENTE! 🏆',
+];
+
+// ── ElevenLabs config (replace key in production) ────────────
+const EL_VOICE_ID  = '9BWtsMINqrJLrRacOk9x'; // Alice - Warm Mom voice
+const EL_API_KEY   = ''; // Set your key here for ElevenLabs TTS
+
+// ── STATE ────────────────────────────────────────────────────
+let S = {
+  lang: 'en',
+  currentTask: 0,
+  stars: 0,
+  streak: [],
+  brainPower: 0,
+  lastCompleted: '',
+  PIN: '1234',
+};
+
+const today = () => new Date().toISOString().split('T')[0];
+const save  = () => localStorage.setItem('mm_bi', JSON.stringify(S));
+const $     = id => document.getElementById(id);
+const set   = (id, v) => { const e=$(id); if(e) e.textContent=v; };
+const show  = id => { const e=$(id); if(e) e.classList.remove('hidden'); };
+const hide  = id => { const e=$(id); if(e) e.classList.add('hidden'); };
+
+function load() {
+  try {
+    const d = localStorage.getItem('mm_bi');
+    if (d) Object.assign(S, JSON.parse(d));
+    // Reset if new day
+    if (S.lastCompleted === today() && S.currentTask >= TASKS.length) {
+      // already done today — show done screen
+    } else if (S.lastCompleted !== today()) {
+      S.currentTask = 0;
+      S.stars = Math.max(0, S.stars - 6); // keep total, reset today
+    }
+  } catch(e) {}
+}
+
+// ── BOOT ─────────────────────────────────────────────────────
+window.addEventListener('load', () => {
+  load();
+  updateLangBtn();
+  renderChain();
+  showTask(true);
+  updateStats();
+  updateBrain();
+});
+
+// ── LANGUAGE ─────────────────────────────────────────────────
+function toggleLang() {
+  S.lang = S.lang === 'en' ? 'es' : 'en';
+  save();
+  updateLangBtn();
+  showTask(false);
+  updateBrain();
+}
+function updateLangBtn() {
+  $('lang-btn').textContent = S.lang === 'en' ? 'EN → ES' : 'ES → EN';
+}
+
+// ── SHOW TASK ─────────────────────────────────────────────────
+function showTask(withVoice) {
+  if (S.currentTask >= TASKS.length) { showAllDone(); return; }
+  const t  = TASKS[S.currentTask];
+  const lx = t[S.lang];
+
+  // Emoji + label
+  $('task-emoji').textContent = t.emoji;
+  set('task-label', lx.label);
+
+  // Mascot
+  $('mascot').textContent = t.mascot;
+  $('mascot').className = 'mascot-display';
+
+  // Speech bubble
+  $('speech-bubble').textContent = lx.speech;
+  $('speech-bubble').style.animation = 'none';
+  void $('speech-bubble').offsetWidth;
+  $('speech-bubble').style.animation = '';
+
+  // Start timer ring
+  startTimer(t.dur);
+
+  // Voice
+  if (withVoice) {
+    setTimeout(() => speak(lx.speech), 400);
+  }
+
+  // Chain
+  renderChain();
+}
+
+// ── TAP HANDLER ──────────────────────────────────────────────
+function handleTap() {
+  if (S.currentTask >= TASKS.length) return;
+  const t = TASKS[S.currentTask];
+  const lx = t[S.lang];
+
+  // 1. Haptic
+  if (navigator.vibrate) navigator.vibrate([200,80,200,80,200]);
+
+  // 2. Button bounce
+  const btn = $('tap-btn');
+  btn.style.transform = 'scale(.85)';
+  setTimeout(() => btn.style.transform = '', 180);
+
+  // 3. Mascot excited
+  $('mascot').textContent = t.mascotAfter;
+  $('mascot').className = 'mascot-display excited';
+  setTimeout(() => $('mascot').className = 'mascot-display', 800);
+
+  // 4. Explosion + yell
+  doExplode(t.emoji);
+  doYell(S.lang === 'en' ? t.yell_en : t.yell_es);
+
+  // 5. Update state
+  S.stars++;
+  S.brainPower = Math.min(100, S.brainPower + (100 / TASKS.length));
+  S.currentTask++;
+  save();
+
+  // 6. Update UI
+  updateStats();
+  updateBrain();
+
+  // 7. Voice cheer
+  setTimeout(() => speak(S.lang === 'en' ? t.yell_en : t.yell_es), 300);
+
+  // 8. Next task
+  setTimeout(() => {
+    if (S.currentTask < TASKS.length) {
+      showTask(true);
+    } else {
+      showAllDone();
+    }
+  }, 700);
+}
+
+// ── TIMER ────────────────────────────────────────────────────
+let timerInterval = null;
+function startTimer(seconds) {
+  clearInterval(timerInterval);
+  let rem = seconds;
+  const ring = $('ring-progress');
+  const circ = 706; // 2*PI*112
+  if (ring) ring.style.strokeDashoffset = 0;
+  timerInterval = setInterval(() => {
+    rem--;
+    const pct = rem / seconds;
+    if (ring) {
+      ring.style.strokeDashoffset = circ * (1 - pct);
+      ring.style.stroke = pct > 0.3 ? 'var(--gold)' : '#f87171';
+    }
+    if (rem <= 0) clearInterval(timerInterval);
+  }, 1000);
+}
+
+// ── STATS ────────────────────────────────────────────────────
+function updateStats() {
+  set('star-count', S.stars);
+  set('stars-display', S.stars);
+  const d7 = (S.streak||[]).filter(d => (Date.now() - new Date(d+'T12:00:00')) < 7*864e5);
+  set('streak-count', d7.length);
+  set('streak-display', d7.length);
+}
+
+function updateBrain() {
+  const bar = $('brain-bar');
+  if (bar) bar.style.width = Math.round(S.brainPower) + '%';
+  set('brain-pts', Math.round(S.brainPower) + ' pts');
+  const labels = S.lang === 'en' ? BRAIN_LABELS_EN : BRAIN_LABELS_ES;
+  const idx = Math.min(S.currentTask, labels.length - 1);
+  set('brain-sub', labels[idx]);
+}
+
+// ── EMOJI CHAIN ───────────────────────────────────────────────
+function renderChain() {
+  const el = $('emoji-chain');
+  if (!el) return;
+  el.innerHTML = TASKS.map((t,i) => {
+    let cls = 'ec';
+    if (i < S.currentTask) cls += ' done';
+    else if (i === S.currentTask) cls += ' active';
+    return `<span class="${cls}">${t.emoji}</span>`;
+  }).join('');
+}
+
+// ── EXPLOSION ────────────────────────────────────────────────
+function doExplode(emoji) {
+  const canvas = $('explode-canvas');
+  if (!canvas) return;
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  canvas.classList.add('active');
+  const ctx = canvas.getContext('2d');
+  const cx = window.innerWidth/2, cy = window.innerHeight/2;
+  const particles = [];
+  for (let i=0;i<50;i++) {
+    const angle = Math.random()*Math.PI*2;
+    const speed = 4 + Math.random()*14;
+    particles.push({x:cx,y:cy,vx:Math.cos(angle)*speed,vy:Math.sin(angle)*speed-5,
+      emoji,size:16+Math.random()*26,life:1,decay:.02+Math.random()*.018});
+  }
+  let frame=0;
+  function draw() {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    let alive=false;
+    particles.forEach(p=>{
+      if(p.life<=0) return; alive=true;
+      p.x+=p.vx; p.y+=p.vy; p.vy+=0.45; p.vx*=.97; p.life-=p.decay;
+      ctx.save(); ctx.globalAlpha=Math.max(0,p.life);
+      ctx.font=`${p.size}px serif`; ctx.textAlign='center'; ctx.textBaseline='middle';
+      ctx.fillText(p.emoji,p.x,p.y); ctx.restore();
+    });
+    frame++;
+    if(frame<90||alive) requestAnimationFrame(draw);
+    else { canvas.classList.remove('active'); ctx.clearRect(0,0,canvas.width,canvas.height); }
+  }
+  draw();
+}
+
+// ── YELL ─────────────────────────────────────────────────────
+function doYell(msg) {
+  const el = $('yell-text');
+  if (!el) return;
+  el.textContent = msg;
+  el.classList.remove('pop');
+  void el.offsetWidth;
+  el.classList.add('pop');
+  setTimeout(() => el.classList.remove('pop'), 1200);
+}
+
+// ── VOICE (ElevenLabs V3 + browser fallback) ─────────────────
+async function speak(text) {
+  const vi = $('voice-indicator');
+  if (vi) { vi.classList.add('show'); setTimeout(()=>vi.classList.remove('show'),2500); }
+
+  // Try ElevenLabs V3 if key is set
+  if (EL_API_KEY && EL_API_KEY.length > 10) {
+    try {
+      const res = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${EL_VOICE_ID}`, {
+        method: 'POST',
+        headers: { 'xi-api-key': EL_API_KEY, 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          text,
+          model_id: 'eleven_multilingual_v2',
+          voice_settings: { stability: 0.6, similarity_boost: 0.82, style: 0.3 }
+        })
+      });
+      if (res.ok) {
+        const blob = await res.blob();
+        new Audio(URL.createObjectURL(blob)).play();
+        return;
+      }
+    } catch(e) { /* fall through to browser TTS */ }
+  }
+
+  // Browser TTS fallback (COPPA-safe, no API needed)
+  if ('speechSynthesis' in window) {
+    window.speechSynthesis.cancel();
+    const utt = new SpeechSynthesisUtterance(text);
+    utt.lang = S.lang === 'es' ? 'es-MX' : 'en-US';
+    utt.rate = 0.92;
+    utt.pitch = 1.1;
+    window.speechSynthesis.speak(utt);
+  }
+}
+
+// ── ALL DONE ─────────────────────────────────────────────────
+function showAllDone() {
+  const d = today();
+  if (!S.streak.includes(d)) { S.streak.push(d); save(); }
+  S.lastCompleted = d; save();
+  updateStats();
+
+  const titleEl = $('all-done-title');
+  const subEl   = $('all-done-sub');
+  const btnEl   = $('all-done-btn');
+  if (titleEl) titleEl.textContent = S.lang === 'en' ? 'DAILY WINNER!' : '¡GANADOR DEL DÍA!';
+  if (subEl)   subEl.textContent   = S.lang === 'en' ? 'You crushed it today! 🏆' : '¡Lo lograste hoy! 🏆';
+  if (btnEl)   btnEl.textContent   = S.lang === 'en' ? 'See you tomorrow! 👋' : '¡Hasta mañana! 👋';
+  show('all-done-screen');
+
+  if (navigator.vibrate) navigator.vibrate([300,100,300,100,600]);
+  setTimeout(() => doExplode('🏆'), 300);
+  setTimeout(() => doExplode('⭐'), 900);
+  speak(S.lang === 'en' ? 'AMAZING! You are a daily winner! Have a fantastic day at school!' : '¡INCREÍBLE! ¡Eres el ganador del día! ¡Que tengas un día fantástico en la escuela!');
+}
+
+function resetDay() {
+  S.currentTask = 0;
+  S.brainPower  = 0;
+  save();
+  hide('all-done-screen');
+  renderChain();
+  showTask(false);
+  updateBrain();
+}
+
+// ── PIN ───────────────────────────────────────────────────────
+let pinBuf = [];
+function showPin() {
+  pinBuf = [];
+  set('pin-display','_ _ _ _');
+  show('pin-modal');
+}
+function closePin() { hide('pin-modal'); }
+function pinTap(n) {
+  if (pinBuf.length >= 4) return;
+  pinBuf.push(n);
+  if (navigator.vibrate) navigator.vibrate(30);
+  const filled = '●'.repeat(pinBuf.length);
+  const empty  = '_ '.repeat(4-pinBuf.length);
+  set('pin-display', (filled+' '+empty).trim());
+}
+function pinClear() { pinBuf=[]; set('pin-display','_ _ _ _'); }
+function pinSubmit() {
+  if (pinBuf.join('') === String(S.PIN)) {
+    hide('pin-modal');
+    toast(S.lang==='en' ? '👋 Welcome back!' : '¡Bienvenida de vuelta! 👋');
+  } else {
+    set('pin-display','❌');
+    if (navigator.vibrate) navigator.vibrate([200,50,200]);
+    setTimeout(()=>{ pinBuf=[]; set('pin-display','_ _ _ _'); },1200);
+  }
+}
+
+// ── TOAST ─────────────────────────────────────────────────────
+function toast(msg) {
+  const t = $('toast');
+  t.textContent = msg; t.classList.add('show');
+  clearTimeout(t._to); t._to = setTimeout(()=>t.classList.remove('show'),2500);
+}
+</script>
+</body>
+</html>

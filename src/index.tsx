@@ -3,6 +3,7 @@ import { serveStatic } from 'hono/cloudflare-workers'
 const app = new Hono()
 app.use('/static/*', serveStatic({ root: './' }))
 app.get('/landing', (c) => c.redirect('/static/landing.html'))
+app.get('/bilingual', (c) => c.redirect('/static/bilingual.html'))
 app.get('/', (c) => c.html(`<!DOCTYPE html>
 <html lang="en">
 <head>
