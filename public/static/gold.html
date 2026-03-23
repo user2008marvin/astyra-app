@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+<title>Morning Mate Gold ☀️</title>
+<style>
+/* ============================================================
+   MORNING MATE — GOLD EDITION
+   Gemini's warm sunrise palette + all our improvements
+   ============================================================ */
+:root{
+  --sky:#87CEEB;
+  --sun-mid:#FFA552;
+  --sun-bot:#FF6B35;
+  --gold:#FFD700;
+  --gold-dark:#ccac00;
+  --gold-deep:#b8860b;
+  --brain-start:#00C9FF;
+  --brain-end:#92FE9D;
+  --glass:rgba(255,255,255,0.28);
+  --glass-border:rgba(255,255,255,0.45);
+  --text:#2d1a00}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;margin:0;padding:0;
+  -webkit-user-select:none;user-select:none}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  background:linear-gradient(180deg,var(--sky) 0%,var(--sun-mid) 60%,var(--sun-bot) 100%);
+  min-height:100vh;overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;color:var(--text)}
+
+/* ── SCREENS ────────────────────────────────────────────────── */
+.screen{display:none;min-height:100vh;flex-direction:column;align-items:center;padding:16px 18px}
+.screen.active{display:flex}
+
+/* ── TOP NAV ─────────────────────────────────────────────────── */
+.nav{width:100%;display:flex;justify-content:space-between;align-items:center;
+  margin-bottom:6px;z-index:10}
+.pill{
+  background:var(--glass);backdrop-filter:blur(12px);
+  padding:8px 15px;border-radius:22px;font-weight:800;font-size:.82rem;
+  border:1.5px solid var(--glass-border);cursor:pointer;
+  display:flex;align-items:center;gap:5px;
+  box-shadow:0 3px 12px rgba(0,0,0,.1);
+  transition:all .15s}
+.pill:active{transform:scale(.95)}
+.lang-pill{
+  background:var(--gold);border-color:var(--gold-dark);
+  color:var(--text);box-shadow:0 4px 0 var(--gold-dark),0 6px 16px rgba(255,215,0,.3);
+  font-size:.78rem;letter-spacing:.5px}
+.lang-pill:active{transform:translateY(3px);box-shadow:0 1px 0 var(--gold-dark)}
+
+/* ── STREAK BANNER ───────────────────────────────────────────── */
+.streak-banner{
+  width:100%;background:var(--glass);backdrop-filter:blur(12px);
+  border:1.5px solid var(--glass-border);border-radius:20px;
+  padding:8px 16px;display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:8px;box-shadow:0 3px 12px rgba(0,0,0,.08)}
+.sb-name{font-weight:900;font-size:.88rem;color:var(--text)}
+.sb-fire{font-size:.78rem;font-weight:800;color:#b91c1c;
+  animation:firePulse 1.5s ease-in-out infinite}
+@keyframes firePulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+.sb-reward{font-size:.72rem;font-weight:700;color:var(--text-dark,#333);opacity:.75}
+
+/* ── MASCOT ─────────────────────────────────────────────────── */
+.mascot-wrap{display:flex;flex-direction:column;align-items:center;position:relative;margin-bottom:2px}
+.mascot{
+  font-size:min(16vw,62px);line-height:1;
+  filter:drop-shadow(0 5px 14px rgba(0,0,0,.18));
+  animation:mascotFloat 3s ease-in-out infinite;
+  transition:all .3s}
+@keyframes mascotFloat{0%,100%{transform:rotate(-4deg) translateY(0)}50%{transform:rotate(4deg) translateY(-8px)}}
+.mascot.excited{animation:mascotExcite .4s ease infinite alternate}
+@keyframes mascotExcite{0%{transform:scale(1) rotate(-10deg)}100%{transform:scale(1.3) rotate(10deg)}}
+.mascot.legendary{animation:mascotLegend 1.2s ease-in-out infinite;
+  filter:drop-shadow(0 0 24px rgba(255,215,0,.9))}
+@keyframes mascotLegend{0%,100%{transform:scale(1.1) rotate(-4deg)}50%{transform:scale(1.25) rotate(4deg)}}
+.mascot-bubble{
+  background:white;color:var(--text);border-radius:16px;
+  padding:5px 14px;font-size:.72rem;font-weight:800;
+  box-shadow:0 3px 10px rgba(0,0,0,.15);margin-top:4px;
+  animation:bubblePop 2s ease-in-out infinite}
+@keyframes bubblePop{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
+.mascot-bubble.hidden{display:none}
+
+/* ── SPEECH BUBBLE ───────────────────────────────────────────── */
+.speech-bubble{
+  background:white;padding:15px 20px;border-radius:22px;
+  margin:8px 0 4px;font-weight:700;font-size:clamp(.9rem,3.5vw,1.05rem);
+  box-shadow:0 6px 20px rgba(0,0,0,.12);
+  position:relative;width:min(86vw,320px);text-align:center;
+  line-height:1.5;color:var(--text);
+  animation:bubbleIn .4s cubic-bezier(.175,.885,.32,1.275)}
+@keyframes bubbleIn{0%{transform:scale(.85) translateY(8px);opacity:0}100%{transform:scale(1);opacity:1}}
+.speech-bubble::after{
+  content:'';position:absolute;bottom:-12px;left:50%;transform:translateX(-50%);
+  border-left:12px solid transparent;border-right:12px solid transparent;
+  border-top:12px solid white}
+
+/* ── TIMER RING + TAP BUTTON ─────────────────────────────────── */
+.tap-zone{
+  position:relative;
+  width:min(68vw,260px);height:min(68vw,260px);
+  display:flex;align-items:center;justify-content:center}
+.ring-svg{position:absolute;top:0;left:0;transform:rotate(-90deg)}
+#ring-bg{fill:none;stroke:rgba(255,255,255,.18);stroke-width:11}
+#ring-progress{
+  fill:none;stroke:white;stroke-width:11;stroke-linecap:round;
+  stroke-dasharray:691;stroke-dashoffset:0;
+  transition:stroke-dashoffset 1s linear,stroke .5s}
+.tap-btn{
+  width:min(53vw,195px);height:min(53vw,195px);
+  background:radial-gradient(circle at 38% 35%,#FFFF99,var(--gold) 45%,#FFA500);
+  border-radius:50%;border:7px solid rgba(255,255,255,.85);
+  font-size:min(19vw,72px);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;
+  cursor:pointer;z-index:2;
+  box-shadow:0 0 0 10px rgba(255,215,0,.18),0 0 0 20px rgba(255,215,0,.07),
+    0 14px 36px rgba(0,0,0,.22),inset 0 -5px 14px rgba(180,100,0,.2);
+  transition:transform .1s,box-shadow .1s;
+  position:relative;overflow:hidden}
+.tap-btn::before{
+  content:'';position:absolute;top:12%;left:16%;width:30%;height:18%;
+  background:rgba(255,255,255,.5);border-radius:50%;transform:rotate(-30deg)}
+.tap-btn:active{transform:scale(.88)}
+.tap-hint{font-size:.55rem;font-weight:900;color:rgba(255,255,255,.9);letter-spacing:.5px;z-index:1}
+
+/* ── TASK LABEL ──────────────────────────────────────────────── */
+.task-label{
+  font-size:clamp(1.4rem,7vw,2rem);font-weight:900;
+  color:white;text-align:center;margin:6px 0 2px;
+  text-shadow:0 3px 14px rgba(0,0,0,.2);letter-spacing:.4px;transition:all .3s}
+
+/* ── EMOJI CHAIN ─────────────────────────────────────────────── */
+.emoji-chain{
+  display:flex;gap:7px;align-items:center;
+  background:var(--glass);backdrop-filter:blur(8px);
+  border:1.5px solid var(--glass-border);
+  border-radius:20px;padding:8px 16px;margin:6px 0}
+.ec{font-size:1.35rem;filter:grayscale(1) brightness(.55);transition:all .3s;transform:scale(.9)}
+.ec.done{filter:none;transform:scale(1.05)}
+.ec.active{filter:none;animation:ecBounce 1s ease-in-out infinite;transform:scale(1.15)}
+@keyframes ecBounce{0%,100%{transform:scale(1.1)}50%{transform:scale(1.22) translateY(-4px)}}
+
+/* ── BRAIN POWER BAR ─────────────────────────────────────────── */
+.brain-section{
+  width:min(85vw,340px);
+  background:var(--glass);backdrop-filter:blur(8px);
+  border:1.5px solid var(--glass-border);
+  border-radius:20px;padding:13px 16px;margin-top:6px}
+.brain-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
+.brain-title{font-size:.7rem;font-weight:900;color:rgba(255,255,255,.9);
+  text-transform:uppercase;letter-spacing:1px}
+.brain-pts-lbl{font-size:.7rem;font-weight:900;color:var(--gold)}
+.brain-bar-bg{background:rgba(0,0,0,.15);height:10px;border-radius:10px;overflow:hidden;
+  border:1px solid rgba(255,255,255,.15)}
+.brain-bar-fill{height:100%;background:linear-gradient(90deg,var(--brain-start),var(--brain-end));
+  border-radius:10px;transition:width .6s cubic-bezier(.34,1.56,.64,1)}
+#level-label{font-size:.65rem;font-weight:800;color:rgba(255,255,255,.75);
+  margin-top:5px;text-align:center;text-transform:uppercase;letter-spacing:.8px}
+
+/* ── ALL DONE SCREEN ─────────────────────────────────────────── */
+.all-done{
+  position:fixed;inset:0;z-index:400;
+  background:linear-gradient(160deg,var(--sky),var(--sun-mid),var(--sun-bot));
+  display:flex;align-items:center;justify-content:center;
+  flex-direction:column;gap:12px;text-align:center;padding:30px}
+.all-done.hidden{display:none}
+.ad-rocket{font-size:5rem;animation:rocketUp .8s ease forwards}
+@keyframes rocketUp{0%{transform:translateY(40px);opacity:0}100%{transform:translateY(0);opacity:1}}
+.ad-title{
+  font-size:clamp(2rem,10vw,3.2rem);font-weight:900;
+  color:var(--gold);text-shadow:0 4px 20px rgba(0,0,0,.2)}
+.ad-cert{
+  background:white;border:8px solid var(--gold);
+  border-radius:24px;padding:18px 24px;width:min(86vw,340px);
+  box-shadow:0 12px 40px rgba(0,0,0,.2)}
+.ad-cert-title{font-size:.7rem;font-weight:900;color:var(--gold-deep);
+  text-transform:uppercase;letter-spacing:2px;margin-bottom:6px}
+.ad-cert-name{font-size:1.6rem;font-weight:900;color:var(--text);margin-bottom:4px}
+.ad-cert-sub{font-size:.82rem;color:#666;margin-bottom:8px}
+.ad-cert-stars{font-size:2rem}
+.ad-btn{
+  background:linear-gradient(135deg,var(--gold),#FFA500);
+  color:var(--text);font-weight:900;font-size:1rem;border:none;
+  border-radius:20px;padding:14px 32px;cursor:pointer;
+  box-shadow:0 6px 0 var(--gold-dark),0 8px 24px rgba(255,165,0,.4);
+  transition:all .15s}
+.ad-btn:active{transform:translateY(4px);box-shadow:0 2px 0 var(--gold-dark)}
+
+/* ── DASHBOARD SCREEN ────────────────────────────────────────── */
+#screen-dash{background:linear-gradient(180deg,var(--sky),#fff8f0);overflow-y:auto}
+.dash-header{
+  width:100%;background:linear-gradient(135deg,var(--sun-mid),var(--sun-bot));
+  padding:40px 18px 18px;display:flex;align-items:center;justify-content:space-between;
+  border-radius:0 0 24px 24px;box-shadow:0 6px 20px rgba(0,0,0,.15)}
+.dash-logo{font-size:1.1rem;font-weight:900;color:white}
+.dash-back{
+  background:rgba(255,255,255,.25);color:white;border:1.5px solid rgba(255,255,255,.4);
+  border-radius:20px;padding:8px 14px;font-weight:700;font-size:.8rem;cursor:pointer}
+.dash-content{width:100%;padding:0 14px;display:flex;flex-direction:column;gap:14px;padding-bottom:20px;margin-top:14px}
+.d-card{background:white;border-radius:20px;padding:16px;
+  box-shadow:0 3px 12px rgba(0,0,0,.07)}
+.d-card-title{font-size:.9rem;font-weight:900;color:var(--text);margin-bottom:12px;
+  display:flex;align-items:center;gap:6px}
+.gold-badge{
+  background:linear-gradient(135deg,var(--gold),#FFA500);
+  color:white;font-size:.62rem;font-weight:800;
+  padding:3px 10px;border-radius:10px;letter-spacing:.5px}
+
+/* Calendar */
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;margin-top:8px}
+.cal-day{
+  height:32px;background:#f9fafb;border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:.72rem;font-weight:600;color:#9ca3af}
+.cal-day.done{background:linear-gradient(135deg,var(--gold),#FFA500);
+  color:white;font-weight:900;font-size:.9rem}
+.cal-day.today{border:2px solid var(--sun-bot);color:var(--sun-bot)}
+
+/* Stats row */
+.d-stats{display:flex;gap:10px}
+.d-stat{flex:1;text-align:center;background:#f9fafb;border-radius:14px;padding:12px 6px}
+.d-stat-num{font-size:1.8rem;font-weight:900;color:var(--sun-bot)}
+.d-stat-lbl{font-size:.62rem;color:#9ca3af;font-weight:600;text-transform:uppercase;letter-spacing:.5px}
+
+/* Voice recording */
+.voice-task{
+  display:flex;align-items:center;gap:10px;padding:10px;
+  background:#f9fafb;border-radius:14px;border:1px solid #f3f4f6;margin-bottom:8px}
+.voice-task-emoji{font-size:1.3rem}
+.voice-task-label{flex:1;font-size:.82rem;font-weight:700;color:var(--text)}
+.voice-rec-btn{
+  background:linear-gradient(135deg,#ff6b6b,#FF4B2B);
+  color:white;border:none;border-radius:10px;
+  padding:6px 12px;font-size:.7rem;font-weight:800;cursor:pointer}
+.voice-play-btn{
+  background:linear-gradient(135deg,#22c55e,#16a34a);
+  color:white;border:none;border-radius:10px;
+  padding:6px 12px;font-size:.7rem;font-weight:800;cursor:pointer}
+.voice-del-btn{
+  background:#f3f4f6;color:#9ca3af;border:none;border-radius:10px;
+  padding:6px 8px;font-size:.7rem;cursor:pointer}
+
+/* Night tasks */
+.night-task{
+  display:flex;align-items:center;gap:10px;padding:11px 12px;
+  background:#f9fafb;border-radius:14px;border:1.5px solid #f3f4f6;cursor:pointer}
+.night-task.done{background:#f0fdf4;border-color:#bbf7d0}
+.night-cb{width:22px;height:22px;border:2px solid #d1d5db;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;font-size:.7rem;
+  color:transparent;flex-shrink:0}
+.night-task.done .night-cb{background:#22c55e;border-color:#22c55e;color:white}
+
+/* Settings inputs */
+.s-label{display:block;font-size:.78rem;font-weight:700;color:#4b5563;margin-bottom:4px;margin-top:10px}
+.s-input{width:100%;padding:11px 14px;border:2px solid #e5e7eb;border-radius:12px;
+  font-size:.95rem;outline:none;color:var(--text);background:#fafafa}
+.s-input:focus{border-color:var(--sun-mid)}
+.time-row{display:flex;align-items:center;gap:6px;justify-content:center;margin-top:6px}
+.time-sel{background:#fff7ed;border:2px solid #fed7aa;border-radius:12px;padding:10px 8px;
+  font-size:1.2rem;font-weight:800;color:var(--sun-bot);text-align:center;outline:none;min-width:58px}
+.s-save-btn{
+  width:100%;background:linear-gradient(135deg,var(--sun-mid),var(--sun-bot));
+  color:white;border:none;border-radius:16px;padding:14px;
+  font-weight:900;font-size:.95rem;cursor:pointer;margin-top:14px;
+  box-shadow:0 4px 0 #c2410c}
+.s-save-btn:active{transform:translateY(3px);box-shadow:0 1px 0 #c2410c}
+.danger-btn{
+  width:100%;background:#fef2f2;border:1.5px solid #fecaca;
+  color:#ef4444;border-radius:12px;padding:10px;
+  font-weight:700;font-size:.85rem;cursor:pointer;margin-top:8px}
+
+/* Photo grid */
+.photo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.photo-thumb{border-radius:10px;aspect-ratio:1;object-fit:cover;width:100%}
+.photo-empty{font-size:.78rem;color:#9ca3af;text-align:center;padding:12px;grid-column:1/-1}
+
+/* ── PIN OVERLAY ─────────────────────────────────────────────── */
+.pin-overlay{
+  position:fixed;inset:0;background:rgba(0,0,0,.85);
+  z-index:500;display:none;flex-direction:column;
+  align-items:center;justify-content:center;
+  backdrop-filter:blur(12px)}
+.pin-overlay.show{display:flex}
+.pin-box{
+  background:linear-gradient(160deg,#fff8f0,white);
+  border:3px solid var(--gold);border-radius:28px;
+  padding:28px 24px;width:min(85vw,310px);
+  box-shadow:0 30px 70px rgba(0,0,0,.4),0 0 40px rgba(255,215,0,.2)}
+.pin-title{font-size:1.1rem;font-weight:900;color:var(--text);text-align:center;margin-bottom:12px}
+.pin-display{
+  font-size:2rem;font-weight:900;letter-spacing:16px;
+  text-align:center;margin-bottom:16px;
+  background:#fff7ed;border-radius:14px;padding:12px;
+  font-family:monospace;color:var(--text)}
+.pin-pad{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;max-width:230px;margin:0 auto 10px}
+.pin-btn{
+  padding:14px;font-size:1.35rem;font-weight:900;
+  border:2px solid #fed7aa;border-radius:14px;
+  background:#fff7ed;cursor:pointer;color:var(--text);transition:all .15s}
+.pin-btn:active{background:var(--gold);border-color:var(--gold-dark);transform:scale(.93)}
+.pin-clear{color:#ef4444;border-color:#fecaca;background:#fef2f2}
+.pin-ok{background:linear-gradient(135deg,#22c55e,#16a34a);color:white;border-color:#16a34a}
+.pin-cancel{width:100%;background:none;border:none;color:#9ca3af;
+  font-size:.82rem;cursor:pointer;padding:8px;text-align:center}
+
+/* ── EXPLOSION / YELL ────────────────────────────────────────── */
+.explode-canvas{position:fixed;inset:0;pointer-events:none;z-index:200;display:none}
+.explode-canvas.active{display:block}
+.yell-text{
+  position:fixed;top:50%;left:50%;
+  transform:translate(-50%,-50%) scale(0);
+  font-size:min(14vw,58px);font-weight:900;
+  color:white;text-shadow:0 0 30px rgba(255,220,50,.9),0 4px 12px rgba(0,0,0,.4);
+  z-index:300;pointer-events:none;text-align:center;white-space:nowrap}
+.yell-text.pop{animation:yellPop .8s cubic-bezier(.175,.885,.32,1.275) forwards}
+@keyframes yellPop{
+  0%{transform:translate(-50%,-50%) scale(0);opacity:0}
+  40%{transform:translate(-50%,-50%) scale(1.3);opacity:1}
+  70%{transform:translate(-50%,-50%) scale(1.1);opacity:1}
+  100%{transform:translate(-50%,-50%) scale(1);opacity:0}}
+
+/* ── VOICE INDICATOR ──────────────────────────────────────────── */
+.voice-ind{
+  position:fixed;top:12px;right:14px;
+  background:rgba(255,215,0,.9);color:var(--text);
+  border-radius:14px;padding:5px 12px;
+  font-size:.65rem;font-weight:900;z-index:50;
+  opacity:0;transition:opacity .3s;letter-spacing:.5px}
+.voice-ind.show{opacity:1}
+
+/* ── TOAST ────────────────────────────────────────────────────── */
+#toast{
+  position:fixed;bottom:22px;left:50%;transform:translateX(-50%);
+  background:rgba(45,26,0,.9);color:white;padding:10px 22px;border-radius:20px;
+  font-size:.85rem;font-weight:700;z-index:600;
+  box-shadow:0 4px 20px rgba(0,0,0,.3);white-space:nowrap;
+  pointer-events:none;opacity:0;transition:opacity .3s}
+#toast.show{opacity:1}
+::-webkit-scrollbar{width:0}
+@media(min-width:480px){
+  .screen,.pin-overlay,.explode-canvas{max-width:480px;left:50%;right:auto;transform:translateX(-50%)}
+  .pin-overlay{transform:none;max-width:100%}
+  .yell-text{max-width:480px}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════ MAIN KID SCREEN ═══════════ -->
+<div id="screen-app" class="screen active">
+
+  <!-- Top nav -->
+  <div class="nav">
+    <div class="pill" onclick="showPin()">⚙️ Parent</div>
+    <button class="pill lang-pill" id="lang-btn" onclick="toggleLang()">EN → ES</button>
+    <div class="pill">⭐ <span id="nav-stars">0</span></div>
+  </div>
+
+  <!-- Streak banner -->
+  <div class="streak-banner">
+    <span class="sb-name" id="sb-name">Morning Champ</span>
+    <span class="sb-fire" id="sb-fire">🔥 Start your streak!</span>
+    <span class="sb-reward" id="sb-reward">⭐ 0/20</span>
+  </div>
+
+  <!-- Mascot -->
+  <div class="mascot-wrap">
+    <div class="mascot" id="mascot">😴</div>
+    <div class="mascot-bubble" id="mascot-bubble">Tap me awake! 👆</div>
+  </div>
+
+  <!-- Speech bubble -->
+  <div class="speech-bubble" id="speech-bubble">Good morning, Rockstar! Ready to go?</div>
+
+  <!-- Timer ring + button -->
+  <div class="tap-zone">
+    <svg class="ring-svg" width="260" height="260">
+      <circle id="ring-bg" cx="130" cy="130" r="110"/>
+      <circle id="ring-progress" cx="130" cy="130" r="110"/>
+    </svg>
+    <button class="tap-btn" id="tap-btn" onclick="handleTap()">
+      <span id="task-emoji">🧼</span>
+      <span class="tap-hint" id="tap-hint">TAP ME! 👆</span>
+    </button>
+  </div>
+
+  <!-- Task label -->
+  <div class="task-label" id="task-label">WASH FACE</div>
+
+  <!-- Emoji chain -->
+  <div class="emoji-chain" id="emoji-chain"></div>
+
+  <!-- Brain Power -->
+  <div class="brain-section">
+    <div class="brain-header">
+      <span class="brain-title">🧠 Brain Power</span>
+      <span class="brain-pts-lbl" id="brain-pts">0 pts</span>
+    </div>
+    <div class="brain-bar-bg">
+      <div class="brain-bar-fill" id="brain-bar" style="width:0%"></div>
+    </div>
+    <div id="level-label">Level 1: Morning Novice</div>
+  </div>
+
+</div>
+
+<!-- ═══════════ PARENT DASHBOARD ═══════════ -->
+<div id="screen-dash" class="screen">
+  <div class="dash-header">
+    <div>
+      <div class="dash-logo">☀️ Morning Mate Gold</div>
+      <div style="font-size:.72rem;color:rgba(255,255,255,.75)">Parent Dashboard</div>
+    </div>
+    <button class="dash-back" onclick="hideDash()">← Back to Kid</button>
+  </div>
+
+  <div class="dash-content">
+
+    <!-- Stats -->
+    <div class="d-card">
+      <div class="d-card-title">📈 This Week <span class="gold-badge">GOLD</span></div>
+      <div class="d-stats">
+        <div class="d-stat"><div class="d-stat-num" id="d-days">0</div><div class="d-stat-lbl">days crushed</div></div>
+        <div class="d-stat"><div class="d-stat-num" id="d-stars">0</div><div class="d-stat-lbl">stars earned</div></div>
+        <div class="d-stat"><div class="d-stat-num" id="d-streak">0</div><div class="d-stat-lbl">day streak</div></div>
+      </div>
+    </div>
+
+    <!-- Calendar -->
+    <div class="d-card">
+      <div class="d-card-title">📅 March Progress</div>
+      <div class="cal-grid" id="cal-grid"></div>
+    </div>
+
+    <!-- Photo proof -->
+    <div class="d-card">
+      <div class="d-card-title">📷 Today's Proof</div>
+      <div class="photo-grid" id="photo-grid">
+        <div class="photo-empty">No photos yet — kid taps 📷 on tasks!</div>
+      </div>
+      <button style="width:100%;background:linear-gradient(135deg,#3b82f6,#1d4ed8);color:white;border:none;border-radius:14px;padding:11px;font-weight:800;font-size:.85rem;cursor:pointer;margin-top:10px" onclick="sharePhotos()">📲 Send to Co-parent</button>
+    </div>
+
+    <!-- Mom's Voice Mode -->
+    <div class="d-card" style="border:1.5px solid #fed7aa">
+      <div class="d-card-title">🎤 Mom's Voice Mode <span class="gold-badge">PLUS</span></div>
+      <p style="font-size:.78rem;color:#6b7280;margin-bottom:10px;line-height:1.5">Record your voice for each task. Kids hear YOU — so it feels personal, not robotic.</p>
+      <div id="voice-list"></div>
+    </div>
+
+    <!-- Night prep -->
+    <div class="d-card">
+      <div class="d-card-title">🌙 Tonight's Prep <span style="background:#ede9fe;color:#6d28d9;border-radius:8px;padding:2px 8px;font-size:.65rem;font-weight:700;margin-left:4px">2 mins</span></div>
+      <div id="night-list" style="display:flex;flex-direction:column;gap:7px"></div>
+    </div>
+
+    <!-- Settings -->
+    <div class="d-card">
+      <div class="d-card-title">⚙️ Settings</div>
+      <label class="s-label">Kid's name</label>
+      <input id="s-name" class="s-input" type="text" placeholder="e.g. Emma"/>
+      <label class="s-label">Drop-off time</label>
+      <div class="time-row">
+        <select id="s-hr" class="time-sel"><option>6</option><option>7</option><option selected>8</option><option>9</option></select>
+        <span style="font-size:1.5rem;font-weight:900;color:var(--sun-bot)">:</span>
+        <select id="s-min" class="time-sel"><option>00</option><option selected>15</option><option>30</option><option>45</option></select>
+        <select id="s-ap" class="time-sel"><option selected>AM</option><option>PM</option></select>
+      </div>
+      <label class="s-label">Reward goal (stars)</label>
+      <input id="s-goal" class="s-input" type="number" value="20" min="5" max="50"/>
+      <label class="s-label">Reward name</label>
+      <input id="s-reward" class="s-input" type="text" placeholder="e.g. Ice Cream Friday"/>
+      <label class="s-label">Change PIN (4 digits)</label>
+      <input id="s-pin" class="s-input" type="number" placeholder="e.g. 1234" maxlength="4"/>
+      <button class="s-save-btn" onclick="saveSettings()">Save Changes ✓</button>
+    </div>
+
+    <div class="d-card" style="background:#fef2f2;border:1px solid #fecaca">
+      <button class="danger-btn" onclick="resetAll()">Reset all data</button>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════ ALL DONE SCREEN ═══════════ -->
+<div class="all-done hidden" id="all-done">
+  <div class="ad-rocket">🚀</div>
+  <div class="ad-title" id="ad-title">DAILY WINNER!</div>
+  <div class="ad-cert">
+    <div class="ad-cert-title">Certificate of Achievement</div>
+    <div class="ad-cert-name" id="ad-cert-name">Emma</div>
+    <div class="ad-cert-sub" id="ad-cert-sub">Crushed the morning routine!</div>
+    <div class="ad-cert-stars">⭐⭐⭐⭐⭐⭐</div>
+  </div>
+  <button class="ad-btn" onclick="resetDay()" id="ad-btn">See you tomorrow! 👋</button>
+</div>
+
+<!-- ═══════════ PIN MODAL ═══════════ -->
+<div class="pin-overlay" id="pin-modal">
+  <div class="pin-box">
+    <div class="pin-title">⚙️ Parent PIN</div>
+    <div class="pin-display" id="pin-display">_ _ _ _</div>
+    <div class="pin-pad">
+      <button class="pin-btn" onclick="pinTap(1)">1</button>
+      <button class="pin-btn" onclick="pinTap(2)">2</button>
+      <button class="pin-btn" onclick="pinTap(3)">3</button>
+      <button class="pin-btn" onclick="pinTap(4)">4</button>
+      <button class="pin-btn" onclick="pinTap(5)">5</button>
+      <button class="pin-btn" onclick="pinTap(6)">6</button>
+      <button class="pin-btn" onclick="pinTap(7)">7</button>
+      <button class="pin-btn" onclick="pinTap(8)">8</button>
+      <button class="pin-btn" onclick="pinTap(9)">9</button>
+      <button class="pin-btn pin-clear" onclick="pinClear()">✕</button>
+      <button class="pin-btn" onclick="pinTap(0)">0</button>
+      <button class="pin-btn pin-ok" onclick="pinSubmit()">✓</button>
+    </div>
+    <button class="pin-cancel" onclick="closePin()">Cancel</button>
+  </div>
+</div>
+
+<!-- ═══════════ FX ═══════════ -->
+<canvas class="explode-canvas" id="explode-canvas"></canvas>
+<div class="yell-text" id="yell-text">🏆</div>
+<div class="voice-ind" id="voice-ind">🎤 Speaking...</div>
+<div id="toast"></div>
+
+<script>
+// ============================================================
+// MORNING MATE — GOLD EDITION
+// Complete app logic
+// ============================================================
+
+// ── TASKS (bilingual, 6 steps) ───────────────────────────────
+const TASKS = [
+  { emoji:'🧼', dur:60,
+    en:{ label:'WASH FACE',     speech:"Rise and shine! Let's splash that face and wake up champion!" },
+    es:{ label:'LÁVATE LA CARA', speech:"¡Buenos días campeón! Vamos a lavarnos esa carita para despertar." },
+    mascot:'😴', mascotAfter:'🙂',
+    yell_en:'Rise and shine! ☀️', yell_es:'¡Arriba! ☀️' },
+  { emoji:'🪥', dur:120,
+    en:{ label:'BRUSH TEETH',     speech:"Scrub scrub! Make those teeth sparkle like a superstar!" },
+    es:{ label:'LÁVATE LOS DIENTES', speech:"¡A cepillar! Que brillen esos dientes como estrellas." },
+    mascot:'🙂', mascotAfter:'🤩',
+    yell_en:'Shiny smile! 🪥', yell_es:'¡Qué sonrisa! 🪥' },
+  { emoji:'👕', dur:180,
+    en:{ label:'GET DRESSED',  speech:"Looking sharp hero! Time to put on your favorite outfit!" },
+    es:{ label:'VÍSTETE',      speech:"¡A vestirse! Ponte tu ropa favorita. ¡Hoy es tu día!" },
+    mascot:'🤩', mascotAfter:'😎',
+    yell_en:'Looking good! 👕', yell_es:'¡Qué guapo/a! 👕' },
+  { emoji:'🥛', dur:300,
+    en:{ label:'EAT BREAKFAST', speech:"Fuel up champion! Eat up so your brain is ready to learn!" },
+    es:{ label:'DESAYUNA',      speech:"¡A desayunar! Come bien para que tu cerebro esté listo." },
+    mascot:'😎', mascotAfter:'🥳',
+    yell_en:'Fuel up! 🥛', yell_es:'¡A comer! 🥛' },
+  { emoji:'🎒', dur:90,
+    en:{ label:'PACK BAG',      speech:"Check your folders! Everything in. You are ready for school!" },
+    es:{ label:'PREPARA TU MOCHILA', speech:"¡Revisa tus cuadernos! Todo dentro. ¡Listos para la escuela!" },
+    mascot:'🥳', mascotAfter:'🏆',
+    yell_en:'Ready to fly! 🎒', yell_es:'¡Listo para volar! 🎒' },
+  { emoji:'🚀', dur:30,
+    en:{ label:'SCHOOL TIME!',  speech:"You did it! Daily winner! Have the most amazing day!" },
+    es:{ label:'¡A LA ESCUELA!', speech:"¡Lo lograste! ¡Ganador del día! ¡Que tengas un día increíble!" },
+    mascot:'🏆', mascotAfter:'🌟',
+    yell_en:'DAILY WINNER! 🏆', yell_es:'¡GANADOR DEL DÍA! 🏆' },
+];
+
+const NIGHT_TASKS = [
+  {id:'n1',emoji:'👗',label:'Lay out tomorrow\'s clothes'},
+  {id:'n2',emoji:'🎒',label:'Pack school bag tonight'},
+  {id:'n3',emoji:'🥪',label:'Prep lunch box'},
+  {id:'n4',emoji:'🔋',label:'Charge all devices'},
+  {id:'n5',emoji:'⏰',label:'Set morning alarm'},
+  {id:'n6',emoji:'🌙',label:'Kids in bed on time'},
+];
+
+const BRAIN_LEVELS_EN = ['Morning Novice','Routine Ranger','Sunrise Scholar','Brain Boss','Gold Champion'];
+const BRAIN_LEVELS_ES = ['Novato Mañanero','Guardián de Rutinas','Erudito del Amanecer','Jefe del Cerebro','Campeón de Oro'];
+const MASCOT_STATES   = ['😴','🙂','🤩','😎','🥳','🏆','🌟'];
+
+// ── STATE ─────────────────────────────────────────────────────
+let S = {
+  lang:'en', kidName:'Champ',
+  leaveHour:8, leaveMin:'15', leaveAmPm:'AM',
+  PIN:'1234', starGoal:20, reward:'Ice Cream Friday',
+  currentTask:0, starsToday:0, totalStars:0,
+  brainPower:0, streak:[], lastCompleted:'',
+  photos:{}, nightDone:{}, voiceClips:{},
+};
+
+const today  = () => new Date().toISOString().split('T')[0];
+const save   = () => localStorage.setItem('mm_gold', JSON.stringify(S));
+const $      = id => document.getElementById(id);
+const set    = (id,v) => { const e=$(id); if(e) e.textContent=v; };
+const show   = id => { const e=$(id); if(e) e.classList.remove('hidden'); };
+const hide   = id => { const e=$(id); if(e) e.classList.add('hidden'); };
+
+function load() {
+  try {
+    const d = localStorage.getItem('mm_gold');
+    if (d) Object.assign(S, JSON.parse(d));
+    if (S.lastCompleted !== today()) { S.currentTask=0; S.starsToday=0; S.brainPower=0; }
+  } catch(e) {}
+}
+
+// ── BOOT ─────────────────────────────────────────────────────
+window.addEventListener('load', () => {
+  load();
+  updateLangBtn();
+  renderChain();
+  showTask(true);
+  updateStreakBanner();
+  startCountdown();
+  setTimeout(() => showMascotBubble('Tap me awake! 👆'), 900);
+});
+
+// ── LANGUAGE ─────────────────────────────────────────────────
+function toggleLang() {
+  S.lang = S.lang==='en' ? 'es' : 'en';
+  save(); updateLangBtn(); showTask(false);
+}
+function updateLangBtn() {
+  $('lang-btn').textContent = S.lang==='en' ? 'EN → ES' : 'ES → EN';
+}
+
+// ── TASK DISPLAY ─────────────────────────────────────────────
+function showTask(withVoice) {
+  if (S.currentTask >= TASKS.length) { showAllDone(); return; }
+  const t  = TASKS[S.currentTask];
+  const lx = t[S.lang];
+  const emojiEl = $('task-emoji');
+  if (emojiEl) {
+    emojiEl.style.transform='scale(0)';
+    setTimeout(() => { emojiEl.textContent=t.emoji; emojiEl.style.transform=''; }, 150);
+  }
+  set('task-label', lx.label);
+  const sb = $('speech-bubble');
+  if (sb) { sb.style.animation='none'; void sb.offsetWidth; sb.style.animation=''; sb.textContent=lx.speech; }
+  $('mascot').textContent = t.mascot;
+  $('mascot').className = 'mascot';
+  set('nav-stars', S.totalStars);
+  renderChain();
+  updateBrainUI();
+  startTimer(t.dur);
+  if (withVoice) setTimeout(() => speak(lx.speech, t), 500);
+}
+
+// ── TAP ───────────────────────────────────────────────────────
+function handleTap() {
+  if (S.currentTask >= TASKS.length) return;
+  const t = TASKS[S.currentTask];
+  // Haptic
+  if (navigator.vibrate) navigator.vibrate([200,80,200,80,200]);
+  // Button bounce
+  const btn=$('tap-btn');
+  btn.style.transform='scale(.86)'; setTimeout(()=>btn.style.transform='',180);
+  // Screen wobble via mascot
+  const m=$('mascot');
+  m.textContent=t.mascotAfter; m.className='mascot excited';
+  setTimeout(()=>m.className='mascot',900);
+  // FX
+  doExplode(t.emoji);
+  doYell(S.lang==='en' ? t.yell_en : t.yell_es);
+  // Cheer voice
+  setTimeout(()=>speak(S.lang==='en' ? t.yell_en : t.yell_es, t, true), 350);
+  // State
+  S.currentTask++; S.starsToday++; S.totalStars++;
+  S.brainPower = Math.min(100, S.brainPower + (100/TASKS.length));
+  save();
+  updateStreakBanner();
+  setTimeout(()=> showTask(true), 700);
+}
+
+// ── TIMER RING ────────────────────────────────────────────────
+let timerInt = null;
+function startTimer(seconds) {
+  clearInterval(timerInt);
+  let rem=seconds;
+  const ring=$('ring-progress');
+  const circ=691;
+  if(ring) ring.style.strokeDashoffset=0;
+  timerInt=setInterval(()=>{
+    rem--;
+    if(ring){ ring.style.strokeDashoffset=circ*(1-rem/seconds); ring.style.stroke=rem/seconds>.3?'white':'#f87171'; }
+    if(rem<=0) clearInterval(timerInt);
+  },1000);
+}
+
+// ── COUNTDOWN (drop-off) ──────────────────────────────────────
+let cdInt=null;
+function startCountdown(){ updateCd(); if(cdInt) clearInterval(cdInt); cdInt=setInterval(updateCd,1000*60); }
+function to24(h,m,ap){ let hh=parseInt(h); if(ap==='PM'&&hh!==12)hh+=12; if(ap==='AM'&&hh===12)hh=0; return{h:hh,m:parseInt(m)}; }
+function updateCd(){
+  const now=new Date();
+  const {h,m}=to24(S.leaveHour,S.leaveMin,S.leaveAmPm);
+  const leave=new Date(); leave.setHours(h,m,0,0);
+  const diff=leave-now;
+  const mins=Math.max(0,Math.floor(diff/60000));
+  const fire=$('sb-fire');
+  if(fire && diff>0) fire.textContent=`⏰ ${mins} min to drop-off`;
+}
+
+// ── STREAK BANNER ─────────────────────────────────────────────
+function updateStreakBanner(){
+  set('sb-name', S.kidName||'Champ');
+  const d7=(S.streak||[]).filter(d=>(Date.now()-new Date(d+'T12:00:00'))<7*864e5);
+  const n=d7.length;
+  if(n>0) set('sb-fire',`🔥 ${n}-DAY STREAK!`);
+  const prog=(S.totalStars||0)%(S.starGoal||20);
+  set('sb-reward',`⭐ ${prog}/${S.starGoal||20} → ${S.reward||'Reward'}`);
+}
+
+// ── BRAIN UI ─────────────────────────────────────────────────
+function updateBrainUI(){
+  const bar=$('brain-bar'); if(bar) bar.style.width=Math.round(S.brainPower)+'%';
+  set('brain-pts', Math.round(S.brainPower)+' pts');
+  const lvlIdx=Math.min(Math.floor((S.totalStars||0)/TASKS.length), 4);
+  const labels = S.lang==='en' ? BRAIN_LEVELS_EN : BRAIN_LEVELS_ES;
+  set('level-label', `Level ${lvlIdx+1}: ${labels[lvlIdx]}`);
+}
+
+// ── EMOJI CHAIN ───────────────────────────────────────────────
+function renderChain(){
+  const el=$('emoji-chain'); if(!el) return;
+  el.innerHTML=TASKS.map((t,i)=>{
+    let cls='ec';
+    if(i<S.currentTask) cls+=' done';
+    else if(i===S.currentTask) cls+=' active';
+    return `<span class="${cls}">${t.emoji}</span>`;
+  }).join('');
+}
+
+// ── MASCOT BUBBLE ─────────────────────────────────────────────
+function showMascotBubble(msg){
+  const b=$('mascot-bubble'); if(!b) return;
+  b.textContent=msg; b.classList.remove('hidden');
+  clearTimeout(b._to); b._to=setTimeout(()=>b.classList.add('hidden'),2500);
+}
+
+// ── ALL DONE ─────────────────────────────────────────────────
+function showAllDone(){
+  const d=today();
+  if(!S.streak.includes(d)){S.streak.push(d); S.lastCompleted=d; save();}
+  updateStreakBanner();
+  set('ad-cert-name', S.kidName||'Champ');
+  set('ad-cert-sub', S.lang==='en'?'Crushed the morning routine!':'¡Dominó la rutina matutina!');
+  set('ad-title', S.lang==='en'?'DAILY WINNER!':'¡GANADOR DEL DÍA!');
+  set('ad-btn', S.lang==='en'?'See you tomorrow! 👋':'¡Hasta mañana! 👋');
+  const allDone=$('all-done'); if(allDone) allDone.classList.remove('hidden');
+  if(navigator.vibrate) navigator.vibrate([300,100,300,100,600]);
+  setTimeout(()=>doExplode('🏆'),300); setTimeout(()=>doExplode('⭐'),900);
+}
+function resetDay(){
+  S.currentTask=0; S.starsToday=0; S.brainPower=0; save();
+  const allDone=$('all-done'); if(allDone) allDone.classList.add('hidden');
+  renderChain(); showTask(false); updateBrainUI();
+}
+
+// ── EXPLOSION ────────────────────────────────────────────────
+function doExplode(emoji){
+  const canvas=$('explode-canvas'); if(!canvas) return;
+  canvas.width=window.innerWidth; canvas.height=window.innerHeight;
+  canvas.classList.add('active');
+  const ctx=canvas.getContext('2d');
+  const cx=window.innerWidth/2, cy=window.innerHeight/2;
+  const particles=[];
+  for(let i=0;i<50;i++){
+    const a=Math.random()*Math.PI*2, sp=4+Math.random()*13;
+    particles.push({x:cx,y:cy,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp-5,
+      emoji,size:16+Math.random()*26,life:1,decay:.02+Math.random()*.018});
+  }
+  let frame=0;
+  function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    let alive=false;
+    particles.forEach(p=>{
+      if(p.life<=0) return; alive=true;
+      p.x+=p.vx; p.y+=p.vy; p.vy+=0.45; p.vx*=.97; p.life-=p.decay;
+      ctx.save(); ctx.globalAlpha=Math.max(0,p.life);
+      ctx.font=`${p.size}px serif`; ctx.textAlign='center'; ctx.textBaseline='middle';
+      ctx.fillText(p.emoji,p.x,p.y); ctx.restore();
+    });
+    frame++;
+    if(frame<90||alive) requestAnimationFrame(draw);
+    else{canvas.classList.remove('active');ctx.clearRect(0,0,canvas.width,canvas.height);}
+  }
+  draw();
+}
+
+// ── YELL ─────────────────────────────────────────────────────
+function doYell(msg){
+  const el=$('yell-text'); if(!el) return;
+  el.textContent=msg; el.classList.remove('pop'); void el.offsetWidth; el.classList.add('pop');
+  setTimeout(()=>el.classList.remove('pop'),1200);
+}
+
+// ── VOICE ENGINE ─────────────────────────────────────────────
+async function speak(text, task, isCheer=false){
+  const vi=$('voice-ind'); if(vi){vi.classList.add('show');clearTimeout(vi._to);vi._to=setTimeout(()=>vi.classList.remove('show'),2500);}
+  // Use Mom's recorded voice if available (task object needed)
+  if(task && S.voiceClips && S.voiceClips[task.emoji]){
+    try{ const a=new Audio(S.voiceClips[task.emoji]); a.play(); return; }catch(e){}
+  }
+  // Browser TTS fallback
+  if('speechSynthesis' in window){
+    window.speechSynthesis.cancel();
+    const utt=new SpeechSynthesisUtterance(text);
+    utt.lang=S.lang==='es'?'es-MX':'en-US';
+    utt.rate=isCheer?1.1:.92; utt.pitch=isCheer?1.3:1.1;
+    window.speechSynthesis.speak(utt);
+  }
+}
+
+// ── DASHBOARD ─────────────────────────────────────────────────
+function showDash(){
+  $('screen-app').classList.remove('active');
+  $('screen-dash').classList.add('active');
+  renderDash();
+}
+function hideDash(){
+  $('screen-dash').classList.remove('active');
+  $('screen-app').classList.add('active');
+}
+function renderDash(){
+  // Stats
+  const d7=(S.streak||[]).filter(d=>(Date.now()-new Date(d+'T12:00:00'))<7*864e5);
+  set('d-days',d7.length); set('d-stars',S.totalStars); set('d-streak',d7.length);
+  // Calendar
+  const cg=$('cal-grid'); if(cg){
+    cg.innerHTML='';
+    const today2=new Date().getDate();
+    for(let i=1;i<=31;i++){
+      const done=S.streak.includes(new Date(new Date().getFullYear(),new Date().getMonth(),i).toISOString().split('T')[0]);
+      cg.innerHTML+=`<div class="cal-day${done?' done':''}${i===today2?' today':''}">${done?'⭐':i}</div>`;
+    }
+  }
+  // Photos
+  const pg=$('photo-grid'); if(pg){
+    const photos=Object.entries(S.photos||{}).filter(([k])=>k.startsWith(today()+'_')).map(([k,v])=>{
+      const idx=parseInt(k.split('_')[1]);
+      return `<div style="text-align:center"><img src="${v}" class="photo-thumb" alt=""/><div style="font-size:.55rem;color:#9ca3af;margin-top:2px">${TASKS[idx]?.emoji||'📷'}</div></div>`;
+    });
+    pg.innerHTML=photos.length?photos.join(''):'<div class="photo-empty">No photos yet!</div>';
+  }
+  // Voice
+  renderVoiceList();
+  // Night
+  renderNightList();
+  // Pre-fill settings
+  const sn=$('s-name'); if(sn) sn.value=S.kidName||'';
+  const sh=$('s-hr'); if(sh) sh.value=S.leaveHour;
+  const sm=$('s-min'); if(sm) sm.value=S.leaveMin;
+  const sa=$('s-ap'); if(sa) sa.value=S.leaveAmPm;
+  const sg=$('s-goal'); if(sg) sg.value=S.starGoal;
+  const sr=$('s-reward'); if(sr) sr.value=S.reward||'';
+}
+function renderVoiceList(){
+  const el=$('voice-list'); if(!el) return;
+  el.innerHTML=TASKS.map((t,i)=>{
+    const has=!!(S.voiceClips&&S.voiceClips[t.emoji]);
+    return `<div class="voice-task">
+      <span class="voice-task-emoji">${t.emoji}</span>
+      <span class="voice-task-label">${t.en.label}</span>
+      ${has
+        ?`<button class="voice-play-btn" onclick="playVoice('${t.emoji}')">▶</button>
+          <button class="voice-del-btn" onclick="delVoice('${t.emoji}')">✕</button>`
+        :`<button class="voice-rec-btn" onclick="recordVoice('${t.emoji}')">🎤 Rec</button>`
+      }
+    </div>`;
+  }).join('');
+}
+function renderNightList(){
+  const el=$('night-list'); if(!el) return;
+  const d=today(); if(!S.nightDone) S.nightDone={};
+  if(!S.nightDone[d]) S.nightDone[d]={};
+  el.innerHTML=NIGHT_TASKS.map(t=>{
+    const c=!!S.nightDone[d][t.id];
+    return `<div class="night-task${c?' done':''}" onclick="toggleNight('${t.id}')">
+      <div class="night-cb">${c?'✓':''}</div>
+      <span style="font-size:1.2rem">${t.emoji}</span>
+      <span style="font-size:.82rem;font-weight:600;flex:1">${t.label}</span>
+    </div>`;
+  }).join('');
+}
+function toggleNight(id){
+  const d=today(); if(!S.nightDone[d]) S.nightDone[d]={};
+  S.nightDone[d][id]=!S.nightDone[d][id]; save(); renderNightList();
+}
+
+// ── VOICE RECORDING ──────────────────────────────────────────
+let recorder=null;
+function recordVoice(emojiKey){
+  if(!navigator.mediaDevices?.getUserMedia){toast('🎤 Mic not available');return;}
+  toast(`🎤 Recording for ${emojiKey} — auto-stops in 5 seconds`);
+  navigator.mediaDevices.getUserMedia({audio:true}).then(stream=>{
+    recorder=new MediaRecorder(stream);
+    const chunks=[];
+    recorder.ondataavailable=e=>chunks.push(e.data);
+    recorder.onstop=()=>{
+      const blob=new Blob(chunks,{type:'audio/webm'});
+      const reader=new FileReader();
+      reader.onload=ev=>{
+        if(!S.voiceClips) S.voiceClips={};
+        S.voiceClips[emojiKey]=ev.target.result;
+        save(); renderVoiceList(); toast('✅ Voice saved!');
+      };
+      reader.readAsDataURL(blob);
+      stream.getTracks().forEach(t=>t.stop());
+    };
+    recorder.start();
+    setTimeout(()=>{if(recorder&&recorder.state==='recording') recorder.stop();},5000);
+  }).catch(()=>toast('🎤 Permission denied'));
+}
+function playVoice(emojiKey){ if(S.voiceClips?.[emojiKey]){ const a=new Audio(S.voiceClips[emojiKey]); a.play(); } }
+function delVoice(emojiKey){ if(S.voiceClips){ delete S.voiceClips[emojiKey]; save(); renderVoiceList(); } }
+
+// ── SETTINGS ─────────────────────────────────────────────────
+function saveSettings(){
+  const nm=($('s-name')?.value||'').trim(); if(nm) S.kidName=nm;
+  S.leaveHour=parseInt($('s-hr')?.value||8);
+  S.leaveMin=$('s-min')?.value||'15';
+  S.leaveAmPm=$('s-ap')?.value||'AM';
+  S.starGoal=parseInt($('s-goal')?.value||20);
+  S.reward=($('s-reward')?.value||'').trim()||'Ice Cream Friday';
+  const pin=($('s-pin')?.value||'').trim();
+  if(pin.length===4&&/^\d{4}$/.test(pin)) S.PIN=pin;
+  save(); toast('✅ Settings saved!'); updateStreakBanner();
+}
+function resetAll(){ if(confirm('Reset all data?')){localStorage.removeItem('mm_gold');location.reload();} }
+function sharePhotos(){
+  const msg=`${S.kidName} crushed the morning routine! 🌟 Morning Mate Gold - the app that changed our mornings!`;
+  if(navigator.share) navigator.share({title:'Morning Win!',text:msg});
+  else navigator.clipboard?.writeText(msg).then(()=>toast('📋 Message copied!'));
+}
+
+// ── PIN ───────────────────────────────────────────────────────
+let pinBuf=[];
+function showPin(){pinBuf=[];set('pin-display','_ _ _ _');$('pin-modal').classList.add('show');}
+function closePin(){$('pin-modal').classList.remove('show');}
+function pinTap(n){
+  if(pinBuf.length>=4) return;
+  pinBuf.push(n);
+  if(navigator.vibrate) navigator.vibrate(25);
+  const filled='●'.repeat(pinBuf.length);
+  const empty='_ '.repeat(4-pinBuf.length);
+  set('pin-display',(filled+' '+empty).trim());
+}
+function pinClear(){pinBuf=[];set('pin-display','_ _ _ _');}
+function pinSubmit(){
+  if(pinBuf.join('')===String(S.PIN)){
+    closePin(); showDash();
+  } else {
+    set('pin-display','❌ Wrong PIN');
+    if(navigator.vibrate) navigator.vibrate([200,50,200]);
+    setTimeout(()=>{pinBuf=[];set('pin-display','_ _ _ _');},1300);
+  }
+}
+
+// ── TOAST ─────────────────────────────────────────────────────
+function toast(msg){
+  const t=$('toast'); t.textContent=msg; t.classList.add('show');
+  clearTimeout(t._to); t._to=setTimeout(()=>t.classList.remove('show'),2500);
+}
+</script>
+</body>
+</html>

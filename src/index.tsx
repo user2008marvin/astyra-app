@@ -2,9 +2,17 @@ import { Hono } from 'hono'
 import { serveStatic } from 'hono/cloudflare-workers'
 const app = new Hono()
 app.use('/static/*', serveStatic({ root: './' }))
-app.get('/landing', (c) => c.redirect('/static/landing.html'))
+
+// Morning Mate Gold — page routes
+app.get('/', (c) => c.redirect('/static/gold-landing.html'))
+app.get('/app', (c) => c.redirect('/static/gold.html'))
 app.get('/bilingual', (c) => c.redirect('/static/bilingual.html'))
-app.get('/', (c) => c.html(`<!DOCTYPE html>
+app.get('/night-mate', (c) => c.redirect('/static/landing.html'))
+
+// Legacy redirect — old landing now leads to night mate info page
+app.get('/landing', (c) => c.redirect('/static/landing.html'))
+
+app.get('/old-app', (c) => c.html(`<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
