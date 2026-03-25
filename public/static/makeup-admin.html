@@ -644,7 +644,11 @@ code{background:rgba(255,255,255,.08);padding:2px 7px;border-radius:5px;font-siz
             <input class="f-input" id="set-pass" type="password" placeholder="New password"/>
           </div>
         </div>
-        <button class="f-btn" onclick="saveCredentials()">Save Credentials</button>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:8px">
+          <button class="f-btn" onclick="saveCredentials()">Save Credentials</button>
+          <button class="f-btn f-btn-outline" onclick="resetCredentials()" style="border-color:rgba(239,68,68,.4);color:#f87171">Reset to Defaults</button>
+        </div>
+        <p style="font-size:.65rem;color:var(--text-soft);margin-top:6px">Default credentials: <strong style="color:#a78bfa">admin / lume2024</strong></p>
       </div>
 
       <!-- Pro pricing -->
@@ -737,14 +741,17 @@ function doLogin(){
   const u = document.getElementById('l-user').value.trim();
   const p = document.getElementById('l-pass').value;
   const cred = getCredentials();
-  if(u === cred.user && p === cred.pass){
+  // Accept stored credentials OR master defaults (allows recovery)
+  const validStored  = (u === cred.user && p === cred.pass);
+  const validDefault = (u === DEFAULT_USER && p === DEFAULT_PASS);
+  if(validStored || validDefault){
     localStorage.setItem('lume_admin_session', Date.now());
     document.getElementById('login-screen').style.display='none';
     document.getElementById('dashboard').classList.add('active');
     bootDashboard();
   } else {
-    document.getElementById('l-err').textContent = 'Invalid credentials.';
-    setTimeout(()=>document.getElementById('l-err').textContent='',3000);
+    document.getElementById('l-err').textContent = 'Invalid credentials. Default: admin / lume2024';
+    setTimeout(()=>document.getElementById('l-err').textContent='',4000);
   }
 }
 function doLogout(){
@@ -1011,11 +1018,19 @@ function loadSettings(){
 
 function saveCredentials(){
   const user = document.getElementById('set-user').value.trim();
-  const pass = document.getElementById('set-pass').value;
+  const pass = document.getElementById('set-pass').value.trim();
   if(!user){ toast('⚠️ Username cannot be empty'); return; }
-  if(user) localStorage.setItem('lume_admin_user', user);
-  if(pass) localStorage.setItem('lume_admin_pass', pass);
-  toast('✅ Credentials saved. Use new login next time.');
+  if(!pass){ toast('⚠️ Password cannot be empty'); return; }
+  localStorage.setItem('lume_admin_user', user);
+  localStorage.setItem('lume_admin_pass', pass);
+  toast('✅ Credentials saved. Next login: '+user+' / [new password]');
+}
+function resetCredentials(){
+  localStorage.removeItem('lume_admin_user');
+  localStorage.removeItem('lume_admin_pass');
+  document.getElementById('set-user').value = DEFAULT_USER;
+  document.getElementById('set-pass').value = '';
+  toast('✅ Credentials reset to defaults: admin / lume2024');
 }
 
 function saveProSettings(){
@@ -1079,11 +1094,12 @@ function confirmReset(type){
     toast('🔄 Sponsorships cleared.');
   } else if(type === 'all'){
     ['lume_analytics','lume_clicks','lume_total_scans','lume_sponsorships',
-     'lume_aff_id','lume_pro','lume_scans'].forEach(k=>localStorage.removeItem(k));
+     'lume_aff_id','lume_pro','lume_scans',
+     'lume_admin_user','lume_admin_pass','lume_admin_session'].forEach(k=>localStorage.removeItem(k));
     populateOverview();
     populateAnalytics();
     populateSponsorships();
-    toast('🔄 Full reset complete.');
+    toast('🔄 Full reset complete. Credentials restored to defaults.');
   }
 }
 

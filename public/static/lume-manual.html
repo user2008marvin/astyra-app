@@ -1,0 +1,1590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>LUMÉ — User Manual</title>
+<style>
+/* ═══════════════════════════════════════════
+   LUMÉ User Manual — Print-Ready PDF Layout
+═══════════════════════════════════════════ */
+@media print {
+  .no-print { display: none !important; }
+  .page-break { page-break-before: always; }
+  body { background: #fff !important; }
+  .cover { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .section-header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .callout { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .step-block { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .badge { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .occasion-chip { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .swatch-demo { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .pro-banner { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .admin-tab { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .monetise-row { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  a { color: inherit; text-decoration: none; }
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: Georgia, 'Times New Roman', serif;
+  background: #f5f4f0;
+  color: #1a1a2e;
+  font-size: 10.5pt;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+.page {
+  max-width: 794px; /* A4 width at 96dpi */
+  margin: 0 auto;
+  background: #fff;
+}
+
+/* ── PRINT BUTTON ── */
+.print-bar {
+  background: #1a1a2e;
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+.print-bar-title {
+  color: rgba(255,255,255,.7);
+  font-size: 9pt;
+  font-family: Arial, sans-serif;
+  letter-spacing: 1px;
+}
+.print-btn {
+  background: linear-gradient(135deg, #7c3aed, #ec4899);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 24px;
+  font-size: 9pt;
+  font-weight: 700;
+  font-family: Arial, sans-serif;
+  cursor: pointer;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.print-tip {
+  font-size: 8pt;
+  color: rgba(255,255,255,.5);
+  font-family: Arial, sans-serif;
+}
+
+/* ── COVER PAGE ── */
+.cover {
+  background: linear-gradient(160deg, #0a0a0f 0%, #2d1b69 55%, #1a0a2e 100%);
+  padding: 70px 60px 60px;
+  min-height: 297mm;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+}
+.cover::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 70% 50% at 50% 10%, rgba(168,85,247,.2), transparent);
+  pointer-events: none;
+}
+.cover-top { position: relative; z-index: 1; }
+.cover-logo {
+  font-family: Arial, sans-serif;
+  font-size: 48pt;
+  font-weight: 900;
+  letter-spacing: -3px;
+  background: linear-gradient(135deg, #a855f7, #ec4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.cover-wordmark {
+  font-family: Arial, sans-serif;
+  font-size: 8pt;
+  font-weight: 700;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.4);
+  margin-bottom: 50px;
+}
+.cover-title {
+  font-family: Arial, sans-serif;
+  font-size: 26pt;
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.15;
+  margin-bottom: 14px;
+  letter-spacing: -1px;
+}
+.cover-title span {
+  background: linear-gradient(135deg, #a855f7, #ec4899, #f59e0b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.cover-subtitle {
+  font-family: Arial, sans-serif;
+  font-size: 11pt;
+  color: rgba(255,255,255,.55);
+  line-height: 1.6;
+  max-width: 440px;
+  margin-bottom: 44px;
+}
+.cover-stats {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
+}
+.cstat {
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 10px;
+  padding: 12px 18px;
+  text-align: center;
+}
+.cstat-n {
+  font-family: Arial, sans-serif;
+  font-size: 16pt;
+  font-weight: 900;
+  color: #fff;
+  line-height: 1;
+  margin-bottom: 3px;
+}
+.cstat-l {
+  font-family: Arial, sans-serif;
+  font-size: 7pt;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.4);
+}
+.cover-bottom {
+  position: relative;
+  z-index: 1;
+  border-top: 1px solid rgba(255,255,255,.1);
+  padding-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.cover-doc-type {
+  font-family: Arial, sans-serif;
+  font-size: 7.5pt;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.3);
+}
+.cover-version {
+  font-family: Arial, sans-serif;
+  font-size: 7.5pt;
+  color: rgba(255,255,255,.25);
+}
+
+/* ── CONTENT PAGES ── */
+.content-page {
+  padding: 50px 60px;
+  border-bottom: 1px solid #e8e6f0;
+}
+
+/* ── SECTION HEADER ── */
+.section-header {
+  background: linear-gradient(135deg, #1a1a2e, #2d1b69);
+  margin: 0 -60px 32px;
+  padding: 22px 60px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.sh-num {
+  font-family: Arial, sans-serif;
+  font-size: 7pt;
+  font-weight: 900;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.35);
+  margin-bottom: 3px;
+}
+.sh-title {
+  font-family: Arial, sans-serif;
+  font-size: 16pt;
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.1;
+  letter-spacing: -.5px;
+}
+.sh-icon {
+  font-size: 22pt;
+  flex-shrink: 0;
+}
+
+/* ── TOC ── */
+.toc-title {
+  font-family: Arial, sans-serif;
+  font-size: 18pt;
+  font-weight: 900;
+  color: #1a1a2e;
+  margin-bottom: 24px;
+  letter-spacing: -1px;
+  border-bottom: 2px solid #7c3aed;
+  padding-bottom: 10px;
+}
+.toc-item {
+  display: flex;
+  align-items: baseline;
+  gap: 0;
+  padding: 9px 0;
+  border-bottom: 1px dotted #e2dff5;
+}
+.toc-num {
+  font-family: Arial, sans-serif;
+  font-size: 9pt;
+  font-weight: 800;
+  color: #7c3aed;
+  width: 36px;
+  flex-shrink: 0;
+}
+.toc-label {
+  font-family: Arial, sans-serif;
+  font-size: 10pt;
+  font-weight: 600;
+  color: #1a1a2e;
+  flex: 1;
+}
+.toc-sub {
+  font-family: Arial, sans-serif;
+  font-size: 8.5pt;
+  color: #6b6b8a;
+  margin-left: 36px;
+  padding: 2px 0 6px;
+  line-height: 1.4;
+  display: block;
+  border-bottom: none;
+}
+.toc-pg {
+  font-family: Arial, sans-serif;
+  font-size: 9pt;
+  font-weight: 700;
+  color: #6b6b8a;
+  flex-shrink: 0;
+}
+
+/* ── H2 / H3 ── */
+h2 {
+  font-family: Arial, sans-serif;
+  font-size: 13pt;
+  font-weight: 900;
+  color: #1a1a2e;
+  margin: 24px 0 10px;
+  letter-spacing: -.3px;
+}
+h3 {
+  font-family: Arial, sans-serif;
+  font-size: 10pt;
+  font-weight: 800;
+  color: #1a1a2e;
+  margin: 18px 0 7px;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+}
+p {
+  margin-bottom: 10px;
+  font-size: 10.5pt;
+  line-height: 1.7;
+  color: #2a2a3e;
+}
+ul, ol {
+  margin: 8px 0 12px 20px;
+  color: #2a2a3e;
+}
+li {
+  margin-bottom: 5px;
+  font-size: 10.5pt;
+  line-height: 1.6;
+}
+
+/* ── STEP BLOCKS ── */
+.steps-row {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin: 18px 0;
+}
+.step-block {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  background: #f8f7ff;
+  border: 1px solid #e2dff5;
+  border-radius: 12px;
+  padding: 16px;
+}
+.step-num {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #7c3aed, #a855f7);
+  color: #fff;
+  font-family: Arial, sans-serif;
+  font-size: 11pt;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.step-content {}
+.step-title {
+  font-family: Arial, sans-serif;
+  font-size: 10.5pt;
+  font-weight: 800;
+  color: #1a1a2e;
+  margin-bottom: 4px;
+}
+.step-desc {
+  font-size: 9.5pt;
+  color: #6b6b8a;
+  line-height: 1.5;
+  font-family: Arial, sans-serif;
+}
+
+/* ── CALLOUTS ── */
+.callout {
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin: 16px 0;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+.callout-info {
+  background: rgba(124,58,237,.06);
+  border: 1px solid rgba(124,58,237,.18);
+}
+.callout-tip {
+  background: rgba(5,150,105,.06);
+  border: 1px solid rgba(5,150,105,.18);
+}
+.callout-warn {
+  background: rgba(245,158,11,.06);
+  border: 1px solid rgba(245,158,11,.25);
+}
+.callout-gold {
+  background: rgba(212,175,55,.08);
+  border: 1px solid rgba(212,175,55,.3);
+}
+.callout-icon {
+  font-size: 14pt;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.callout-body {}
+.callout-label {
+  font-family: Arial, sans-serif;
+  font-size: 7.5pt;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #7c3aed;
+  margin-bottom: 3px;
+}
+.callout-tip .callout-label { color: #059669; }
+.callout-warn .callout-label { color: #d97706; }
+.callout-gold .callout-label { color: #a07020; }
+.callout-text {
+  font-family: Arial, sans-serif;
+  font-size: 9.5pt;
+  line-height: 1.55;
+  color: #2a2a3e;
+}
+
+/* ── BADGES ── */
+.badge {
+  display: inline-block;
+  font-family: Arial, sans-serif;
+  font-size: 7pt;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 3px 9px;
+  border-radius: 6px;
+  vertical-align: middle;
+  margin-left: 5px;
+}
+.badge-purple { background: rgba(124,58,237,.12); color: #7c3aed; border: 1px solid rgba(124,58,237,.2); }
+.badge-gold { background: rgba(212,175,55,.15); color: #a07020; border: 1px solid rgba(212,175,55,.25); }
+.badge-green { background: rgba(5,150,105,.1); color: #059669; border: 1px solid rgba(5,150,105,.2); }
+.badge-pink { background: rgba(236,72,153,.1); color: #db2777; border: 1px solid rgba(236,72,153,.2); }
+
+/* ── OCCASIONS GRID ── */
+.occasions-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin: 14px 0;
+}
+.occasion-chip {
+  background: #f8f7ff;
+  border: 1px solid #e2dff5;
+  border-radius: 10px;
+  padding: 10px 10px;
+  font-family: Arial, sans-serif;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.occasion-chip.pro {
+  background: rgba(212,175,55,.06);
+  border-color: rgba(212,175,55,.3);
+}
+.occ-em { font-size: 13pt; }
+.occ-text {}
+.occ-name-chip { font-size: 8.5pt; font-weight: 800; color: #1a1a2e; line-height: 1.1; }
+.occ-desc-chip { font-size: 7.5pt; color: #6b6b8a; }
+
+/* ── SKIN TONES ── */
+.skin-row-demo {
+  display: flex;
+  gap: 12px;
+  margin: 14px 0;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.skin-swatch-demo {
+  text-align: center;
+}
+.swatch-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin: 0 auto 4px;
+  border: 2px solid rgba(0,0,0,.08);
+}
+.swatch-lbl {
+  font-family: Arial, sans-serif;
+  font-size: 7pt;
+  font-weight: 700;
+  color: #6b6b8a;
+}
+
+/* ── LOOK CARD DEMO ── */
+.look-demo {
+  background: #f8f7ff;
+  border: 1px solid #e2dff5;
+  border-radius: 12px;
+  padding: 16px;
+  margin: 12px 0;
+}
+.ld-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+.ld-num { font-family: Arial, sans-serif; font-size: 7.5pt; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: #6b6b8a; margin-bottom: 2px; }
+.ld-name { font-family: Arial, sans-serif; font-size: 11pt; font-weight: 900; color: #1a1a2e; }
+.ld-desc { font-family: Arial, sans-serif; font-size: 8.5pt; color: #6b6b8a; }
+.ld-badge-n { background: rgba(5,150,105,.1); color: #059669; font-family: Arial, sans-serif; font-size: 7pt; font-weight: 800; padding: 3px 8px; border-radius: 6px; }
+.ld-badge-g { background: rgba(124,58,237,.1); color: #7c3aed; font-family: Arial, sans-serif; font-size: 7pt; font-weight: 800; padding: 3px 8px; border-radius: 6px; }
+.ld-badge-t { background: rgba(212,175,55,.12); color: #a07020; font-family: Arial, sans-serif; font-size: 7pt; font-weight: 800; padding: 3px 8px; border-radius: 6px; }
+.swatch-demo-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 7px;
+}
+.swatch-demo-label {
+  font-family: Arial, sans-serif;
+  font-size: 7pt;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #6b6b8a;
+  width: 38px;
+  flex-shrink: 0;
+}
+.swatch-demo {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(0,0,0,.1);
+}
+.swatch-name-demo {
+  font-family: Arial, sans-serif;
+  font-size: 8.5pt;
+  font-weight: 600;
+  color: #1a1a2e;
+}
+.swatch-hex-demo {
+  font-family: monospace;
+  font-size: 7.5pt;
+  color: #6b6b8a;
+}
+
+/* ── PRO BANNER ── */
+.pro-banner {
+  background: linear-gradient(135deg, #0a0a0f, #2d1b69);
+  border-radius: 14px;
+  padding: 22px 24px;
+  margin: 18px 0;
+  position: relative;
+  overflow: hidden;
+}
+.pro-banner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 60% at 50% 0%, rgba(212,175,55,.12), transparent);
+}
+.pb-crown { font-size: 20pt; margin-bottom: 8px; position: relative; z-index: 1; }
+.pb-title { font-family: Arial, sans-serif; font-size: 13pt; font-weight: 900; color: #fff; margin-bottom: 6px; position: relative; z-index: 1; }
+.pb-sub { font-family: Arial, sans-serif; font-size: 9pt; color: rgba(255,255,255,.55); line-height: 1.55; margin-bottom: 14px; position: relative; z-index: 1; }
+.pb-features {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  position: relative;
+  z-index: 1;
+}
+.pb-feat {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 8px;
+  padding: 9px 10px;
+}
+.pb-feat-icon { font-size: 11pt; flex-shrink: 0; }
+.pb-feat-text { font-family: Arial, sans-serif; font-size: 8.5pt; font-weight: 700; color: rgba(255,255,255,.85); line-height: 1.4; }
+
+/* ── ADMIN TABS ── */
+.admin-tabs {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 16px 0;
+}
+.admin-tab {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  background: #f8f7ff;
+  border: 1px solid #e2dff5;
+  border-radius: 10px;
+  padding: 13px 14px;
+}
+.admin-tab.highlight {
+  background: rgba(124,58,237,.05);
+  border-color: rgba(124,58,237,.2);
+}
+.at-icon { font-size: 14pt; flex-shrink: 0; margin-top: 1px; }
+.at-label { font-family: Arial, sans-serif; font-size: 9.5pt; font-weight: 800; color: #1a1a2e; margin-bottom: 3px; }
+.at-desc { font-family: Arial, sans-serif; font-size: 8.5pt; color: #6b6b8a; line-height: 1.45; }
+
+/* ── MONETISE STEPS ── */
+.monetise-row {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  background: rgba(212,175,55,.06);
+  border: 1px solid rgba(212,175,55,.2);
+  border-radius: 10px;
+  padding: 13px;
+  margin-bottom: 10px;
+}
+.mr-num {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #d4af37, #f5d55a);
+  color: #3a2000;
+  font-family: Arial, sans-serif;
+  font-size: 9.5pt;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.mr-title { font-family: Arial, sans-serif; font-size: 9.5pt; font-weight: 800; color: #1a1a2e; margin-bottom: 3px; }
+.mr-desc { font-family: Arial, sans-serif; font-size: 8.5pt; color: #6b6b8a; line-height: 1.45; }
+
+/* ── FAQ ── */
+.faq-item {
+  border-bottom: 1px solid #e2dff5;
+  padding: 13px 0;
+}
+.faq-q {
+  font-family: Arial, sans-serif;
+  font-size: 10pt;
+  font-weight: 800;
+  color: #1a1a2e;
+  margin-bottom: 5px;
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+}
+.faq-q::before {
+  content: 'Q';
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #7c3aed, #a855f7);
+  color: #fff;
+  font-size: 7.5pt;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.faq-a {
+  font-family: Arial, sans-serif;
+  font-size: 9.5pt;
+  color: #4a4a6a;
+  line-height: 1.55;
+  padding-left: 28px;
+}
+
+/* ── TWO COL ── */
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin: 14px 0;
+}
+.info-card {
+  background: #f8f7ff;
+  border: 1px solid #e2dff5;
+  border-radius: 10px;
+  padding: 14px;
+}
+.ic-title {
+  font-family: Arial, sans-serif;
+  font-size: 8.5pt;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #7c3aed;
+  margin-bottom: 6px;
+}
+.ic-text {
+  font-family: Arial, sans-serif;
+  font-size: 9pt;
+  color: #2a2a3e;
+  line-height: 1.5;
+}
+
+/* ── TABLE ── */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 14px 0;
+  font-family: Arial, sans-serif;
+  font-size: 9pt;
+}
+.data-table th {
+  background: #f0eeff;
+  color: #7c3aed;
+  font-size: 7.5pt;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 8px 12px;
+  text-align: left;
+  border-bottom: 2px solid #e2dff5;
+}
+.data-table td {
+  padding: 9px 12px;
+  border-bottom: 1px solid #f0eeff;
+  color: #2a2a3e;
+  line-height: 1.45;
+}
+.data-table tr:last-child td { border-bottom: none; }
+
+/* ── FOOTER ── */
+.doc-footer {
+  background: #1a1a2e;
+  padding: 24px 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.df-logo {
+  font-family: Arial, sans-serif;
+  font-size: 13pt;
+  font-weight: 900;
+  background: linear-gradient(135deg, #a855f7, #ec4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.df-text {
+  font-family: Arial, sans-serif;
+  font-size: 8pt;
+  color: rgba(255,255,255,.3);
+}
+</style>
+</head>
+<body>
+
+<!-- PRINT BAR -->
+<div class="print-bar no-print">
+  <div>
+    <div class="print-bar-title">LUMÉ — USER MANUAL</div>
+    <div class="print-tip">Click "Print / Save as PDF" → Set paper to A4 → Save</div>
+  </div>
+  <button class="print-btn" onclick="window.print()">🖨 Print / Save as PDF</button>
+</div>
+
+<div class="page">
+
+<!-- ═══════════════════════════════════════
+     COVER PAGE
+═══════════════════════════════════════ -->
+<div class="cover">
+  <div class="cover-top">
+    <div class="cover-logo">LUMÉ</div>
+    <div class="cover-wordmark">Occasion Intelligence System</div>
+    <div class="cover-title">
+      Complete User Manual<br/>
+      <span>AI-Powered Makeup Look Engine</span>
+    </div>
+    <div class="cover-subtitle">
+      Everything you need to generate occasion-matched makeup looks, manage affiliate revenue, and run your beauty intelligence business — all in one guide.
+    </div>
+    <div class="cover-stats">
+      <div class="cstat"><div class="cstat-n">12</div><div class="cstat-l">Occasions</div></div>
+      <div class="cstat"><div class="cstat-n">6</div><div class="cstat-l">Skin Tones</div></div>
+      <div class="cstat"><div class="cstat-n">36</div><div class="cstat-l">Looks Generated</div></div>
+      <div class="cstat"><div class="cstat-n">4</div><div class="cstat-l">Revenue Streams</div></div>
+    </div>
+  </div>
+  <div class="cover-bottom">
+    <div class="cover-doc-type">Official User Manual · Version 2.0</div>
+    <div class="cover-version">© 2025 LUMÉ · Confidential</div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════
+     TABLE OF CONTENTS
+═══════════════════════════════════════ -->
+<div class="content-page page-break">
+  <div class="toc-title">Contents</div>
+
+  <div class="toc-item">
+    <span class="toc-num">01</span>
+    <span class="toc-label">What is LUMÉ?</span>
+    <span class="toc-pg">3</span>
+  </div>
+  <span class="toc-sub">Overview, core concept, who it is for, and what makes it different from other makeup apps.</span>
+
+  <div class="toc-item">
+    <span class="toc-num">02</span>
+    <span class="toc-label">Getting Started — The 4-Step Flow</span>
+    <span class="toc-pg">4</span>
+  </div>
+  <span class="toc-sub">Step-by-step walkthrough: uploading your face, selecting an occasion, choosing your skin tone, and generating looks.</span>
+
+  <div class="toc-item">
+    <span class="toc-num">03</span>
+    <span class="toc-label">Your Occasion Library (All 12 Occasions)</span>
+    <span class="toc-pg">5</span>
+  </div>
+  <span class="toc-sub">Complete list of supported occasions, descriptions, and which are Pro-exclusive.</span>
+
+  <div class="toc-item">
+    <span class="toc-num">04</span>
+    <span class="toc-label">Understanding Your Look Report</span>
+    <span class="toc-pg">6</span>
+  </div>
+  <span class="toc-sub">How to read your 3 generated looks — colour swatches, hex codes, application sequences, LUMÉ tips, and affiliate product cards.</span>
+
+  <div class="toc-item">
+    <span class="toc-num">05</span>
+    <span class="toc-label">Dermal Base Tone — Skin Tone Mapping</span>
+    <span class="toc-pg">7</span>
+  </div>
+  <span class="toc-sub">How LUMÉ uses your skin tone to calibrate colour recommendations across all 6 tones.</span>
+
+  <div class="toc-item">
+    <span class="toc-num">06</span>
+    <span class="toc-label">LUMÉ Pro — Unlock Everything</span>
+    <span class="toc-pg">8</span>
+  </div>
+  <span class="toc-sub">What Pro unlocks, how the free tier works, and how to upgrade.</span>
+
+  <div class="toc-item">
+    <span class="toc-num">07</span>
+    <span class="toc-label">Sharing Your Looks — Social Content Ideas</span>
+    <span class="toc-pg">9</span>
+  </div>
+  <span class="toc-sub">How to share, viral content formats, and the WhatsApp / Instagram / Copy Link tools.</span>
+
+  <div class="toc-item">
+    <span class="toc-num">08</span>
+    <span class="toc-label">Admin Dashboard — Owner Guide</span>
+    <span class="toc-pg">10</span>
+  </div>
+  <span class="toc-sub">Full walkthrough of the 6 admin tabs: Overview, Analytics, Sponsorships, Affiliate, Users, and Settings.</span>
+
+  <div class="toc-item">
+    <span class="toc-num">09</span>
+    <span class="toc-label">Monetisation Playbook</span>
+    <span class="toc-pg">12</span>
+  </div>
+  <span class="toc-sub">Four revenue streams explained: affiliate commissions, brand sponsorships, Pro subscriptions, and data partnerships.</span>
+
+  <div class="toc-item">
+    <span class="toc-num">10</span>
+    <span class="toc-label">Affiliate Product Brands</span>
+    <span class="toc-pg">13</span>
+  </div>
+  <span class="toc-sub">Full product catalogue across lips, eyes, blush, and base — with brand names and price points.</span>
+
+  <div class="toc-item">
+    <span class="toc-num">11</span>
+    <span class="toc-label">Frequently Asked Questions</span>
+    <span class="toc-pg">14</span>
+  </div>
+  <span class="toc-sub">Common questions about privacy, scan limits, colour accuracy, and Pro features.</span>
+</div>
+
+
+<!-- ═══════════════════════════════════════
+     01 — WHAT IS LUMÉ
+═══════════════════════════════════════ -->
+<div class="content-page page-break">
+  <div class="section-header">
+    <div class="sh-icon">✦</div>
+    <div>
+      <div class="sh-num">Section 01</div>
+      <div class="sh-title">What is LUMÉ?</div>
+    </div>
+  </div>
+
+  <h2>Overview</h2>
+  <p>
+    LUMÉ is an <strong>AI-powered makeup look engine</strong> built around a single idea: your makeup should be chosen based on where you are going, not on a random filter or generic recommendation.
+  </p>
+  <p>
+    Instead of asking you to try on virtual lipstick colours or apply cartoon-style filters, LUMÉ asks two precise questions — <em>what occasion are you dressing for?</em> and <em>what is your skin tone?</em> — and then generates three complete, expert-level makeup looks specifically calibrated for that combination.
+  </p>
+  <p>
+    Each look includes exact colour names and hex codes for lips, eyes, and blush; a step-by-step application sequence; expert application tips; and direct links to real products you can buy.
+  </p>
+
+  <h2>The Core Concept: Occasion Intelligence</h2>
+  <p>
+    Most makeup apps show you products. LUMÉ shows you <em>strategy</em>. There is a meaningful difference between the makeup that works for a corporate boardroom presentation and the makeup that works for a festival. Between a wedding guest look and a first date look. Between a graduation ceremony and a night out.
+  </p>
+  <p>
+    LUMÉ has a dedicated look library for all 12 occasion types, each mapped across 6 skin tones and 3 look styles (Natural, Glam, and Trendy). The result is up to 216 distinct look combinations — all without any AI image generation or filter technology.
+  </p>
+
+  <div class="callout callout-info">
+    <div class="callout-icon">✦</div>
+    <div class="callout-body">
+      <div class="callout-label">Design Philosophy</div>
+      <div class="callout-text">LUMÉ deliberately avoids AR face filters and virtual try-on. The app competes on <strong>occasion-based intelligence</strong> — knowing what works for your event context — not on image processing. This makes it faster, more private, and more useful.</div>
+    </div>
+  </div>
+
+  <h2>Who LUMÉ is For</h2>
+  <div class="two-col">
+    <div class="info-card">
+      <div class="ic-title">👩 End Users</div>
+      <div class="ic-text">Women who want expert-level makeup guidance for specific occasions without needing to know makeup terminology or spend hours on YouTube tutorials.</div>
+    </div>
+    <div class="info-card">
+      <div class="ic-title">💼 App Owners</div>
+      <div class="ic-text">Entrepreneurs monetising through affiliate commissions (4–12% per sale), brand sponsorships, Pro subscriptions at $4.99/mo, and beauty brand data partnerships.</div>
+    </div>
+  </div>
+
+  <h2>What Makes LUMÉ Different</h2>
+  <table class="data-table">
+    <thead>
+      <tr><th>Feature</th><th>LUMÉ</th><th>Generic Makeup Apps</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Logic</strong></td><td>Occasion × skin tone intelligence</td><td>Random product suggestions</td></tr>
+      <tr><td><strong>Output</strong></td><td>3 complete looks with exact hex codes</td><td>Single product swatches</td></tr>
+      <tr><td><strong>Affiliate</strong></td><td>Automatically appended to all links</td><td>Manual linking required</td></tr>
+      <tr><td><strong>Admin</strong></td><td>Full dashboard with analytics & sponsorships</td><td>None</td></tr>
+      <tr><td><strong>Privacy</strong></td><td>Photos processed locally in browser</td><td>Often uploaded to servers</td></tr>
+      <tr><td><strong>Monetisation</strong></td><td>4 revenue streams built in</td><td>Typically ads only</td></tr>
+    </tbody>
+  </table>
+</div>
+
+
+<!-- ═══════════════════════════════════════
+     02 — GETTING STARTED
+═══════════════════════════════════════ -->
+<div class="content-page page-break">
+  <div class="section-header">
+    <div class="sh-icon">📱</div>
+    <div>
+      <div class="sh-num">Section 02</div>
+      <div class="sh-title">Getting Started — The 4-Step Flow</div>
+    </div>
+  </div>
+
+  <p>LUMÉ takes approximately <strong>60 seconds</strong> from opening the app to seeing your personalised look report. The flow is intentionally simple and requires no account, no sign-up, and no camera access beyond selecting a photo from your library.</p>
+
+  <div class="steps-row">
+    <div class="step-block">
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <div class="step-title">Upload Your Bare Face Photo</div>
+        <div class="step-desc">Tap the upload zone (📷) and select a photo. For best results, use a photo with no makeup, good natural lighting, and your face looking straight at the camera. You can also drag and drop a photo directly onto the upload zone on desktop. Your photo never leaves your device — it is processed entirely within your browser.</div>
+      </div>
+    </div>
+    <div class="step-block">
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <div class="step-title">Select Your Occasion</div>
+        <div class="step-desc">After uploading, a grid of 12 occasion cards appears below your photo preview. Tap the occasion that matches your event. Each card shows an emoji, the occasion name, and a brief description. Three occasions (Bridal, Black Tie Gala, Festival) are marked with a 👑 crown and require a Pro subscription.</div>
+      </div>
+    </div>
+    <div class="step-block">
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <div class="step-title">Select Your Dermal Base Tone</div>
+        <div class="step-desc">Six skin tone circles appear (Fair, Light, Medium, Tan, Deep, Rich). Tap the one closest to your natural skin tone. LUMÉ uses this to adjust which colours within each look palette are recommended as your primary shade — ensuring the colours it suggests actually complement your complexion.</div>
+      </div>
+    </div>
+    <div class="step-block">
+      <div class="step-num">4</div>
+      <div class="step-content">
+        <div class="step-title">Initiate Look Generation</div>
+        <div class="step-desc">Once an occasion and skin tone are selected, an "ANALYSIS MATRIX READY" card appears with a summary of your choices and the "✦ INITIATE LOOK GENERATION" button. Tap it. A loading screen runs for approximately 3 seconds showing the 4 analysis steps in real time, then your Look Report appears.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout callout-tip">
+    <div class="callout-icon">✓</div>
+    <div class="callout-body">
+      <div class="callout-label">Best Photo Tips</div>
+      <div class="callout-text">
+        <strong>Do:</strong> Use natural daylight, face forward, no makeup, neutral background.<br/>
+        <strong>Avoid:</strong> Strong filters, heavy shadows on one side, sunglasses, or photos taken at a steep angle.<br/>
+        The photo is only used for the preview — LUMÉ's look engine runs on your <em>stated</em> skin tone, not image analysis.
+      </div>
+    </div>
+  </div>
+
+  <div class="callout callout-warn">
+    <div class="callout-icon">⚠</div>
+    <div class="callout-body">
+      <div class="callout-label">Free Scan Limit</div>
+      <div class="callout-text">Free users receive <strong>3 scans per month</strong>. The scan counter is shown in the top navigation bar. When your scans reach zero, the Generate button prompts you to upgrade to Pro. Pro users get unlimited scans.</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════
+     03 — OCCASION LIBRARY
+═══════════════════════════════════════ -->
+<div class="content-page page-break">
+  <div class="section-header">
+    <div class="sh-icon">🎯</div>
+    <div>
+      <div class="sh-num">Section 03</div>
+      <div class="sh-title">Your Occasion Library</div>
+    </div>
+  </div>
+
+  <p>LUMÉ supports 12 distinct occasion types. Each has a fully independent look library — the colours, product references, and application techniques are unique to each occasion. The system does not recycle a single look across different occasions.</p>
+
+  <div class="occasions-grid">
+    <div class="occasion-chip"><div class="occ-em">💍</div><div class="occ-text"><div class="occ-name-chip">Wedding Guest</div><div class="occ-desc-chip">Ceremony &amp; reception</div></div></div>
+    <div class="occasion-chip"><div class="occ-em">🥂</div><div class="occ-text"><div class="occ-name-chip">Night Out</div><div class="occ-desc-chip">Party &amp; celebrations</div></div></div>
+    <div class="occasion-chip"><div class="occ-em">💼</div><div class="occ-text"><div class="occ-name-chip">Corporate</div><div class="occ-desc-chip">Office &amp; meetings</div></div></div>
+    <div class="occasion-chip"><div class="occ-em">💕</div><div class="occ-text"><div class="occ-name-chip">First Date</div><div class="occ-desc-chip">Dinner &amp; romance</div></div></div>
+    <div class="occasion-chip"><div class="occ-em">🎓</div><div class="occ-text"><div class="occ-name-chip">Graduation</div><div class="occ-desc-chip">Ceremony &amp; photos</div></div></div>
+    <div class="occasion-chip"><div class="occ-em">🌸</div><div class="occ-text"><div class="occ-name-chip">Brunch / Day Out</div><div class="occ-desc-chip">Casual daytime</div></div></div>
+    <div class="occasion-chip"><div class="occ-em">📸</div><div class="occ-text"><div class="occ-name-chip">Photoshoot</div><div class="occ-desc-chip">Camera-ready looks</div></div></div>
+    <div class="occasion-chip"><div class="occ-em">📋</div><div class="occ-text"><div class="occ-name-chip">Job Interview</div><div class="occ-desc-chip">Polished &amp; confident</div></div></div>
+    <div class="occasion-chip"><div class="occ-em">🎂</div><div class="occ-text"><div class="occ-name-chip">Birthday Party</div><div class="occ-desc-chip">Fun &amp; festive</div></div></div>
+    <div class="occasion-chip pro"><div class="occ-em">👰</div><div class="occ-text"><div class="occ-name-chip">Bridal <span class="badge badge-gold">PRO</span></div><div class="occ-desc-chip">Your big day</div></div></div>
+    <div class="occasion-chip pro"><div class="occ-em">✨</div><div class="occ-text"><div class="occ-name-chip">Black Tie Gala <span class="badge badge-gold">PRO</span></div><div class="occ-desc-chip">Formal events</div></div></div>
+    <div class="occasion-chip pro"><div class="occ-em">🎪</div><div class="occ-text"><div class="occ-name-chip">Festival <span class="badge badge-gold">PRO</span></div><div class="occ-desc-chip">Outdoor &amp; creative</div></div></div>
+  </div>
+
+  <h3>How the Look Library Works</h3>
+  <p>Every occasion has three distinct look profiles: <strong>Natural/Soft</strong>, <strong>Glam/Bold</strong>, and <strong>Trendy/Editorial</strong>. Each profile contains:</p>
+  <ul>
+    <li>3 lip colour options (primary recommended based on your skin tone)</li>
+    <li>3 eye colour options</li>
+    <li>2 blush colour options</li>
+    <li>A 5-step application sequence specific to that look</li>
+    <li>A LUMÉ expert tip tailored to the occasion context</li>
+    <li>A skin-tone-specific note</li>
+  </ul>
+
+  <div class="callout callout-gold">
+    <div class="callout-icon">👑</div>
+    <div class="callout-body">
+      <div class="callout-label">Pro-Exclusive Occasions</div>
+      <div class="callout-text">Bridal, Black Tie Gala, and Festival are locked for free users because they represent higher-value events where premium product recommendations (luxury brands) and detailed tutorials add the most value. These occasions unlock immediately on Pro upgrade.</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════
+     04 — UNDERSTANDING YOUR LOOK REPORT
+═══════════════════════════════════════ -->
+<div class="content-page page-break">
+  <div class="section-header">
+    <div class="sh-icon">💄</div>
+    <div>
+      <div class="sh-num">Section 04</div>
+      <div class="sh-title">Understanding Your Look Report</div>
+    </div>
+  </div>
+
+  <p>After the loading sequence completes, your Look Report screen displays. It contains a results header, three look cards, a social sharing panel, and a Pro upgrade card.</p>
+
+  <h2>The Results Header</h2>
+  <p>The dark header at the top of the results screen shows: the occasion name, a summary line confirming your skin tone and event context, and four confirmation chips — occasion, skin tone, "3 Looks Generated", and "✓ Affiliate Matched".</p>
+
+  <h2>Each Look Card — Anatomy</h2>
+  <p>Below is a representative example of how a single look card is structured:</p>
+
+  <div class="look-demo">
+    <div class="ld-header">
+      <div>
+        <div class="ld-num">Look 01 — Wedding Guest</div>
+        <div class="ld-name">Soft Bridal Glow</div>
+        <div class="ld-desc">Luminous, camera-ready, effortless</div>
+      </div>
+      <div class="ld-badge-n">NATURAL / SOFT</div>
+    </div>
+    <div class="swatch-demo-row">
+      <div class="swatch-demo-label">LIPS</div>
+      <div class="swatch-demo" style="background:#C17B7B"></div>
+      <div class="swatch-demo" style="background:#D4A0A0"></div>
+      <div class="swatch-demo" style="background:#E8B4B8"></div>
+      <div class="swatch-name-demo">Dusty Rose</div>
+      <div class="swatch-hex-demo">#C17B7B</div>
+    </div>
+    <div class="swatch-demo-row">
+      <div class="swatch-demo-label">EYES</div>
+      <div class="swatch-demo" style="background:#F5DEB3"></div>
+      <div class="swatch-demo" style="background:#8B7355"></div>
+      <div class="swatch-demo" style="background:#6B4C3B"></div>
+      <div class="swatch-name-demo">Champagne</div>
+      <div class="swatch-hex-demo">#F5DEB3</div>
+    </div>
+    <div class="swatch-demo-row">
+      <div class="swatch-demo-label">BLUSH</div>
+      <div class="swatch-demo" style="background:#FFB347"></div>
+      <div class="swatch-demo" style="background:#E8A0A0"></div>
+      <div class="swatch-name-demo">Peach Flush</div>
+      <div class="swatch-hex-demo">#FFB347</div>
+    </div>
+  </div>
+
+  <h3>Colour Swatches</h3>
+  <p>Each row shows the colour options for that product area. The <strong>larger primary swatch</strong> is the one recommended for your specific skin tone — it is the best match for your Dermal Base Tone selection. Tap any swatch in the app to see its full name, hex code, and a short application tip in a pop-up card.</p>
+
+  <h3>Application Sequence</h3>
+  <p>Below the palette, a row of numbered steps shows the exact application order for that look. These steps are occasion-specific — for example, the Bridal sequence includes "Apply primer" as step 1, whereas the Festival sequence begins with "Waterproof base".</p>
+
+  <h3>LUMÉ Tip</h3>
+  <p>A purple information box contains an expert application note specific to the occasion and a skin-tone-personalised note based on your Dermal Base Tone selection.</p>
+
+  <h3>Affiliate Matches</h3>
+  <p>Below the tips, a section labelled "Affiliate Matches" (with a gold ★ EARN badge) lists 4–5 real products. Each product card shows the brand name, product name, price, and an arrow link. Tapping the card opens the retailer's product page in a new tab. If the app owner has set an affiliate ID in the Admin Dashboard, it is automatically appended to the URL.</p>
+
+  <h3>Look Actions</h3>
+  <p>Three buttons appear at the bottom of each look card:</p>
+  <ul>
+    <li><strong>💾 Save</strong> — saves the look to your local profile (shown in Pro)</li>
+    <li><strong>📲 Share</strong> — opens the native share sheet or copies a share message</li>
+    <li><strong>🪄 Tutorial</strong> — launches an AI face-shape tutorial (Pro feature)</li>
+  </ul>
+</div>
+
+
+<!-- ═══════════════════════════════════════
+     05 — DERMAL BASE TONE
+═══════════════════════════════════════ -->
+<div class="content-page page-break">
+  <div class="section-header">
+    <div class="sh-icon">🎨</div>
+    <div>
+      <div class="sh-num">Section 05</div>
+      <div class="sh-title">Dermal Base Tone — Skin Tone Mapping</div>
+    </div>
+  </div>
+
+  <p>LUMÉ uses your selected skin tone to perform what it calls <strong>Dermal Base Tone calibration</strong> — adjusting which colours within each look palette are presented as your primary recommendation.</p>
+
+  <h2>The Six Tones</h2>
+  <div class="skin-row-demo">
+    <div class="skin-swatch-demo"><div class="swatch-circle" style="background:#F5D5C0"></div><div class="swatch-lbl">Fair</div></div>
+    <div class="skin-swatch-demo"><div class="swatch-circle" style="background:#E8B89A"></div><div class="swatch-lbl">Light</div></div>
+    <div class="skin-swatch-demo"><div class="swatch-circle" style="background:#C68642"></div><div class="swatch-lbl">Medium</div></div>
+    <div class="skin-swatch-demo"><div class="swatch-circle" style="background:#A0522D"></div><div class="swatch-lbl">Tan</div></div>
+    <div class="skin-swatch-demo"><div class="swatch-circle" style="background:#7B3F00"></div><div class="swatch-lbl">Deep</div></div>
+    <div class="skin-swatch-demo"><div class="swatch-circle" style="background:#3B1F0E"></div><div class="swatch-lbl">Rich</div></div>
+  </div>
+
+  <h2>How Calibration Works</h2>
+  <p>Every look palette contains 3 lip options and 3 eye options arranged from lighter to deeper. When you select a skin tone, the system moves a "preferred index" pointer to select the best starting shade:</p>
+
+  <table class="data-table">
+    <thead>
+      <tr><th>Skin Tone</th><th>Lip Pointer</th><th>Eye Pointer</th><th>LUMÉ Note</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Fair</strong></td><td>Shade 1 (lightest)</td><td>Shade 1</td><td>Avoid pale nudes — go for pinks and warm nudes</td></tr>
+      <tr><td><strong>Light</strong></td><td>Shade 1</td><td>Shade 1</td><td>Warm tones like peach create natural-looking warmth</td></tr>
+      <tr><td><strong>Medium</strong></td><td>Shade 2</td><td>Shade 1</td><td>Deep berries and terracotta are particularly beautiful</td></tr>
+      <tr><td><strong>Tan</strong></td><td>Shade 2</td><td>Shade 2</td><td>Rich saturated colours look incredible — avoid pale nudes</td></tr>
+      <tr><td><strong>Deep</strong></td><td>Shade 3 (deepest)</td><td>Shade 2</td><td>Bold colours shine — golds, bronzes, and deep plums</td></tr>
+      <tr><td><strong>Rich</strong></td><td>Shade 3</td><td>Shade 3</td><td>Vibrant and deep colours are your strength</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout callout-tip">
+    <div class="callout-icon">✓</div>
+    <div class="callout-body">
+      <div class="callout-label">All Shades are Always Visible</div>
+      <div class="callout-text">The calibration selects a <em>primary</em> recommendation — but all three shades in each palette row are shown on screen. You can tap any swatch to see its name and hex code. The primary is simply the first suggested starting point based on your tone.</div>
+    </div>
+  </div>
+
+  <h2>Changing Your Skin Tone</h2>
+  <p>If you tap the wrong skin tone, tap a different one in the same session — the selection updates immediately and the Generate button will reflect the new tone. To change after generating looks, tap "↩ New Scan" in the top navigation bar of the results screen to restart the flow.</p>
+</div>
+
+
+<!-- ═══════════════════════════════════════
+     06 — LUMÉ PRO
+═══════════════════════════════════════ -->
+<div class="content-page page-break">
+  <div class="section-header">
+    <div class="sh-icon">👑</div>
+    <div>
+      <div class="sh-num">Section 06</div>
+      <div class="sh-title">LUMÉ Pro — Unlock Everything</div>
+    </div>
+  </div>
+
+  <div class="pro-banner">
+    <div class="pb-crown">👑</div>
+    <div class="pb-title">LUMÉ Pro Blueprint — $4.99/mo</div>
+    <div class="pb-sub">Join 4,800+ women who've upgraded their occasion intelligence. 7-day free trial. Cancel anytime. No commitment.</div>
+    <div class="pb-features">
+      <div class="pb-feat"><div class="pb-feat-icon">♾️</div><div class="pb-feat-text">Unlimited Scans<br/><span style="font-weight:400;color:rgba(255,255,255,.45)">Free users: 3/month</span></div></div>
+      <div class="pb-feat"><div class="pb-feat-icon">💎</div><div class="pb-feat-text">Luxury Brand Picks<br/><span style="font-weight:400;color:rgba(255,255,255,.45)">Charlotte Tilbury, NARS, Armani</span></div></div>
+      <div class="pb-feat"><div class="pb-feat-icon">📐</div><div class="pb-feat-text">Face Shape Tutorials<br/><span style="font-weight:400;color:rgba(255,255,255,.45)">AI step-by-step guides</span></div></div>
+      <div class="pb-feat"><div class="pb-feat-icon">🎯</div><div class="pb-feat-text">Exclusive Occasions<br/><span style="font-weight:400;color:rgba(255,255,255,.45)">Bridal, Gala, Festival</span></div></div>
+      <div class="pb-feat"><div class="pb-feat-icon">🎨</div><div class="pb-feat-text">Expanded Colour Library<br/><span style="font-weight:400;color:rgba(255,255,255,.45)">200+ colour combinations</span></div></div>
+      <div class="pb-feat"><div class="pb-feat-icon">💾</div><div class="pb-feat-text">Saved Looks Profile<br/><span style="font-weight:400;color:rgba(255,255,255,.45)">Save and revisit past looks</span></div></div>
+    </div>
+  </div>
+
+  <h2>How to Upgrade</h2>
+  <ol>
+    <li>When you reach 0 scans, the Generate button changes to "0 SCANS — UPGRADE TO PRO →". Tapping it opens the Pro modal.</li>
+    <li>You can also tap the gold "UNLOCK PRO" button in the Pro gate card at the bottom of any results screen.</li>
+    <li>In the Pro modal, tap "Start Pro — $4.99/mo →" to activate.</li>
+    <li>Once activated, your scan counter shows ∞ (infinity) and Pro occasions unlock immediately.</li>
+  </ol>
+
+  <div class="callout callout-info">
+    <div class="callout-icon">ℹ</div>
+    <div class="callout-body">
+      <div class="callout-label">Current Implementation Note</div>
+      <div class="callout-text">The current version activates Pro locally (via browser storage) for demonstration purposes. In a production deployment, this would connect to a payment processor (Stripe) for recurring billing and server-side subscription management.</div>
+    </div>
+  </div>
+
+  <h2>Free vs Pro Comparison</h2>
+  <table class="data-table">
+    <thead>
+      <tr><th>Feature</th><th>Free</th><th>Pro ($4.99/mo)</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Monthly scans</td><td>3</td><td>Unlimited</td></tr>
+      <tr><td>Occasions available</td><td>9 of 12</td><td>All 12</td></tr>
+      <tr><td>Affiliate product brands</td><td>All current brands</td><td>+ Luxury tier brands</td></tr>
+      <tr><td>Face shape tutorials</td><td>✗</td><td>✓</td></tr>
+      <tr><td>Saved looks profile</td><td>✗</td><td>✓</td></tr>
+      <tr><td>Exclusive occasion packs</td><td>✗</td><td>✓ (Destination Wedding, etc.)</td></tr>
+      <tr><td>Expanded colour library</td><td>Standard</td><td>200+ combinations</td></tr>
+    </tbody>
+  </table>
+</div>
+
+
+<!-- ═══════════════════════════════════════
+     07 — SHARING
+═══════════════════════════════════════ -->
+<div class="content-page page-break">
+  <div class="section-header">
+    <div class="sh-icon">📲</div>
+    <div>
+      <div class="sh-num">Section 07</div>
+      <div class="sh-title">Sharing Your Looks — Social Content Ideas</div>
+    </div>
+  </div>
+
+  <p>Below your look cards on the results screen, LUMÉ includes a sharing panel designed to help you create viral social content from your generated looks.</p>
+
+  <h2>The Three Share Buttons</h2>
+  <div class="steps-row">
+    <div class="step-block">
+      <div class="step-num" style="background:linear-gradient(135deg,#25D366,#128C7E)">WA</div>
+      <div class="step-content">
+        <div class="step-title">WhatsApp</div>
+        <div class="step-desc">Opens WhatsApp with a pre-written message including your occasion and a link to the app. Perfect for asking friends "which look should I wear?" or sharing your result with a partner or family member.</div>
+      </div>
+    </div>
+    <div class="step-block">
+      <div class="step-num" style="background:linear-gradient(135deg,#f09433,#bc1888)">IG</div>
+      <div class="step-content">
+        <div class="step-title">Instagram</div>
+        <div class="step-desc">Prompts you to take a screenshot of your look report and share it to your Instagram stories or grid. Works best as a before/after post where you show your natural face next to the finished LUMÉ look.</div>
+      </div>
+    </div>
+    <div class="step-block">
+      <div class="step-num" style="background:#1a1a2e">🔗</div>
+      <div class="step-content">
+        <div class="step-title">Copy Link</div>
+        <div class="step-desc">Copies the app URL to your clipboard for sharing via SMS, email, TikTok bio, or any other platform.</div>
+      </div>
+    </div>
+  </div>
+
+  <h2>Viral Content Ideas</h2>
+  <p>The three content idea chips in the sharing panel are clickable — tapping one copies it to your clipboard so you can use it as a post caption. The ideas are:</p>
+
+  <table class="data-table">
+    <thead>
+      <tr><th>Content Idea</th><th>Platform</th><th>Why it Works</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>"AI picked my makeup for a wedding"</td><td>TikTok, Instagram Reels</td><td>Curiosity hook — people want to see what the AI chose</td></tr>
+      <tr><td>"before/after my LUMÉ look"</td><td>Instagram Stories, BeReal</td><td>Classic format — transformation content performs well</td></tr>
+      <tr><td>"which look is better? vote below"</td><td>Instagram Stories (poll)</td><td>Engagement driver — polls get 3× more reach than static posts</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Individual Look Sharing</h2>
+  <p>Each look card also has its own "📲 Share" button. Tapping it opens the device's native share sheet (or copies text on desktop) with a message naming the specific look — for example: <em>"AI picked 'Luminous Drama' for my Wedding Guest look — generated by LUMÉ Occasion Intelligence. Which look would YOU choose for me?"</em></p>
+</div>
+
+
+<!-- ═══════════════════════════════════════
+     08 — ADMIN DASHBOARD
+═══════════════════════════════════════ -->
+<div class="content-page page-break">
+  <div class="section-header">
+    <div class="sh-icon">⚙️</div>
+    <div>
+      <div class="sh-num">Section 08</div>
+      <div class="sh-title">Admin Dashboard — Owner Guide</div>
+    </div>
+  </div>
+
+  <p>The Admin Dashboard is accessed at <strong>/makeup-admin</strong>. It is password-protected and intended for the app owner only. Default login credentials are <code>admin</code> / <code>lume2024</code> — change these immediately in the Settings tab.</p>
+
+  <div class="callout callout-warn">
+    <div class="callout-icon">⚠</div>
+    <div class="callout-body">
+      <div class="callout-label">Security</div>
+      <div class="callout-text">Change the default credentials as soon as possible. Go to <strong>Settings → Dashboard Security</strong> to update your username and password. Sessions last 24 hours and are stored in browser localStorage.</div>
+    </div>
+  </div>
+
+  <h2>The Six Dashboard Tabs</h2>
+
+  <div class="admin-tabs">
+    <div class="admin-tab highlight">
+      <div class="at-icon">📊</div>
+      <div>
+        <div class="at-label">Overview</div>
+        <div class="at-desc">Your business snapshot at a glance: total scans, unique occasions searched, affiliate clicks, estimated commission (£), number of active sponsorships, and monthly sponsorship revenue. Includes a top-5 occasion chart and an affiliate ID status card showing whether commission tracking is active.</div>
+      </div>
+    </div>
+    <div class="admin-tab">
+      <div class="at-icon">📈</div>
+      <div>
+        <div class="at-label">Analytics</div>
+        <div class="at-desc">Full occasion popularity bar chart showing how many times each occasion has been searched. Affiliate click-through table broken down by brand with estimated commission per brand. CSV export button for pitching brand partnerships. Data reset option.</div>
+      </div>
+    </div>
+    <div class="admin-tab">
+      <div class="at-icon">🤝</div>
+      <div>
+        <div class="at-label">Sponsorships</div>
+        <div class="at-desc">Add brand sponsorships mapped to specific occasions. A sponsored brand's product appears FIRST in the Affiliate Matches section of results for that occasion. Set the monthly fee, product/campaign name, and affiliate URL. Revenue summary shows monthly/annual totals across all active sponsorships.</div>
+      </div>
+    </div>
+    <div class="admin-tab">
+      <div class="at-icon">💰</div>
+      <div>
+        <div class="at-label">Affiliate</div>
+        <div class="at-desc">Set your global affiliate tracking ID. Once saved, it is automatically appended as ?ref=YOUR_ID to every product link in the entire app. Includes a directory of recommended affiliate networks (AWIN, Rakuten, Skimlinks, LTK, Amazon Associates) with sign-up links and brand coverage for each.</div>
+      </div>
+    </div>
+    <div class="admin-tab">
+      <div class="at-icon">👥</div>
+      <div>
+        <div class="at-label">Users &amp; Pro</div>
+        <div class="at-desc">Conversion funnel showing the drop-off rate at each stage (visit → upload → occasion → generate → click → Pro upgrade). Demo metrics for Free vs Pro subscriber counts, MRR, and scan completion rate. Pro subscription strategy section with MRR projections.</div>
+      </div>
+    </div>
+    <div class="admin-tab">
+      <div class="at-icon">⚙️</div>
+      <div>
+        <div class="at-label">Settings</div>
+        <div class="at-desc">Change admin credentials. Configure Pro price and free scan limit. Update app branding (name, tagline). Set default share message and app URL for social sharing. Danger zone with full reset options for analytics data, sponsorships, and factory reset.</div>
+      </div>
+    </div>
+  </div>
+
+  <h2>Adding Your First Sponsorship</h2>
+  <ol>
+    <li>Go to <strong>Sponsorships tab</strong></li>
+    <li>Select the occasion from the dropdown (e.g. "Wedding Guest")</li>
+    <li>Enter the brand name (e.g. "Charlotte Tilbury")</li>
+    <li>Enter the product or campaign name (e.g. "Pillow Talk Collection")</li>
+    <li>Enter the monthly fee the brand is paying (e.g. 500)</li>
+    <li>Paste the affiliate/product URL</li>
+    <li>Click "Add Sponsorship Placement"</li>
+  </ol>
+  <p>The brand's product now appears as the <strong>first item</strong> (with a gold "PARTNER" badge) in the Affiliate Matches section of every result generated for that occasion.</p>
+</div>
+
+
+<!-- ═══════════════════════════════════════
+     09 — MONETISATION PLAYBOOK
+═══════════════════════════════════════ -->
+<div class="content-page page-break">
+  <div class="section-header">
+    <div class="sh-icon">💰</div>
+    <div>
+      <div class="sh-num">Section 09</div>
+      <div class="sh-title">Monetisation Playbook</div>
+    </div>
+  </div>
+
+  <p>LUMÉ is built with four distinct revenue streams. This section explains how each works and what you need to do to activate it.</p>
+
+  <div class="monetise-row">
+    <div class="mr-num">1</div>
+    <div>
+      <div class="mr-title">Affiliate Commissions — Passive, Always-On</div>
+      <div class="mr-desc">Set your affiliate ID in the Affiliate tab once. Every product link in the app — across all 12 occasions and all 3 look types — automatically includes your tracking tag. When a user taps a product and buys it, you earn 4–12% commission. Average basket: £35. At 4% = £1.40/conversion. At 12% = £4.20/conversion. This requires zero ongoing work once the ID is set.</div>
+    </div>
+  </div>
+
+  <div class="monetise-row">
+    <div class="mr-num">2</div>
+    <div>
+      <div class="mr-title">Brand Sponsorships — Direct, Recurring Revenue</div>
+      <div class="mr-desc">Pitch beauty brands on guaranteed first-position product placement for their target occasion. Example pitch: "Your brand appears first for every Wedding Guest look generated by LUMÉ — £500/month for 12 months." A single brand at £500/mo = £6,000/year. Five brands = £30,000/year. Managed entirely through the Sponsorships tab — no code changes required.</div>
+    </div>
+  </div>
+
+  <div class="monetise-row">
+    <div class="mr-num">3</div>
+    <div>
+      <div class="mr-title">Pro Subscriptions — Recurring MRR</div>
+      <div class="mr-desc">Free users hit the 3-scan limit and convert to Pro at $4.99/mo. Target conversion: 10% of monthly active users. 1,000 MAU → 100 Pro = $499 MRR. 10,000 MAU → 1,000 Pro = $4,990 MRR. Price and scan limit are configurable in the Settings tab. The freemium gate is intentionally generous enough to show value but tight enough to drive conversion.</div>
+    </div>
+  </div>
+
+  <div class="monetise-row">
+    <div class="mr-num">4</div>
+    <div>
+      <div class="mr-title">Data Partnerships — Highest Value, Scalable</div>
+      <div class="mr-desc">Your occasion search data (available in the Analytics tab) is first-party intent data. If "Wedding Guest" is your top search, Charlotte Tilbury and NARS would pay for exclusive access to that signal. Export the CSV from the Analytics tab. Present it as an "Occasion Intent Dataset" in brand pitch decks. Industry CPM for this type of data: £15–£40. At 10,000 intent events = £150–£400 per data sale.</div>
+    </div>
+  </div>
+
+  <h2>Revenue Projection Example</h2>
+  <table class="data-table">
+    <thead>
+      <tr><th>Revenue Stream</th><th>Conservative</th><th>Growth</th><th>Scale</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Affiliate (monthly)</td><td>£120</td><td>£480</td><td>£2,000+</td></tr>
+      <tr><td>Sponsorships (monthly)</td><td>£500</td><td>£2,500</td><td>£10,000+</td></tr>
+      <tr><td>Pro Subscriptions (MRR)</td><td>£200</td><td>£1,000</td><td>£5,000+</td></tr>
+      <tr><td>Data Partnership (one-off)</td><td>£150</td><td>£500</td><td>£2,000+</td></tr>
+      <tr><td style="font-weight:800">Total Monthly</td><td style="font-weight:800;color:#059669">£970</td><td style="font-weight:800;color:#059669">£4,480</td><td style="font-weight:800;color:#059669">£19,000+</td></tr>
+    </tbody>
+  </table>
+</div>
+
+
+<!-- ═══════════════════════════════════════
+     10 — PRODUCT CATALOGUE
+═══════════════════════════════════════ -->
+<div class="content-page page-break">
+  <div class="section-header">
+    <div class="sh-icon">🛍</div>
+    <div>
+      <div class="sh-num">Section 10</div>
+      <div class="sh-title">Affiliate Product Brands</div>
+    </div>
+  </div>
+
+  <p>The following products are included in LUMÉ's affiliate product library. Each is mapped to a specific look type (Natural, Glam, or Trendy). Sponsored products from the Admin Dashboard appear above these in results.</p>
+
+  <h2>Lips</h2>
+  <table class="data-table">
+    <thead><tr><th>Look Type</th><th>Brand</th><th>Product</th><th>Price</th></tr></thead>
+    <tbody>
+      <tr><td><span class="badge badge-green">NATURAL</span></td><td>Charlotte Tilbury</td><td>Pillow Talk Lipstick</td><td>£30</td></tr>
+      <tr><td><span class="badge badge-green">NATURAL</span></td><td>NARS</td><td>Satin Lip Pencil — Rikugien</td><td>£22</td></tr>
+      <tr><td><span class="badge badge-green">NATURAL</span></td><td>Rare Beauty</td><td>Kind Words Lip Liner — Fearless</td><td>£16</td></tr>
+      <tr><td><span class="badge badge-purple">GLAM</span></td><td>MAC</td><td>Matte Lipstick — Ruby Woo</td><td>£22</td></tr>
+      <tr><td><span class="badge badge-purple">GLAM</span></td><td>Charlotte Tilbury</td><td>Walk of No Shame</td><td>£30</td></tr>
+      <tr><td><span class="badge badge-purple">GLAM</span></td><td>NARS</td><td>Audacious Lipstick — Rita</td><td>£28</td></tr>
+      <tr><td><span class="badge badge-gold">TRENDY</span></td><td>Fenty Beauty</td><td>Stunna Lip Paint — Uncensored</td><td>£24</td></tr>
+      <tr><td><span class="badge badge-gold">TRENDY</span></td><td>Rare Beauty</td><td>Soft Pinch Tinted Lip Oil</td><td>£20</td></tr>
+      <tr><td><span class="badge badge-gold">TRENDY</span></td><td>e.l.f.</td><td>O Face Satin Lipstick — Cozy</td><td>£9</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Eyes</h2>
+  <table class="data-table">
+    <thead><tr><th>Look Type</th><th>Brand</th><th>Product</th><th>Price</th></tr></thead>
+    <tbody>
+      <tr><td><span class="badge badge-green">NATURAL</span></td><td>Urban Decay</td><td>Naked3 Palette</td><td>£46</td></tr>
+      <tr><td><span class="badge badge-green">NATURAL</span></td><td>Charlotte Tilbury</td><td>The Sophisticate Palette</td><td>£45</td></tr>
+      <tr><td><span class="badge badge-green">NATURAL</span></td><td>Benefit</td><td>BADgal BANG Mascara</td><td>£26</td></tr>
+      <tr><td><span class="badge badge-purple">GLAM</span></td><td>Urban Decay</td><td>Naked Smoky Palette</td><td>£46</td></tr>
+      <tr><td><span class="badge badge-purple">GLAM</span></td><td>Anastasia Beverly Hills</td><td>Norvina Palette</td><td>£42</td></tr>
+      <tr><td><span class="badge badge-purple">GLAM</span></td><td>Charlotte Tilbury</td><td>Rock 'N' Kohl Liner</td><td>£20</td></tr>
+      <tr><td><span class="badge badge-gold">TRENDY</span></td><td>Fenty Beauty</td><td>Snap Shadows Palette</td><td>£30</td></tr>
+      <tr><td><span class="badge badge-gold">TRENDY</span></td><td>NYX</td><td>Ultimate Shadow Palette</td><td>£18</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Blush &amp; Base</h2>
+  <table class="data-table">
+    <thead><tr><th>Category</th><th>Brand</th><th>Product</th><th>Price</th></tr></thead>
+    <tbody>
+      <tr><td>Blush</td><td>NARS</td><td>Blush — Orgasm</td><td>£28</td></tr>
+      <tr><td>Blush</td><td>Rare Beauty</td><td>Soft Pinch Liquid Blush — Joy</td><td>£23</td></tr>
+      <tr><td>Blush</td><td>Charlotte Tilbury</td><td>Cheek to Chic — Pillow Talk</td><td>£35</td></tr>
+      <tr><td>Base</td><td>Charlotte Tilbury</td><td>Airbrush Flawless Foundation</td><td>£36</td></tr>
+      <tr><td>Base</td><td>NARS</td><td>Sheer Glow Foundation</td><td>£38</td></tr>
+      <tr><td>Base</td><td>Rare Beauty</td><td>Positive Light Tinted Moisturiser</td><td>£28</td></tr>
+      <tr><td>Base</td><td>Fenty Beauty</td><td>Pro Filt'r Foundation</td><td>£32</td></tr>
+    </tbody>
+  </table>
+</div>
+
+
+<!-- ═══════════════════════════════════════
+     11 — FAQ
+═══════════════════════════════════════ -->
+<div class="content-page page-break">
+  <div class="section-header">
+    <div class="sh-icon">❓</div>
+    <div>
+      <div class="sh-num">Section 11</div>
+      <div class="sh-title">Frequently Asked Questions</div>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">Is my face photo private?</div>
+    <div class="faq-a">Yes. Your photo is processed entirely within your browser using the FileReader API. It is never uploaded to any server, never sent to an AI service, and never stored beyond your current browser session. The "🔒 PRIVATE · LOCAL PROCESSING" badge on the upload zone confirms this. When you close the browser tab, the photo data is cleared.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">Why does LUMÉ not actually analyse my face photo?</div>
+    <div class="faq-a">LUMÉ's look engine is deliberately built around your stated inputs (occasion + skin tone) rather than image analysis. This makes the app faster, fully private, and more predictable. The look quality comes from the curated look library — not from image processing. The photo upload creates a sense of personalisation and is used for the look preview card.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">What does "Dermal Base Tone" mean?</div>
+    <div class="faq-a">"Dermal Base Tone" is LUMÉ's branded term for your skin tone. It refers to the six skin tone options (Fair, Light, Medium, Tan, Deep, Rich). The term is intentionally clinical-sounding to reinforce the idea that LUMÉ is a system, not a filter app.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">How do I know which skin tone to select?</div>
+    <div class="faq-a">Hold your inner forearm next to the six swatch circles and tap the one closest to your natural skin without makeup. If you are between two tones, go with the deeper one — LUMÉ's colour calibration tends to be more flattering when nudged slightly warmer and deeper rather than lighter.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">Can I use the same look for different occasions?</div>
+    <div class="faq-a">Yes, but it is not recommended. For example, the Wedding Guest Natural look ("Soft Bridal Glow") uses champagne lid and dusty rose lip, while the Job Interview Natural look ("Confident Classic") uses cream ivory lid and soft rosy nude lip. The difference matters — one is celebration makeup, the other is professional makeup. Run a new scan for each occasion for the best result.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">The hex colour code does not match any product I can find. What do I do?</div>
+    <div class="faq-a">The hex codes represent the ideal target colour for that look. Use them to find a matching shade in any brand — search "dusty rose lipstick #C17B7B" on Google or use the Sephora/ASOS colour filter. The affiliate product cards show specific recommended products, but the hex code can be matched in any brand of your choosing.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">Do the affiliate product links cost extra?</div>
+    <div class="faq-a">No. Affiliate links are free to use. If the app owner has set an affiliate tracking ID, clicking a product link and purchasing the product earns them a commission from the retailer — the price you pay is exactly the same as buying directly.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">How does the Admin Dashboard know how many scans have been run?</div>
+    <div class="faq-a">All scan and click data is stored in your browser's localStorage. Because LUMÉ runs as a client-side app, the data is local to the device where it was generated. For multi-device analytics, a server-side analytics backend (e.g. a Cloudflare D1 database or third-party analytics service) would be required as a future enhancement.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">What happens if I reset my browser data?</div>
+    <div class="faq-a">Clearing browser localStorage will reset your scan count to 3, remove your Pro status (if activated locally), and clear all analytics data. This is expected behaviour for a localStorage-based app. In a production deployment, user accounts and Pro status would be server-side and persistent across devices and browsers.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">Can I change the Pro price?</div>
+    <div class="faq-a">Yes. Go to Admin Dashboard → Settings → Pro Subscription Settings → Monthly Price. Save the new price. The displayed price in the app will update. Note that the actual billing integration (Stripe or similar) would need to reflect the same price change in production.</div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════ -->
+<div class="doc-footer">
+  <div class="df-logo">LUMÉ</div>
+  <div class="df-text">Occasion Intelligence System · User Manual v2.0 · © 2025 · Confidential</div>
+</div>
+
+</div><!-- /page -->
+
+</body>
+</html>
