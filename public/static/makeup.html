@@ -604,6 +604,38 @@ body{
   padding:8px 4px;line-height:1.5;
 }
 
+/* ── TAGLINE STRIP ── */
+.tagline-strip{
+  background:linear-gradient(135deg,#0a0a0f 0%,#120824 50%,#0a0a0f 100%);
+  padding:28px 20px 24px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+  border-bottom:1px solid rgba(168,85,247,.12);
+}
+.tagline-strip::before{
+  content:'';
+  position:absolute;inset:0;
+  background:radial-gradient(ellipse 70% 100% at 50% 100%,rgba(124,58,237,.18),transparent);
+  pointer-events:none;
+}
+.ts-inner{position:relative;z-index:1;}
+.ts-line{
+  font-weight:900;letter-spacing:-1px;line-height:1.15;
+  display:block;
+}
+.ts-line-1{
+  font-size:clamp(1.4rem,6vw,2.2rem);
+  color:rgba(255,255,255,.75);
+  margin-bottom:4px;
+}
+.ts-line-2{
+  font-size:clamp(1.8rem,8vw,3rem);
+  background:linear-gradient(135deg,#a855f7 0%,#ec4899 55%,#f59e0b 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+
 /* ── CONFETTI CANVAS ── */
 #confetti-canvas{
   position:fixed;inset:0;pointer-events:none;z-index:9999;
@@ -840,6 +872,14 @@ body{
     </div>
     <div class="fb-bar-wrap"><div class="fb-bar-fill" id="founding-bar" style="width:0%"></div></div>
     <button class="fb-cta" onclick="showModal('pro-modal')">Claim Free Spot →</button>
+  </div>
+
+  <!-- TAGLINE HERO STRIP -->
+  <div class="tagline-strip">
+    <div class="ts-inner">
+      <div class="ts-line ts-line-1">Your face. Your occasion.</div>
+      <div class="ts-line ts-line-2">Your perfect look.</div>
+    </div>
   </div>
 
   <!-- OCCASION MARQUEE -->
