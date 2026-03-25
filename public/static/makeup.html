@@ -820,7 +820,7 @@ body{
 <div id="s-upload" class="screen active">
 
   <div class="nav">
-    <div>
+    <div onclick="adminTap()" style="cursor:default;-webkit-tap-highlight-color:transparent">
       <div class="nav-logo">Astyra</div>
       <div class="nav-sub">Makeup chosen for your occasion</div>
     </div>
@@ -2174,8 +2174,22 @@ function revealResults(){
 }
 
 // ══════════════════════════════════════════════════════
-//  SKIMLINKS INTEGRATION
+//  SECRET ADMIN ACCESS — tap logo 5 times quickly
 // ══════════════════════════════════════════════════════
+let _adminTaps = 0;
+let _adminTimer = null;
+function adminTap(){
+  _adminTaps++;
+  clearTimeout(_adminTimer);
+  if(_adminTaps >= 5){
+    _adminTaps = 0;
+    window.location.href = '/makeup-admin';
+  } else {
+    // Reset count if no tap within 1.5 seconds
+    _adminTimer = setTimeout(()=>{ _adminTaps = 0; }, 1500);
+  }
+}
+
 function activateSkimlinks(){
   const sklId = localStorage.getItem('astyra_skimlinks_id') || '';
   const scriptEl = document.getElementById('skimlinks-script');
