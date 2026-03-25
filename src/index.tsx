@@ -19,6 +19,7 @@ app.get('/india-synopsis', (c) => c.redirect('/static/india-synopsis.html'))
 app.get('/makeup', (c) => c.redirect('/static/makeup.html'))
 app.get('/makeup-admin', (c) => c.redirect('/static/makeup-admin.html'))
 app.get('/lume-manual', (c) => c.redirect('/static/lume-manual.html'))
+app.get('/astyra-manual', (c) => c.redirect('/static/lume-manual.html'))
 
 app.get('/old-app', (c) => c.html(`<!DOCTYPE html>
 <html lang="en">

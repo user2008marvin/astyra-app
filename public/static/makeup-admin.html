@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>LUMÉ Admin — Owner Dashboard</title>
+<title>Astyra Admin — Owner Dashboard</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{
@@ -261,7 +261,7 @@ code{background:rgba(255,255,255,.08);padding:2px 7px;border-radius:5px;font-siz
 <!-- ═══════════ LOGIN ═══════════ -->
 <div id="login-screen" class="login-screen">
   <div class="login-box">
-    <div class="lb-logo">LUMÉ</div>
+    <div class="lb-logo">Astyra</div>
     <div class="lb-sub">Owner Dashboard · Restricted Access</div>
     <label class="lb-label">Username</label>
     <input class="lb-input" id="l-user" type="text" placeholder="admin" autocomplete="username"/>
@@ -271,7 +271,7 @@ code{background:rgba(255,255,255,.08);padding:2px 7px;border-radius:5px;font-siz
       onkeydown="if(event.key==='Enter')doLogin()"/>
     <button class="lb-btn" onclick="doLogin()">ENTER DASHBOARD →</button>
     <div class="lb-err" id="l-err"></div>
-    <p style="font-size:.6rem;color:var(--text-soft);text-align:center;margin-top:16px">Default: admin / lume2024</p>
+    <p style="font-size:.6rem;color:var(--text-soft);text-align:center;margin-top:16px">Default: admin / astyra2024</p>
   </div>
 </div>
 
@@ -281,7 +281,7 @@ code{background:rgba(255,255,255,.08);padding:2px 7px;border-radius:5px;font-siz
   <!-- SIDEBAR -->
   <div class="sidebar">
     <div class="sb-logo">
-      <div class="sb-logo-name">LUMÉ</div>
+      <div class="sb-logo-name">Astyra</div>
       <div class="sb-logo-sub">Admin · Owner Only</div>
     </div>
     <div class="sb-nav">
@@ -318,7 +318,7 @@ code{background:rgba(255,255,255,.08);padding:2px 7px;border-radius:5px;font-siz
     <div class="tab-pane active" id="tab-overview">
       <div class="page-header">
         <div class="ph-eyebrow">Dashboard</div>
-        <div class="ph-title" id="greeting">Good morning, LUMÉ 👋</div>
+        <div class="ph-title" id="greeting">Good morning, Astyra 👋</div>
         <div class="ph-sub">Real-time snapshot of your occasion intelligence business.</div>
       </div>
 
@@ -521,7 +521,7 @@ code{background:rgba(255,255,255,.08);padding:2px 7px;border-radius:5px;font-siz
         </p>
         <div class="field">
           <label class="f-label">Your Affiliate ID / Tag</label>
-          <input class="f-input" id="aff-id-input" type="text" placeholder="e.g. lume_awin_123456" oninput="previewAffUrl()"/>
+          <input class="f-input" id="aff-id-input" type="text" placeholder="e.g. astyra_awin_123456" oninput="previewAffUrl()"/>
         </div>
         <div class="url-preview" id="aff-url-preview">Example: https://bit.ly/ct-pillowtalk → https://bit.ly/ct-pillowtalk<strong>?ref=YOUR_ID</strong></div>
         <div style="display:flex;gap:10px;margin-top:14px;flex-wrap:wrap">
@@ -555,8 +555,8 @@ code{background:rgba(255,255,255,.08);padding:2px 7px;border-radius:5px;font-siz
         <div class="sc-title">How the Revenue Flows</div>
         <div style="display:flex;flex-direction:column;gap:8px">
           ${[
-            ['User generates looks','LUMÉ shows 3 occasion-matched looks with product links'],
-            ['User taps a product','Your affiliate ID is appended: ?ref=lume_awin_123'],
+            ['User generates looks','Astyra shows 3 occasion-matched looks with product links'],
+            ['User taps a product','Your affiliate ID is appended: ?ref=astyra_awin_123'],
             ['User buys the product','You earn 4–12% commission. Avg basket £35 = £2.80–£4.20'],
             ['Scale it','100 clicks/day × 5% CVR × £3 avg = £15/day passive income'],
           ].map(([title,desc],i)=>`
@@ -648,7 +648,7 @@ code{background:rgba(255,255,255,.08);padding:2px 7px;border-radius:5px;font-siz
           <button class="f-btn" onclick="saveCredentials()">Save Credentials</button>
           <button class="f-btn f-btn-outline" onclick="resetCredentials()" style="border-color:rgba(239,68,68,.4);color:#f87171">Reset to Defaults</button>
         </div>
-        <p style="font-size:.65rem;color:var(--text-soft);margin-top:6px">Default credentials: <strong style="color:#a78bfa">admin / lume2024</strong></p>
+        <p style="font-size:.65rem;color:var(--text-soft);margin-top:6px">Default credentials: <strong style="color:#a78bfa">admin / astyra2024</strong></p>
       </div>
 
       <!-- Pro pricing -->
@@ -677,7 +677,7 @@ code{background:rgba(255,255,255,.08);padding:2px 7px;border-radius:5px;font-siz
         <div class="form-grid-2">
           <div class="field">
             <label class="f-label">App Name</label>
-            <input class="f-input" id="set-appname" type="text" placeholder="LUMÉ"/>
+            <input class="f-input" id="set-appname" type="text" placeholder="Astyra"/>
           </div>
           <div class="field">
             <label class="f-label">Tagline</label>
@@ -692,11 +692,11 @@ code{background:rgba(255,255,255,.08);padding:2px 7px;border-radius:5px;font-siz
         <div class="sc-title">📲 Social Sharing Content</div>
         <div class="field">
           <label class="f-label">Default Share Message</label>
-          <textarea class="f-textarea" id="set-share-msg" placeholder="AI picked my makeup for [occasion]! Try LUMÉ free: https://lume.app"></textarea>
+          <textarea class="f-textarea" id="set-share-msg" placeholder="AI picked my makeup for [occasion]! Try Astyra free: https://astyra.app"></textarea>
         </div>
         <div class="field">
           <label class="f-label">App URL (for sharing)</label>
-          <input class="f-input" id="set-app-url" type="url" placeholder="https://lume.app"/>
+          <input class="f-input" id="set-app-url" type="url" placeholder="https://astyra.app"/>
         </div>
         <button class="f-btn" onclick="saveSocialSettings()">Save Social Settings</button>
       </div>
@@ -722,17 +722,17 @@ code{background:rgba(255,255,255,.08);padding:2px 7px;border-radius:5px;font-siz
 
 <script>
 // ════════════════════════════════════════════════════════
-//  LUMÉ Admin Dashboard — Complete Implementation
+//  Astyra Admin Dashboard — Complete Implementation
 // ════════════════════════════════════════════════════════
 
 // ── DEFAULT CREDENTIALS ───────────────────────────────────
 const DEFAULT_USER = 'admin';
-const DEFAULT_PASS = 'lume2024';
+const DEFAULT_PASS = 'astyra2024';
 
 function getCredentials(){
   return {
-    user: localStorage.getItem('lume_admin_user') || DEFAULT_USER,
-    pass: localStorage.getItem('lume_admin_pass') || DEFAULT_PASS,
+    user: localStorage.getItem('astyra_admin_user') || DEFAULT_USER,
+    pass: localStorage.getItem('astyra_admin_pass') || DEFAULT_PASS,
   };
 }
 
@@ -745,17 +745,17 @@ function doLogin(){
   const validStored  = (u === cred.user && p === cred.pass);
   const validDefault = (u === DEFAULT_USER && p === DEFAULT_PASS);
   if(validStored || validDefault){
-    localStorage.setItem('lume_admin_session', Date.now());
+    localStorage.setItem('astyra_admin_session', Date.now());
     document.getElementById('login-screen').style.display='none';
     document.getElementById('dashboard').classList.add('active');
     bootDashboard();
   } else {
-    document.getElementById('l-err').textContent = 'Invalid credentials. Default: admin / lume2024';
+    document.getElementById('l-err').textContent = 'Invalid credentials. Default: admin / astyra2024';
     setTimeout(()=>document.getElementById('l-err').textContent='',4000);
   }
 }
 function doLogout(){
-  localStorage.removeItem('lume_admin_session');
+  localStorage.removeItem('astyra_admin_session');
   location.reload();
 }
 
@@ -773,7 +773,7 @@ function bootDashboard(){
 function setGreeting(){
   const h = new Date().getHours();
   const g = h < 12 ? 'Good morning' : h < 17 ? 'Good afternoon' : 'Good evening';
-  document.getElementById('greeting').textContent = `${g}, LUMÉ 👋`;
+  document.getElementById('greeting').textContent = `${g}, Astyra 👋`;
 }
 
 function startClock(){
@@ -788,20 +788,20 @@ function startClock(){
 
 // ── ANALYTICS DATA ────────────────────────────────────────
 function getAnalyticsData(){
-  return JSON.parse(localStorage.getItem('lume_analytics') || '{}');
+  return JSON.parse(localStorage.getItem('astyra_analytics') || '{}');
 }
 function getClickData(){
-  return JSON.parse(localStorage.getItem('lume_clicks') || '{}');
+  return JSON.parse(localStorage.getItem('astyra_clicks') || '{}');
 }
 function getTotalScans(){
-  return parseInt(localStorage.getItem('lume_total_scans') || '0');
+  return parseInt(localStorage.getItem('astyra_total_scans') || '0');
 }
 
 // ── POPULATE OVERVIEW ─────────────────────────────────────
 function populateOverview(){
   const analytics = getAnalyticsData();
   const clicks = getClickData();
-  const sponsors = JSON.parse(localStorage.getItem('lume_sponsorships') || '[]');
+  const sponsors = JSON.parse(localStorage.getItem('astyra_sponsorships') || '[]');
 
   const totalScans = getTotalScans();
   const uniqueOcc = Object.keys(analytics).length;
@@ -833,7 +833,7 @@ function populateOverview(){
   }
 
   // Affiliate ID status
-  const affId = localStorage.getItem('lume_aff_id') || '';
+  const affId = localStorage.getItem('astyra_aff_id') || '';
   const affEl = document.getElementById('aff-status-content');
   if(affId){
     affEl.innerHTML = `<div style="display:flex;align-items:center;gap:10px;background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2);border-radius:10px;padding:12px">
@@ -896,7 +896,7 @@ function populateAnalytics(){
 
 // ── SPONSORSHIPS ──────────────────────────────────────────
 function populateSponsorships(){
-  const sponsors = JSON.parse(localStorage.getItem('lume_sponsorships') || '[]');
+  const sponsors = JSON.parse(localStorage.getItem('astyra_sponsorships') || '[]');
   renderSponsorList(sponsors);
   updateSponsorRevenue(sponsors);
 }
@@ -938,9 +938,9 @@ function addSponsorship(){
     toast('⚠️ Please fill in occasion, brand, and product.');
     return;
   }
-  const sponsors = JSON.parse(localStorage.getItem('lume_sponsorships') || '[]');
+  const sponsors = JSON.parse(localStorage.getItem('astyra_sponsorships') || '[]');
   sponsors.push({occasion:occ,brand,product,fee,url,added:new Date().toLocaleDateString()});
-  localStorage.setItem('lume_sponsorships',JSON.stringify(sponsors));
+  localStorage.setItem('astyra_sponsorships',JSON.stringify(sponsors));
   // Clear form
   ['sp-occ','sp-brand','sp-product','sp-fee','sp-url'].forEach(id=>{
     const el = document.getElementById(id);
@@ -954,9 +954,9 @@ function addSponsorship(){
 }
 
 function removeSponsorship(i){
-  const sponsors = JSON.parse(localStorage.getItem('lume_sponsorships') || '[]');
+  const sponsors = JSON.parse(localStorage.getItem('astyra_sponsorships') || '[]');
   const removed = sponsors.splice(i,1)[0];
-  localStorage.setItem('lume_sponsorships',JSON.stringify(sponsors));
+  localStorage.setItem('astyra_sponsorships',JSON.stringify(sponsors));
   populateSponsorships();
   populateOverview();
   toast('🗑️ Removed: '+removed.brand);
@@ -975,13 +975,13 @@ function previewSpUrl(){
 
 // ── AFFILIATE ID ──────────────────────────────────────────
 function loadAffId(){
-  const id = localStorage.getItem('lume_aff_id') || '';
+  const id = localStorage.getItem('astyra_aff_id') || '';
   document.getElementById('aff-id-input').value = id;
   previewAffUrl();
 }
 function saveAffId(){
   const id = document.getElementById('aff-id-input').value.trim();
-  localStorage.setItem('lume_aff_id', id);
+  localStorage.setItem('astyra_aff_id', id);
   document.getElementById('aff-saved-status').textContent = id ? '✅ Affiliate ID saved. All product links now include ?ref='+id : '✅ Affiliate ID cleared.';
   setTimeout(()=>document.getElementById('aff-saved-status').textContent='',3000);
   populateOverview();
@@ -989,7 +989,7 @@ function saveAffId(){
 }
 function clearAffId(){
   document.getElementById('aff-id-input').value = '';
-  localStorage.removeItem('lume_aff_id');
+  localStorage.removeItem('astyra_aff_id');
   document.getElementById('aff-url-preview').innerHTML = 'Example: https://bit.ly/ct-pillowtalk → https://bit.ly/ct-pillowtalk<strong>?ref=YOUR_ID</strong>';
   toast('✕ Affiliate ID cleared.');
 }
@@ -1007,13 +1007,13 @@ function previewAffUrl(){
 function loadSettings(){
   const cred = getCredentials();
   document.getElementById('set-user').value = cred.user;
-  document.getElementById('set-pro-price').value = localStorage.getItem('lume_pro_price') || '4.99';
-  document.getElementById('set-scan-limit').value = localStorage.getItem('lume_scan_limit') || '3';
-  document.getElementById('set-pro-cta').value = localStorage.getItem('lume_pro_cta') || 'LUMÉ Pro Blueprint — $4.99/mo';
-  document.getElementById('set-appname').value = localStorage.getItem('lume_app_name') || 'LUMÉ';
-  document.getElementById('set-tagline').value = localStorage.getItem('lume_tagline') || 'Occasion Intelligence System';
-  document.getElementById('set-share-msg').value = localStorage.getItem('lume_share_msg') || 'AI picked my makeup! Try LUMÉ free: https://lume.app';
-  document.getElementById('set-app-url').value = localStorage.getItem('lume_app_url') || window.location.origin+'/makeup';
+  document.getElementById('set-pro-price').value = localStorage.getItem('astyra_pro_price') || '4.99';
+  document.getElementById('set-scan-limit').value = localStorage.getItem('astyra_scan_limit') || '3';
+  document.getElementById('set-pro-cta').value = localStorage.getItem('astyra_pro_cta') || 'Astyra Pro Blueprint — $4.99/mo';
+  document.getElementById('set-appname').value = localStorage.getItem('astyra_app_name') || 'Astyra';
+  document.getElementById('set-tagline').value = localStorage.getItem('astyra_tagline') || 'Occasion Intelligence System';
+  document.getElementById('set-share-msg').value = localStorage.getItem('astyra_share_msg') || 'AI picked my makeup! Try Astyra free: https://astyra.app';
+  document.getElementById('set-app-url').value = localStorage.getItem('astyra_app_url') || window.location.origin+'/makeup';
 }
 
 function saveCredentials(){
@@ -1021,35 +1021,35 @@ function saveCredentials(){
   const pass = document.getElementById('set-pass').value.trim();
   if(!user){ toast('⚠️ Username cannot be empty'); return; }
   if(!pass){ toast('⚠️ Password cannot be empty'); return; }
-  localStorage.setItem('lume_admin_user', user);
-  localStorage.setItem('lume_admin_pass', pass);
+  localStorage.setItem('astyra_admin_user', user);
+  localStorage.setItem('astyra_admin_pass', pass);
   toast('✅ Credentials saved. Next login: '+user+' / [new password]');
 }
 function resetCredentials(){
-  localStorage.removeItem('lume_admin_user');
-  localStorage.removeItem('lume_admin_pass');
+  localStorage.removeItem('astyra_admin_user');
+  localStorage.removeItem('astyra_admin_pass');
   document.getElementById('set-user').value = DEFAULT_USER;
   document.getElementById('set-pass').value = '';
-  toast('✅ Credentials reset to defaults: admin / lume2024');
+  toast('✅ Credentials reset to defaults: admin / astyra2024');
 }
 
 function saveProSettings(){
-  localStorage.setItem('lume_pro_price', document.getElementById('set-pro-price').value || '4.99');
-  localStorage.setItem('lume_scan_limit', document.getElementById('set-scan-limit').value || '3');
-  localStorage.setItem('lume_pro_cta', document.getElementById('set-pro-cta').value);
+  localStorage.setItem('astyra_pro_price', document.getElementById('set-pro-price').value || '4.99');
+  localStorage.setItem('astyra_scan_limit', document.getElementById('set-scan-limit').value || '3');
+  localStorage.setItem('astyra_pro_cta', document.getElementById('set-pro-cta').value);
   document.getElementById('pro-price-display').textContent = '$'+document.getElementById('set-pro-price').value+'/mo';
   toast('✅ Pro settings saved.');
 }
 
 function saveBranding(){
-  localStorage.setItem('lume_app_name', document.getElementById('set-appname').value);
-  localStorage.setItem('lume_tagline', document.getElementById('set-tagline').value);
+  localStorage.setItem('astyra_app_name', document.getElementById('set-appname').value);
+  localStorage.setItem('astyra_tagline', document.getElementById('set-tagline').value);
   toast('✅ Branding saved.');
 }
 
 function saveSocialSettings(){
-  localStorage.setItem('lume_share_msg', document.getElementById('set-share-msg').value);
-  localStorage.setItem('lume_app_url', document.getElementById('set-app-url').value);
+  localStorage.setItem('astyra_share_msg', document.getElementById('set-share-msg').value);
+  localStorage.setItem('astyra_app_url', document.getElementById('set-app-url').value);
   toast('✅ Social settings saved.');
 }
 
@@ -1069,16 +1069,16 @@ function exportAnalyticsCSV(){
   const blob = new Blob([csv], {type:'text/csv'});
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
-  a.download = 'lume-analytics-'+new Date().toISOString().slice(0,10)+'.csv';
+  a.download = 'astyra-analytics-'+new Date().toISOString().slice(0,10)+'.csv';
   a.click();
   toast('📥 CSV exported!');
 }
 
 // ── RESET ─────────────────────────────────────────────────
 function resetAnalytics(){
-  localStorage.removeItem('lume_analytics');
-  localStorage.removeItem('lume_clicks');
-  localStorage.removeItem('lume_total_scans');
+  localStorage.removeItem('astyra_analytics');
+  localStorage.removeItem('astyra_clicks');
+  localStorage.removeItem('astyra_total_scans');
   populateAnalytics();
   populateOverview();
   toast('🔄 Analytics data reset.');
@@ -1088,14 +1088,14 @@ function confirmReset(type){
   if(!confirm(`⚠️ Really reset ${type}? This cannot be undone.`)) return;
   if(type === 'analytics') resetAnalytics();
   else if(type === 'sponsorships'){
-    localStorage.removeItem('lume_sponsorships');
+    localStorage.removeItem('astyra_sponsorships');
     populateSponsorships();
     populateOverview();
     toast('🔄 Sponsorships cleared.');
   } else if(type === 'all'){
-    ['lume_analytics','lume_clicks','lume_total_scans','lume_sponsorships',
-     'lume_aff_id','lume_pro','lume_scans',
-     'lume_admin_user','lume_admin_pass','lume_admin_session'].forEach(k=>localStorage.removeItem(k));
+    ['astyra_analytics','astyra_clicks','astyra_total_scans','astyra_sponsorships',
+     'astyra_aff_id','astyra_pro','astyra_scans',
+     'astyra_admin_user','astyra_admin_pass','astyra_admin_session'].forEach(k=>localStorage.removeItem(k));
     populateOverview();
     populateAnalytics();
     populateSponsorships();
@@ -1134,7 +1134,7 @@ function toast(msg){
 
 // ── AUTO-LOGIN (session persistence) ──────────────────────
 window.addEventListener('load',()=>{
-  const session = localStorage.getItem('lume_admin_session');
+  const session = localStorage.getItem('astyra_admin_session');
   const age = session ? Date.now() - parseInt(session) : Infinity;
   if(age < 86400000){ // 24h session
     document.getElementById('login-screen').style.display='none';

@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>LUMÉ — User Manual</title>
+<title>Astyra — User Manual</title>
 <style>
 /* ═══════════════════════════════════════════
-   LUMÉ User Manual — Print-Ready PDF Layout
+   Astyra User Manual — Print-Ready PDF Layout
 ═══════════════════════════════════════════ */
 @media print {
   .no-print { display: none !important; }
@@ -786,6 +786,75 @@ li {
 }
 .data-table tr:last-child td { border-bottom: none; }
 
+/* ── OWNER GATE ── */
+.owner-gate {
+  margin: 0;
+  background: linear-gradient(135deg, #0f0520 0%, #1a0834 100%);
+  border-top: 2px solid rgba(168,85,247,.3);
+  padding: 60px 60px 56px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.owner-gate::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(168,85,247,.08), transparent);
+  pointer-events: none;
+}
+.og-inner { position: relative; z-index: 1; max-width: 420px; margin: 0 auto; }
+.og-lock { font-size: 36pt; margin-bottom: 14px; }
+.og-title {
+  font-family: Arial, sans-serif; font-size: 15pt; font-weight: 900;
+  color: #fff; letter-spacing: -.5px; margin-bottom: 8px;
+}
+.og-sub {
+  font-family: Arial, sans-serif; font-size: 9.5pt; color: rgba(255,255,255,.45);
+  line-height: 1.6; margin-bottom: 28px;
+}
+.og-sections {
+  display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin-bottom: 28px;
+}
+.og-sec-chip {
+  font-family: Arial, sans-serif; font-size: 7.5pt; font-weight: 700;
+  letter-spacing: 1px; text-transform: uppercase;
+  background: rgba(168,85,247,.12); border: 1px solid rgba(168,85,247,.25);
+  color: rgba(168,85,247,.8); border-radius: 20px; padding: 4px 12px;
+}
+.og-form { display: flex; flex-direction: column; gap: 10px; }
+.og-input {
+  background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1);
+  border-radius: 10px; padding: 12px 16px;
+  color: #fff; font-family: Arial, sans-serif; font-size: 9.5pt;
+  outline: none; text-align: center; letter-spacing: 2px;
+  transition: border-color .2s;
+}
+.og-input:focus { border-color: rgba(168,85,247,.5); }
+.og-input::placeholder { color: rgba(255,255,255,.2); letter-spacing: 1px; }
+.og-btn {
+  background: linear-gradient(135deg, #7c3aed, #ec4899);
+  color: #fff; border: none; border-radius: 10px;
+  padding: 13px; font-family: Arial, sans-serif; font-size: 9.5pt;
+  font-weight: 800; cursor: pointer; letter-spacing: 1px; text-transform: uppercase;
+  transition: all .15s;
+}
+.og-btn:hover { filter: brightness(1.1); transform: translateY(-1px); }
+.og-err {
+  font-family: Arial, sans-serif; font-size: 8pt; color: #f87171;
+  min-height: 18px; text-align: center; margin-top: 4px;
+}
+.og-hint {
+  font-family: Arial, sans-serif; font-size: 7.5pt; color: rgba(255,255,255,.18);
+  margin-top: 16px; font-style: italic;
+}
+.owner-locked { display: none; }
+.owner-locked.unlocked { display: block; }
+.toc-lock {
+  font-size: 8pt; margin-left: 4px; opacity: .5;
+  vertical-align: middle;
+}
+
 /* ── FOOTER ── */
 .doc-footer {
   background: #1a1a2e;
@@ -1023,7 +1092,7 @@ li {
 <!-- STICKY NAV -->
 <div class="print-bar no-print">
   <div class="print-bar-left">
-    <div class="print-bar-logo">LUMÉ</div>
+    <div class="print-bar-logo">Astyra</div>
     <div class="print-bar-pill">User Manual v2.0</div>
   </div>
   <div class="print-bar-right">
@@ -1038,12 +1107,12 @@ li {
 ═══════════════════════════════════════ -->
 <div class="sub-hero no-print">
   <div class="sub-hero-inner">
-    <div class="sub-hero-badge">✦ Official Product Guide</div>
-    <div class="sub-hero-logo">LUMÉ</div>
+    <div class="sub-hero-badge">✨ Your Personal Beauty Assistant</div>
+    <div class="sub-hero-logo">Astyra</div>
     <div class="sub-hero-title">See exactly what you get<br/>before you subscribe.</div>
-    <div class="sub-hero-sub">This is the complete user manual for LUMÉ — the AI occasion makeup look engine. Every feature, every screen, every revenue stream explained in full. Scroll to read it all, or save it as a PDF.</div>
+    <div class="sub-hero-sub">This is the complete user manual for Astyra — the AI occasion makeup look engine. Every feature, every screen, every revenue stream explained in full. Scroll to read it all, or save it as a PDF.</div>
     <div class="sub-hero-actions">
-      <a class="sub-cta-primary" href="/makeup">✦ Try LUMÉ Free — No Sign-Up Needed →</a>
+      <a class="sub-cta-primary" href="/makeup">✦ Try Astyra Free — No Sign-Up Needed →</a>
       <button class="sub-cta-secondary" onclick="window.print()">🖨 Save as PDF</button>
     </div>
     <div class="sub-hero-stats">
@@ -1066,8 +1135,8 @@ li {
 ═══════════════════════════════════════ -->
 <div class="cover">
   <div class="cover-top">
-    <div class="cover-logo">LUMÉ</div>
-    <div class="cover-wordmark">Occasion Intelligence System</div>
+    <div class="cover-logo">Astyra</div>
+    <div class="cover-wordmark">Your Personal Beauty Assistant</div>
     <div class="cover-title">
       Complete User Manual<br/>
       <span>AI-Powered Makeup Look Engine</span>
@@ -1084,7 +1153,7 @@ li {
   </div>
   <div class="cover-bottom">
     <div class="cover-doc-type">Official User Manual · Version 2.0</div>
-    <div class="cover-version">© 2025 LUMÉ · Confidential</div>
+    <div class="cover-version">© 2025 Astyra · Confidential</div>
   </div>
 </div>
 
@@ -1097,7 +1166,7 @@ li {
 
   <div class="toc-item">
     <span class="toc-num">01</span>
-    <span class="toc-label">What is LUMÉ?</span>
+    <span class="toc-label">What is Astyra?</span>
     <span class="toc-pg">3</span>
   </div>
   <span class="toc-sub">Overview, core concept, who it is for, and what makes it different from other makeup apps.</span>
@@ -1121,18 +1190,18 @@ li {
     <span class="toc-label">Understanding Your Look Report</span>
     <span class="toc-pg">6</span>
   </div>
-  <span class="toc-sub">How to read your 3 generated looks — colour swatches, hex codes, application sequences, LUMÉ tips, and affiliate product cards.</span>
+  <span class="toc-sub">How to read your 3 generated looks — colour swatches, hex codes, application sequences, Astyra tips, and affiliate product cards.</span>
 
   <div class="toc-item">
     <span class="toc-num">05</span>
     <span class="toc-label">Dermal Base Tone — Skin Tone Mapping</span>
     <span class="toc-pg">7</span>
   </div>
-  <span class="toc-sub">How LUMÉ uses your skin tone to calibrate colour recommendations across all 6 tones.</span>
+  <span class="toc-sub">How Astyra uses your skin tone to calibrate colour recommendations across all 6 tones.</span>
 
   <div class="toc-item">
     <span class="toc-num">06</span>
-    <span class="toc-label">LUMÉ Pro — Unlock Everything</span>
+    <span class="toc-label">Astyra Pro — Unlock Everything</span>
     <span class="toc-pg">8</span>
   </div>
   <span class="toc-sub">What Pro unlocks, how the free tier works, and how to upgrade.</span>
@@ -1146,28 +1215,28 @@ li {
 
   <div class="toc-item">
     <span class="toc-num">08</span>
-    <span class="toc-label">Admin Dashboard — Owner Guide</span>
+    <span class="toc-label">Admin Dashboard — Owner Guide <span class="toc-lock">🔒</span></span>
     <span class="toc-pg">10</span>
   </div>
   <span class="toc-sub">Full walkthrough of the 6 admin tabs: Overview, Analytics, Sponsorships, Affiliate, Users, and Settings.</span>
 
   <div class="toc-item">
     <span class="toc-num">09</span>
-    <span class="toc-label">Monetisation Playbook</span>
+    <span class="toc-label">Monetisation Playbook <span class="toc-lock">🔒</span></span>
     <span class="toc-pg">12</span>
   </div>
   <span class="toc-sub">Four revenue streams explained: affiliate commissions, brand sponsorships, Pro subscriptions, and data partnerships.</span>
 
   <div class="toc-item">
     <span class="toc-num">10</span>
-    <span class="toc-label">Affiliate Product Brands</span>
+    <span class="toc-label">Affiliate Product Brands <span class="toc-lock">🔒</span></span>
     <span class="toc-pg">13</span>
   </div>
   <span class="toc-sub">Full product catalogue across lips, eyes, blush, and base — with brand names and price points.</span>
 
   <div class="toc-item">
     <span class="toc-num">11</span>
-    <span class="toc-label">Frequently Asked Questions</span>
+    <span class="toc-label">Frequently Asked Questions <span class="toc-lock">🔒</span></span>
     <span class="toc-pg">14</span>
   </div>
   <span class="toc-sub">Common questions about privacy, scan limits, colour accuracy, and Pro features.</span>
@@ -1175,23 +1244,23 @@ li {
 
 
 <!-- ═══════════════════════════════════════
-     01 — WHAT IS LUMÉ
+     01 — WHAT IS Astyra
 ═══════════════════════════════════════ -->
 <div class="content-page page-break">
   <div class="section-header">
     <div class="sh-icon">✦</div>
     <div>
       <div class="sh-num">Section 01</div>
-      <div class="sh-title">What is LUMÉ?</div>
+      <div class="sh-title">What is Astyra?</div>
     </div>
   </div>
 
   <h2>Overview</h2>
   <p>
-    LUMÉ is an <strong>AI-powered makeup look engine</strong> built around a single idea: your makeup should be chosen based on where you are going, not on a random filter or generic recommendation.
+    Astyra is an <strong>AI-powered makeup look engine</strong> built around a single idea: your makeup should be chosen based on where you are going, not on a random filter or generic recommendation.
   </p>
   <p>
-    Instead of asking you to try on virtual lipstick colours or apply cartoon-style filters, LUMÉ asks two precise questions — <em>what occasion are you dressing for?</em> and <em>what is your skin tone?</em> — and then generates three complete, expert-level makeup looks specifically calibrated for that combination.
+    Instead of asking you to try on virtual lipstick colours or apply cartoon-style filters, Astyra asks two precise questions — <em>what occasion are you dressing for?</em> and <em>what is your skin tone?</em> — and then generates three complete, expert-level makeup looks specifically calibrated for that combination.
   </p>
   <p>
     Each look includes exact colour names and hex codes for lips, eyes, and blush; a step-by-step application sequence; expert application tips; and direct links to real products you can buy.
@@ -1199,21 +1268,21 @@ li {
 
   <h2>The Core Concept: Occasion Intelligence</h2>
   <p>
-    Most makeup apps show you products. LUMÉ shows you <em>strategy</em>. There is a meaningful difference between the makeup that works for a corporate boardroom presentation and the makeup that works for a festival. Between a wedding guest look and a first date look. Between a graduation ceremony and a night out.
+    Most makeup apps show you products. Astyra shows you <em>strategy</em>. There is a meaningful difference between the makeup that works for a corporate boardroom presentation and the makeup that works for a festival. Between a wedding guest look and a first date look. Between a graduation ceremony and a night out.
   </p>
   <p>
-    LUMÉ has a dedicated look library for all 12 occasion types, each mapped across 6 skin tones and 3 look styles (Natural, Glam, and Trendy). The result is up to 216 distinct look combinations — all without any AI image generation or filter technology.
+    Astyra has a dedicated look library for all 12 occasion types, each mapped across 6 skin tones and 3 look styles (Natural, Glam, and Trendy). The result is up to 216 distinct look combinations — all without any AI image generation or filter technology.
   </p>
 
   <div class="callout callout-info">
     <div class="callout-icon">✦</div>
     <div class="callout-body">
       <div class="callout-label">Design Philosophy</div>
-      <div class="callout-text">LUMÉ deliberately avoids AR face filters and virtual try-on. The app competes on <strong>occasion-based intelligence</strong> — knowing what works for your event context — not on image processing. This makes it faster, more private, and more useful.</div>
+      <div class="callout-text">Astyra deliberately avoids AR face filters and virtual try-on. The app competes on <strong>occasion-based intelligence</strong> — knowing what works for your event context — not on image processing. This makes it faster, more private, and more useful.</div>
     </div>
   </div>
 
-  <h2>Who LUMÉ is For</h2>
+  <h2>Who Astyra is For</h2>
   <div class="two-col">
     <div class="info-card">
       <div class="ic-title">👩 End Users</div>
@@ -1225,10 +1294,10 @@ li {
     </div>
   </div>
 
-  <h2>What Makes LUMÉ Different</h2>
+  <h2>What Makes Astyra Different</h2>
   <table class="data-table">
     <thead>
-      <tr><th>Feature</th><th>LUMÉ</th><th>Generic Makeup Apps</th></tr>
+      <tr><th>Feature</th><th>Astyra</th><th>Generic Makeup Apps</th></tr>
     </thead>
     <tbody>
       <tr><td><strong>Logic</strong></td><td>Occasion × skin tone intelligence</td><td>Random product suggestions</td></tr>
@@ -1254,7 +1323,7 @@ li {
     </div>
   </div>
 
-  <p>LUMÉ takes approximately <strong>60 seconds</strong> from opening the app to seeing your personalised look report. The flow is intentionally simple and requires no account, no sign-up, and no camera access beyond selecting a photo from your library.</p>
+  <p>Astyra takes approximately <strong>60 seconds</strong> from opening the app to seeing your personalised look report. The flow is intentionally simple and requires no account, no sign-up, and no camera access beyond selecting a photo from your library.</p>
 
   <div class="steps-row">
     <div class="step-block">
@@ -1275,7 +1344,7 @@ li {
       <div class="step-num">3</div>
       <div class="step-content">
         <div class="step-title">Select Your Dermal Base Tone</div>
-        <div class="step-desc">Six skin tone circles appear (Fair, Light, Medium, Tan, Deep, Rich). Tap the one closest to your natural skin tone. LUMÉ uses this to adjust which colours within each look palette are recommended as your primary shade — ensuring the colours it suggests actually complement your complexion.</div>
+        <div class="step-desc">Six skin tone circles appear (Fair, Light, Medium, Tan, Deep, Rich). Tap the one closest to your natural skin tone. Astyra uses this to adjust which colours within each look palette are recommended as your primary shade — ensuring the colours it suggests actually complement your complexion.</div>
       </div>
     </div>
     <div class="step-block">
@@ -1294,7 +1363,7 @@ li {
       <div class="callout-text">
         <strong>Do:</strong> Use natural daylight, face forward, no makeup, neutral background.<br/>
         <strong>Avoid:</strong> Strong filters, heavy shadows on one side, sunglasses, or photos taken at a steep angle.<br/>
-        The photo is only used for the preview — LUMÉ's look engine runs on your <em>stated</em> skin tone, not image analysis.
+        The photo is only used for the preview — Astyra's look engine runs on your <em>stated</em> skin tone, not image analysis.
       </div>
     </div>
   </div>
@@ -1321,7 +1390,7 @@ li {
     </div>
   </div>
 
-  <p>LUMÉ supports 12 distinct occasion types. Each has a fully independent look library — the colours, product references, and application techniques are unique to each occasion. The system does not recycle a single look across different occasions.</p>
+  <p>Astyra supports 12 distinct occasion types. Each has a fully independent look library — the colours, product references, and application techniques are unique to each occasion. The system does not recycle a single look across different occasions.</p>
 
   <div class="occasions-grid">
     <div class="occasion-chip"><div class="occ-em">💍</div><div class="occ-text"><div class="occ-name-chip">Wedding Guest</div><div class="occ-desc-chip">Ceremony &amp; reception</div></div></div>
@@ -1345,7 +1414,7 @@ li {
     <li>3 eye colour options</li>
     <li>2 blush colour options</li>
     <li>A 5-step application sequence specific to that look</li>
-    <li>A LUMÉ expert tip tailored to the occasion context</li>
+    <li>A Astyra expert tip tailored to the occasion context</li>
     <li>A skin-tone-specific note</li>
   </ul>
 
@@ -1419,7 +1488,7 @@ li {
   <h3>Application Sequence</h3>
   <p>Below the palette, a row of numbered steps shows the exact application order for that look. These steps are occasion-specific — for example, the Bridal sequence includes "Apply primer" as step 1, whereas the Festival sequence begins with "Waterproof base".</p>
 
-  <h3>LUMÉ Tip</h3>
+  <h3>Astyra Tip</h3>
   <p>A purple information box contains an expert application note specific to the occasion and a skin-tone-personalised note based on your Dermal Base Tone selection.</p>
 
   <h3>Affiliate Matches</h3>
@@ -1447,7 +1516,7 @@ li {
     </div>
   </div>
 
-  <p>LUMÉ uses your selected skin tone to perform what it calls <strong>Dermal Base Tone calibration</strong> — adjusting which colours within each look palette are presented as your primary recommendation.</p>
+  <p>Astyra uses your selected skin tone to perform what it calls <strong>Dermal Base Tone calibration</strong> — adjusting which colours within each look palette are presented as your primary recommendation.</p>
 
   <h2>The Six Tones</h2>
   <div class="skin-row-demo">
@@ -1464,7 +1533,7 @@ li {
 
   <table class="data-table">
     <thead>
-      <tr><th>Skin Tone</th><th>Lip Pointer</th><th>Eye Pointer</th><th>LUMÉ Note</th></tr>
+      <tr><th>Skin Tone</th><th>Lip Pointer</th><th>Eye Pointer</th><th>Astyra Note</th></tr>
     </thead>
     <tbody>
       <tr><td><strong>Fair</strong></td><td>Shade 1 (lightest)</td><td>Shade 1</td><td>Avoid pale nudes — go for pinks and warm nudes</td></tr>
@@ -1490,20 +1559,20 @@ li {
 
 
 <!-- ═══════════════════════════════════════
-     06 — LUMÉ PRO
+     06 — Astyra PRO
 ═══════════════════════════════════════ -->
 <div class="content-page page-break">
   <div class="section-header">
     <div class="sh-icon">👑</div>
     <div>
       <div class="sh-num">Section 06</div>
-      <div class="sh-title">LUMÉ Pro — Unlock Everything</div>
+      <div class="sh-title">Astyra Pro — Unlock Everything</div>
     </div>
   </div>
 
   <div class="pro-banner">
     <div class="pb-crown">👑</div>
-    <div class="pb-title">LUMÉ Pro Blueprint — $4.99/mo</div>
+    <div class="pb-title">Astyra Pro Blueprint — $4.99/mo</div>
     <div class="pb-sub">Join 4,800+ women who've upgraded their occasion intelligence. 7-day free trial. Cancel anytime. No commitment.</div>
     <div class="pb-features">
       <div class="pb-feat"><div class="pb-feat-icon">♾️</div><div class="pb-feat-text">Unlimited Scans<br/><span style="font-weight:400;color:rgba(255,255,255,.45)">Free users: 3/month</span></div></div>
@@ -1561,7 +1630,7 @@ li {
     </div>
   </div>
 
-  <p>Below your look cards on the results screen, LUMÉ includes a sharing panel designed to help you create viral social content from your generated looks.</p>
+  <p>Below your look cards on the results screen, Astyra includes a sharing panel designed to help you create viral social content from your generated looks.</p>
 
   <h2>The Three Share Buttons</h2>
   <div class="steps-row">
@@ -1576,7 +1645,7 @@ li {
       <div class="step-num" style="background:linear-gradient(135deg,#f09433,#bc1888)">IG</div>
       <div class="step-content">
         <div class="step-title">Instagram</div>
-        <div class="step-desc">Prompts you to take a screenshot of your look report and share it to your Instagram stories or grid. Works best as a before/after post where you show your natural face next to the finished LUMÉ look.</div>
+        <div class="step-desc">Prompts you to take a screenshot of your look report and share it to your Instagram stories or grid. Works best as a before/after post where you show your natural face next to the finished Astyra look.</div>
       </div>
     </div>
     <div class="step-block">
@@ -1597,15 +1666,41 @@ li {
     </thead>
     <tbody>
       <tr><td>"AI picked my makeup for a wedding"</td><td>TikTok, Instagram Reels</td><td>Curiosity hook — people want to see what the AI chose</td></tr>
-      <tr><td>"before/after my LUMÉ look"</td><td>Instagram Stories, BeReal</td><td>Classic format — transformation content performs well</td></tr>
+      <tr><td>"before/after my Astyra look"</td><td>Instagram Stories, BeReal</td><td>Classic format — transformation content performs well</td></tr>
       <tr><td>"which look is better? vote below"</td><td>Instagram Stories (poll)</td><td>Engagement driver — polls get 3× more reach than static posts</td></tr>
     </tbody>
   </table>
 
   <h2>Individual Look Sharing</h2>
-  <p>Each look card also has its own "📲 Share" button. Tapping it opens the device's native share sheet (or copies text on desktop) with a message naming the specific look — for example: <em>"AI picked 'Luminous Drama' for my Wedding Guest look — generated by LUMÉ Occasion Intelligence. Which look would YOU choose for me?"</em></p>
+  <p>Each look card also has its own "📲 Share" button. Tapping it opens the device's native share sheet (or copies text on desktop) with a message naming the specific look — for example: <em>"AI picked 'Luminous Drama' for my Wedding Guest look — generated by Astyra Occasion Intelligence. Which look would YOU choose for me?"</em></p>
 </div>
 
+
+<!-- ═══════════════════════════════════════
+     OWNER GATE — Sections 08-11
+═══════════════════════════════════════ -->
+<div class="owner-gate no-print" id="owner-gate">
+  <div class="og-inner">
+    <div class="og-lock">🔒</div>
+    <div class="og-title">Owner-Only Sections</div>
+    <div class="og-sub">Sections 08 – 11 contain the Admin Dashboard guide, full monetisation playbook, affiliate product catalogue, and FAQ. These are restricted to the app owner.</div>
+    <div class="og-sections">
+      <div class="og-sec-chip">08 Admin Dashboard</div>
+      <div class="og-sec-chip">09 Monetisation</div>
+      <div class="og-sec-chip">10 Affiliate Brands</div>
+      <div class="og-sec-chip">11 FAQ</div>
+    </div>
+    <div class="og-form">
+      <input class="og-input" id="og-pass" type="password" placeholder="Enter owner password" onkeydown="if(event.key==='Enter')unlockOwner()"/>
+      <button class="og-btn" onclick="unlockOwner()">🔓 Unlock Owner Sections →</button>
+      <div class="og-err" id="og-err"></div>
+    </div>
+    <div class="og-hint">Contact the app owner for the access password.</div>
+  </div>
+</div>
+
+<!-- OWNER-ONLY CONTENT (hidden until unlocked) -->
+<div class="owner-locked" id="owner-sections">
 
 <!-- ═══════════════════════════════════════
      08 — ADMIN DASHBOARD
@@ -1619,7 +1714,7 @@ li {
     </div>
   </div>
 
-  <p>The Admin Dashboard is accessed at <strong>/makeup-admin</strong>. It is password-protected and intended for the app owner only. Default login credentials are <code>admin</code> / <code>lume2024</code> — change these immediately in the Settings tab.</p>
+  <p>The Admin Dashboard is accessed at <strong>/makeup-admin</strong>. It is password-protected and intended for the app owner only. Default login credentials are <code>admin</code> / <code>astyra2024</code> — change these immediately in the Settings tab.</p>
 
   <div class="callout callout-warn">
     <div class="callout-icon">⚠</div>
@@ -1702,7 +1797,7 @@ li {
     </div>
   </div>
 
-  <p>LUMÉ is built with four distinct revenue streams. This section explains how each works and what you need to do to activate it.</p>
+  <p>Astyra is built with four distinct revenue streams. This section explains how each works and what you need to do to activate it.</p>
 
   <div class="monetise-row">
     <div class="mr-num">1</div>
@@ -1716,7 +1811,7 @@ li {
     <div class="mr-num">2</div>
     <div>
       <div class="mr-title">Brand Sponsorships — Direct, Recurring Revenue</div>
-      <div class="mr-desc">Pitch beauty brands on guaranteed first-position product placement for their target occasion. Example pitch: "Your brand appears first for every Wedding Guest look generated by LUMÉ — £500/month for 12 months." A single brand at £500/mo = £6,000/year. Five brands = £30,000/year. Managed entirely through the Sponsorships tab — no code changes required.</div>
+      <div class="mr-desc">Pitch beauty brands on guaranteed first-position product placement for their target occasion. Example pitch: "Your brand appears first for every Wedding Guest look generated by Astyra — £500/month for 12 months." A single brand at £500/mo = £6,000/year. Five brands = £30,000/year. Managed entirely through the Sponsorships tab — no code changes required.</div>
     </div>
   </div>
 
@@ -1764,7 +1859,7 @@ li {
     </div>
   </div>
 
-  <p>The following products are included in LUMÉ's affiliate product library. Each is mapped to a specific look type (Natural, Glam, or Trendy). Sponsored products from the Admin Dashboard appear above these in results.</p>
+  <p>The following products are included in Astyra's affiliate product library. Each is mapped to a specific look type (Natural, Glam, or Trendy). Sponsored products from the Admin Dashboard appear above these in results.</p>
 
   <h2>Lips</h2>
   <table class="data-table">
@@ -1831,18 +1926,18 @@ li {
   </div>
 
   <div class="faq-item">
-    <div class="faq-q">Why does LUMÉ not actually analyse my face photo?</div>
-    <div class="faq-a">LUMÉ's look engine is deliberately built around your stated inputs (occasion + skin tone) rather than image analysis. This makes the app faster, fully private, and more predictable. The look quality comes from the curated look library — not from image processing. The photo upload creates a sense of personalisation and is used for the look preview card.</div>
+    <div class="faq-q">Why does Astyra not actually analyse my face photo?</div>
+    <div class="faq-a">Astyra's look engine is deliberately built around your stated inputs (occasion + skin tone) rather than image analysis. This makes the app faster, fully private, and more predictable. The look quality comes from the curated look library — not from image processing. The photo upload creates a sense of personalisation and is used for the look preview card.</div>
   </div>
 
   <div class="faq-item">
     <div class="faq-q">What does "Dermal Base Tone" mean?</div>
-    <div class="faq-a">"Dermal Base Tone" is LUMÉ's branded term for your skin tone. It refers to the six skin tone options (Fair, Light, Medium, Tan, Deep, Rich). The term is intentionally clinical-sounding to reinforce the idea that LUMÉ is a system, not a filter app.</div>
+    <div class="faq-a">"Dermal Base Tone" is Astyra's branded term for your skin tone. It refers to the six skin tone options (Fair, Light, Medium, Tan, Deep, Rich). The term is intentionally clinical-sounding to reinforce the idea that Astyra is a system, not a filter app.</div>
   </div>
 
   <div class="faq-item">
     <div class="faq-q">How do I know which skin tone to select?</div>
-    <div class="faq-a">Hold your inner forearm next to the six swatch circles and tap the one closest to your natural skin without makeup. If you are between two tones, go with the deeper one — LUMÉ's colour calibration tends to be more flattering when nudged slightly warmer and deeper rather than lighter.</div>
+    <div class="faq-a">Hold your inner forearm next to the six swatch circles and tap the one closest to your natural skin without makeup. If you are between two tones, go with the deeper one — Astyra's colour calibration tends to be more flattering when nudged slightly warmer and deeper rather than lighter.</div>
   </div>
 
   <div class="faq-item">
@@ -1862,7 +1957,7 @@ li {
 
   <div class="faq-item">
     <div class="faq-q">How does the Admin Dashboard know how many scans have been run?</div>
-    <div class="faq-a">All scan and click data is stored in your browser's localStorage. Because LUMÉ runs as a client-side app, the data is local to the device where it was generated. For multi-device analytics, a server-side analytics backend (e.g. a Cloudflare D1 database or third-party analytics service) would be required as a future enhancement.</div>
+    <div class="faq-a">All scan and click data is stored in your browser's localStorage. Because Astyra runs as a client-side app, the data is local to the device where it was generated. For multi-device analytics, a server-side analytics backend (e.g. a Cloudflare D1 database or third-party analytics service) would be required as a future enhancement.</div>
   </div>
 
   <div class="faq-item">
@@ -1877,12 +1972,17 @@ li {
 </div>
 
 
+
+
+</div><!-- /owner-sections -->
+
+
 <!-- ═══════════════════════════════════════
      FOOTER
 ═══════════════════════════════════════ -->
 <div class="doc-footer">
-  <div class="df-logo">LUMÉ</div>
-  <div class="df-text">Occasion Intelligence System · User Manual v2.0 · © 2025 · Confidential</div>
+  <div class="df-logo">Astyra</div>
+  <div class="df-text">Your Personal Beauty Assistant · User Manual v2.0 · © 2025 · Confidential</div>
 </div>
 
 </div><!-- /page -->
@@ -1895,10 +1995,38 @@ li {
     <div class="bc-eyebrow">You've read the whole thing.</div>
     <div class="bc-title">Ready to generate your first look?</div>
     <div class="bc-sub">Free to use. No account. No camera required. Results in 60 seconds.</div>
-    <a class="sub-cta-primary" href="/makeup">✦ Open LUMÉ — Start Free →</a>
+    <a class="sub-cta-primary" href="/makeup">✦ Open Astyra — Start Free →</a>
     <div class="bc-fine">3 free scans per month · Pro from $4.99/mo · Cancel anytime</div>
   </div>
 </div>
 
+<script>
+// ── OWNER SECTION UNLOCK ──────────────────────────────────
+const OWNER_PASS = 'astyra2024';
+function unlockOwner(){
+  const val = document.getElementById('og-pass').value;
+  const err = document.getElementById('og-err');
+  if(val === OWNER_PASS){
+    document.getElementById('owner-gate').style.display = 'none';
+    document.getElementById('owner-sections').classList.add('unlocked');
+    // remove lock icons from TOC
+    document.querySelectorAll('.toc-lock').forEach(el => el.style.opacity = '0');
+    sessionStorage.setItem('astyra_manual_owner', '1');
+  } else {
+    err.textContent = 'Incorrect password. Contact the app owner for access.';
+    setTimeout(()=>err.textContent='', 4000);
+    document.getElementById('og-pass').style.borderColor = 'rgba(239,68,68,.5)';
+    setTimeout(()=>document.getElementById('og-pass').style.borderColor='', 2000);
+  }
+}
+// Auto-unlock if already authenticated this session
+window.addEventListener('load', ()=>{
+  if(sessionStorage.getItem('astyra_manual_owner') === '1'){
+    document.getElementById('owner-gate').style.display = 'none';
+    document.getElementById('owner-sections').classList.add('unlocked');
+    document.querySelectorAll('.toc-lock').forEach(el => el.style.opacity = '0');
+  }
+});
+</script>
 </body>
 </html>
