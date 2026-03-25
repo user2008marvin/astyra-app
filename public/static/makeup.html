@@ -447,6 +447,123 @@ body{
   margin-bottom:14px;
 }
 .ss-title{font-size:.95rem;font-weight:900;color:#fff;margin-bottom:6px}
+
+/* ── SPONSOR STRIP ── */
+.sponsor-strip{
+  margin:18px 14px 4px;
+  padding:16px;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+}
+.sponsor-strip-header{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:12px;
+}
+.sponsor-strip-title{
+  font-size:.55rem;font-weight:900;letter-spacing:2px;
+  text-transform:uppercase;color:var(--text-soft);
+}
+.sponsor-strip-badge{
+  font-size:.48rem;font-weight:800;letter-spacing:1px;text-transform:uppercase;
+  background:rgba(212,175,55,.12);color:var(--gold);
+  border:1px solid rgba(212,175,55,.2);border-radius:20px;padding:2px 8px;
+}
+.sponsor-cols{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:8px;
+}
+@media(max-width:500px){.sponsor-cols{grid-template-columns:repeat(2,1fr);}}
+.sponsor-col{
+  background:var(--ink2);border:1px solid var(--border);
+  border-radius:10px;padding:10px 9px;
+  display:flex;flex-direction:column;gap:5px;
+  transition:border-color .15s,transform .15s;
+  text-decoration:none;cursor:pointer;
+}
+.sponsor-col:hover{border-color:rgba(168,85,247,.4);transform:translateY(-1px);}
+.sponsor-col.has-sponsor{border-color:rgba(212,175,55,.25);background:rgba(212,175,55,.03);}
+.sc-cat-label{
+  font-size:.45rem;font-weight:900;letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--text-soft);margin-bottom:2px;
+}
+.sc-product-name{
+  font-size:.7rem;font-weight:700;color:var(--text);line-height:1.3;
+}
+.sc-brand{font-size:.62rem;color:var(--text-soft);}
+.sc-price{font-size:.65rem;font-weight:800;color:var(--gold);}
+.sc-cta{
+  font-size:.58rem;font-weight:800;letter-spacing:.5px;text-transform:uppercase;
+  color:var(--accent);margin-top:2px;display:flex;align-items:center;gap:3px;
+}
+.sc-partner-tag{
+  font-size:.42rem;font-weight:900;letter-spacing:1px;text-transform:uppercase;
+  color:var(--gold);background:rgba(212,175,55,.1);
+  border-radius:3px;padding:1px 5px;width:fit-content;margin-bottom:2px;
+}
+.sc-empty{
+  color:var(--text-soft);font-size:.65rem;text-align:center;
+  padding:8px 4px;line-height:1.5;
+}
+
+/* ── CONFETTI CANVAS ── */
+#confetti-canvas{
+  position:fixed;inset:0;pointer-events:none;z-index:9999;
+  display:none;
+}
+
+/* ── LOOK NAME FLASH ── */
+#look-flash{
+  position:fixed;inset:0;
+  display:flex;align-items:center;justify-content:center;
+  flex-direction:column;gap:12px;
+  background:rgba(10,10,15,.92);
+  backdrop-filter:blur(8px);
+  z-index:9998;
+  opacity:0;pointer-events:none;
+  transition:opacity .3s;
+}
+#look-flash.show{opacity:1;pointer-events:auto;}
+.lf-occasion{
+  font-size:.65rem;font-weight:900;letter-spacing:3px;text-transform:uppercase;
+  color:rgba(168,85,247,.7);
+}
+.lf-name{
+  font-size:2.2rem;font-weight:900;letter-spacing:-1px;
+  background:linear-gradient(135deg,#a855f7,#ec4899,#f59e0b);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;text-align:center;line-height:1.1;
+  padding:0 20px;
+}
+.lf-sub{font-size:.72rem;color:rgba(255,255,255,.4);}
+
+/* ── POST-REVEAL SHARE PROMPT ── */
+#share-prompt{
+  position:fixed;bottom:-120px;left:50%;transform:translateX(-50%);
+  width:min(92vw,400px);
+  background:linear-gradient(135deg,#1e0a3c,#2d1b69);
+  border:1px solid rgba(168,85,247,.3);
+  border-radius:16px;padding:16px 20px;
+  z-index:9997;
+  transition:bottom .5s cubic-bezier(.34,1.56,.64,1);
+  box-shadow:0 -4px 30px rgba(124,58,237,.3);
+  display:flex;align-items:center;gap:14px;
+}
+#share-prompt.show{bottom:24px;}
+.sp-text{flex:1;}
+.sp-title{font-size:.8rem;font-weight:800;color:#fff;margin-bottom:2px;}
+.sp-sub{font-size:.65rem;color:rgba(255,255,255,.5);}
+.sp-btn{
+  background:linear-gradient(135deg,#7c3aed,#ec4899);
+  color:#fff;border:none;border-radius:10px;
+  padding:9px 16px;font-size:.65rem;font-weight:800;
+  cursor:pointer;white-space:nowrap;letter-spacing:.5px;
+  text-transform:uppercase;
+}
+.sp-close{
+  position:absolute;top:8px;right:10px;
+  background:none;border:none;color:rgba(255,255,255,.3);
+  font-size:.8rem;cursor:pointer;padding:2px 6px;
+}
 .ss-sub{font-size:.72rem;color:rgba(255,255,255,.6);line-height:1.5;margin-bottom:14px}
 .ss-ideas{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
 .ss-idea{
@@ -574,7 +691,7 @@ body{
   <div class="nav">
     <div>
       <div class="nav-logo">Astyra</div>
-      <div class="nav-sub">Occasion Intelligence System</div>
+      <div class="nav-sub">Makeup chosen for your occasion</div>
     </div>
     <div style="display:flex;align-items:center;gap:8px">
       <div class="nav-scan-count">
@@ -614,7 +731,7 @@ body{
   <div class="hero">
     <div class="hero-stars" id="stars-container"></div>
     <div class="hero-eyebrow">✦ AI-Powered · Occasion-Based · Not a Filter App</div>
-    <h1 class="hero-h1">Your own makeup<br/><em>intelligence system</em></h1>
+    <h1 class="hero-h1">Makeup chosen<br/><em>for your occasion</em></h1>
     <p class="hero-sub">Upload a bare face. Tell Astyra your occasion. Get 3 expert-level looks with exact lip, eye & blush colours — and the products to buy.</p>
     <div class="hero-proof">
       <div class="hproof-stat"><div class="hps-n">48,200+</div><div class="hps-l">Looks Generated</div></div>
@@ -639,6 +756,9 @@ body{
         <div class="uz-badge">🔒 PRIVATE · LOCAL PROCESSING</div>
       </div>
     </div>
+
+    <!-- SPONSOR STRIP -->
+    <div class="sponsor-strip" id="sponsor-strip"></div>
 
     <!-- STEP 2: Occasion -->
     <div id="occasion-step" style="display:none">
@@ -1350,9 +1470,7 @@ function animateLoading(){
       bar.style.width = '100%';
       status.textContent = 'LOOK REPORT READY';
       setTimeout(()=>{
-        buildResults();
-        showScreen('s-results');
-        setStep(4);
+        revealResults();
       }, 500);
     }
   }, 700);
@@ -1611,7 +1729,205 @@ window.addEventListener('load',()=>{
     document.getElementById('gen-btn').disabled = true;
     document.getElementById('gen-btn').textContent = '0 SCANS — UPGRADE TO PRO →';
   }
+  buildSponsorStrip();
 });
+</script>
+
+<!-- ═══ CONFETTI CANVAS ═══ -->
+<canvas id="confetti-canvas"></canvas>
+
+<!-- ═══ LOOK NAME FLASH ═══ -->
+<div id="look-flash">
+  <div class="lf-occasion" id="lf-occasion"></div>
+  <div class="lf-name" id="lf-name"></div>
+  <div class="lf-sub">Your look is ready ✦</div>
+</div>
+
+<!-- ═══ POST-REVEAL SHARE PROMPT ═══ -->
+<div id="share-prompt">
+  <button class="sp-close" onclick="document.getElementById('share-prompt').classList.remove('show')">✕</button>
+  <div class="sp-text">
+    <div class="sp-title">💄 Love your look?</div>
+    <div class="sp-sub">Share it and let friends vote on which one suits you.</div>
+  </div>
+  <button class="sp-btn" onclick="shareWA()">Share Now →</button>
+</div>
+
+<script>
+// ══════════════════════════════════════════════════════
+//  OCCASION-AWARE CONFETTI ENGINE
+// ══════════════════════════════════════════════════════
+const CONFETTI_THEMES = {
+  'wedding-guest': { colors:['#fff8f0','#d4af37','#f9c0cb','#e8c5d0','#fff'], shapes:['●','✿','◆'] },
+  'wedding-bride': { colors:['#fff','#f5e6cc','#d4af37','#fce4ec','#fff9f0'], shapes:['✿','◆','●','❋'] },
+  'party':         { colors:['#a855f7','#c084fc','#f0abfc','#d4af37','#ec4899'], shapes:['★','●','◆','✦'] },
+  'work':          { colors:['#1e3a5f','#d4af37','#a0aec0','#e2e8f0','#2d5282'], shapes:['◆','●','▪'] },
+  'first-date':    { colors:['#ec4899','#f472b6','#fda4af','#ff6b6b','#fff0f3'], shapes:['❤','✿','●','★'] },
+  'graduation':    { colors:['#1e3a5f','#d4af37','#fbbf24','#1e40af','#fff'], shapes:['★','◆','●','✦'] },
+  'gala':          { colors:['#0a0a0f','#d4af37','#c0c0c0','#f5f5f0','#b8860b'], shapes:['◆','★','●'] },
+  'brunch':        { colors:['#fde68a','#86efac','#bfdbfe','#fca5a5','#fbcfe8'], shapes:['✿','●','◆','★'] },
+  'photoshoot':    { colors:['#a855f7','#ec4899','#f59e0b','#fff','#c084fc'], shapes:['★','◆','✦','●'] },
+  'interview':     { colors:['#374151','#6b7280','#d1d5db','#d4af37','#9ca3af'], shapes:['◆','●','▪'] },
+  'birthday':      { colors:['#f472b6','#fb923c','#facc15','#34d399','#60a5fa','#c084fc'], shapes:['★','●','◆','✦','✿','❤'] },
+  'festival':      { colors:['#f472b6','#fb923c','#facc15','#34d399','#818cf8','#e879f9'], shapes:['★','✦','●','✿','◆','❋'] },
+  'default':       { colors:['#a855f7','#ec4899','#d4af37','#fff','#c084fc'], shapes:['★','◆','●','✦'] },
+};
+
+const canvas = document.getElementById('confetti-canvas');
+const ctx = canvas.getContext('2d');
+let particles = [];
+let animFrame = null;
+
+function launchConfetti(occasionId){
+  const theme = CONFETTI_THEMES[occasionId] || CONFETTI_THEMES.default;
+  canvas.style.display = 'block';
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  particles = [];
+
+  for(let i=0; i<180; i++){
+    particles.push({
+      x: Math.random() * canvas.width,
+      y: -20 - Math.random() * 200,
+      vx: (Math.random()-0.5)*4,
+      vy: 2 + Math.random()*5,
+      rot: Math.random()*360,
+      rotV: (Math.random()-0.5)*8,
+      size: 8 + Math.random()*14,
+      color: theme.colors[Math.floor(Math.random()*theme.colors.length)],
+      shape: theme.shapes[Math.floor(Math.random()*theme.shapes.length)],
+      alpha: 1,
+      life: 0.008 + Math.random()*0.004,
+    });
+  }
+  if(animFrame) cancelAnimationFrame(animFrame);
+  animateConfetti();
+  setTimeout(()=>{
+    canvas.style.display='none';
+    particles=[];
+    if(animFrame){ cancelAnimationFrame(animFrame); animFrame=null; }
+  }, 4500);
+}
+
+function animateConfetti(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  particles.forEach(p=>{
+    p.x += p.vx;
+    p.y += p.vy;
+    p.vy += 0.08; // gravity
+    p.rot += p.rotV;
+    p.alpha = Math.max(0, p.alpha - p.life);
+    ctx.save();
+    ctx.globalAlpha = p.alpha;
+    ctx.translate(p.x, p.y);
+    ctx.rotate(p.rot * Math.PI/180);
+    ctx.fillStyle = p.color;
+    ctx.font = `${p.size}px Arial`;
+    ctx.textAlign='center';
+    ctx.textBaseline='middle';
+    ctx.fillText(p.shape, 0, 0);
+    ctx.restore();
+  });
+  particles = particles.filter(p=>p.alpha>0 && p.y<canvas.height+60);
+  if(particles.length > 0){
+    animFrame = requestAnimationFrame(animateConfetti);
+  } else {
+    canvas.style.display='none';
+  }
+}
+
+// ══════════════════════════════════════════════════════
+//  LOOK NAME FLASH
+// ══════════════════════════════════════════════════════
+function flashLookName(occasionName, lookName, callback){
+  const flash = document.getElementById('look-flash');
+  document.getElementById('lf-occasion').textContent = occasionName.toUpperCase();
+  document.getElementById('lf-name').textContent = lookName;
+  flash.classList.add('show');
+  setTimeout(()=>{
+    flash.classList.remove('show');
+    setTimeout(callback, 350);
+  }, 1600);
+}
+
+// ══════════════════════════════════════════════════════
+//  SPONSOR STRIP
+// ══════════════════════════════════════════════════════
+const DEFAULT_SPONSOR_SLOTS = [
+  { cat:'LIPS',  emoji:'💋', product:'Pillow Talk Lipstick', brand:'Charlotte Tilbury', price:'£30', aff:'https://www.charlottetilbury.com/uk/product/the-iconic-lip-cheat-pillow-talk', sponsored:false },
+  { cat:'EYES',  emoji:'👁', product:'Naked3 Palette',       brand:'Urban Decay',       price:'£46', aff:'https://www.urbandecay.co.uk/products/naked3-eyeshadow-palette',               sponsored:false },
+  { cat:'BLUSH', emoji:'🌸', product:'Blush — Orgasm',       brand:'NARS',              price:'£28', aff:'https://www.narscosmetics.co.uk/blush/orgasm/',                                sponsored:false },
+  { cat:'BASE',  emoji:'✨', product:'Pro Filt\'r Foundation',brand:'Fenty Beauty',      price:'£32', aff:'https://www.fentybeauty.com/pro-filtr-soft-matte-longwear-foundation',        sponsored:false },
+];
+
+function buildSponsorStrip(){
+  const strip = document.getElementById('sponsor-strip');
+  if(!strip) return;
+  const sponsors = JSON.parse(localStorage.getItem('astyra_sponsorships')||'[]');
+  // Map sponsor data to the 4 category slots
+  const slots = DEFAULT_SPONSOR_SLOTS.map(slot=>{
+    const match = sponsors.find(s=>s.brand && slot.cat &&
+      (s.product?.toLowerCase().includes(slot.cat.toLowerCase()) ||
+       s.brand?.toLowerCase().includes(slot.brand?.toLowerCase())));
+    if(match) return { ...slot, product:match.product, brand:match.brand,
+      price:'', aff:buildAffUrl(match.aff||'#'), sponsored:true };
+    return { ...slot, aff:buildAffUrl(slot.aff) };
+  });
+
+  strip.innerHTML = `
+    <div class="sponsor-strip-header">
+      <div class="sponsor-strip-title">✦ Astyra's Picks — Shop the Look</div>
+      <div class="sponsor-strip-badge">★ AFFILIATE</div>
+    </div>
+    <div class="sponsor-cols">
+      ${slots.map(s=>`
+        <a class="sponsor-col ${s.sponsored?'has-sponsor':''}" href="${s.aff}" target="_blank" rel="noopener"
+           onclick="trackSponsorClick('${s.cat}','${s.brand}')">
+          ${s.sponsored?'<div class="sc-partner-tag">FEATURED</div>':''}
+          <div class="sc-cat-label">${s.emoji} ${s.cat}</div>
+          <div class="sc-product-name">${s.product}</div>
+          <div class="sc-brand">${s.brand}</div>
+          ${s.price?`<div class="sc-price">${s.price}</div>`:''}
+          <div class="sc-cta">Shop Now →</div>
+        </a>
+      `).join('')}
+    </div>`;
+}
+
+function trackSponsorClick(cat, brand){
+  // Track pre-generation intent click in analytics
+  const clicks = JSON.parse(localStorage.getItem('astyra_clicks')||'{}');
+  const key = brand + ' (pre-gen)';
+  clicks[key] = (clicks[key]||0) + 1;
+  localStorage.setItem('astyra_clicks', JSON.stringify(clicks));
+}
+
+// ══════════════════════════════════════════════════════
+//  ENHANCED REVEAL — replaces the plain showScreen call
+// ══════════════════════════════════════════════════════
+function revealResults(){
+  const occ = OCCASIONS.find(o=>o.id===STATE.occasion);
+  const lookData = BASE_LOOKS[STATE.occasion] || BASE_LOOKS['party'];
+  const firstLookName = lookData?.natural?.name || 'Your Look';
+
+  // 1. Flash look name on screen
+  flashLookName(occ?.name || 'Your Occasion', firstLookName, ()=>{
+    // 2. Show results screen
+    buildResults();
+    showScreen('s-results');
+    setStep(4);
+    // 3. Launch occasion-aware confetti
+    launchConfetti(STATE.occasion);
+    // 4. After confetti settles, slide up share prompt
+    setTimeout(()=>{
+      document.getElementById('share-prompt').classList.add('show');
+    }, 2200);
+    // 5. Auto-hide share prompt after 8s
+    setTimeout(()=>{
+      document.getElementById('share-prompt').classList.remove('show');
+    }, 8000);
+  });
+}
 </script>
 </body>
 </html>
