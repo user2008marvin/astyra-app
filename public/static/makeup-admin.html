@@ -532,23 +532,78 @@ code{background:rgba(255,255,255,.08);padding:2px 7px;border-radius:5px;font-siz
         <div id="aff-saved-status" style="margin-top:8px;font-size:.72rem;color:var(--green);min-height:18px"></div>
       </div>
 
+
       <div class="s-card">
-        <div class="sc-title">Recommended Affiliate Networks</div>
-        <div style="display:flex;flex-direction:column;gap:8px">
-          ${[
-            ['AWIN','Charlotte Tilbury, NARS, MAC, NYX, Benefit','awin.com'],
-            ['Rakuten','Sephora, NARS, Bobbi Brown','rakutenadvertising.com'],
-            ['Skimlinks','Auto-links 60,000+ retailers','skimlinks.com'],
-            ['LTK (LikeToKnowIt)','Instagram-native affiliate linking','shop.app/ltk'],
-            ['Amazon Associates','NYX, e.l.f., Maybelline and budget brands','affiliate-program.amazon.co.uk'],
-          ].map(([name,brands,url])=>`
-          <div style="display:flex;gap:12px;align-items:center;background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:12px">
-            <div style="flex:1">
-              <div style="font-size:.82rem;font-weight:800;color:var(--text)">${name}</div>
-              <div style="font-size:.68rem;color:var(--text-soft)">${brands}</div>
+        <div class="sc-title">📈 Your Affiliate Upgrade Path — 3 Phases</div>
+        <div style="font-size:.68rem;color:var(--text-soft);margin-bottom:14px;line-height:1.6">Follow this path as your traffic grows. Start with Phase 1 today — no approval needed. Graduate to Phase 3 as your data builds.</div>
+
+        <!-- Phase 1 -->
+        <div style="border:1px solid rgba(16,185,129,.25);border-radius:12px;padding:14px;margin-bottom:10px;background:rgba(16,185,129,.04)">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
+            <div style="display:flex;align-items:center;gap:8px">
+              <div style="width:24px;height:24px;border-radius:50%;background:var(--green);color:#fff;font-size:.65rem;font-weight:900;display:flex;align-items:center;justify-content:center;flex-shrink:0">1</div>
+              <div style="font-size:.82rem;font-weight:900;color:var(--green)">PHASE 1 — Launch Now</div>
             </div>
-            <a href="https://${url}" target="_blank" rel="noopener" style="font-size:.65rem;font-weight:700;color:var(--acc2);text-decoration:none;white-space:nowrap">Sign up →</a>
-          </div>`).join('')}
+            <div style="font-size:.6rem;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--green);background:rgba(16,185,129,.15);border-radius:20px;padding:3px 10px">DO THIS TODAY</div>
+          </div>
+          <div style="font-size:.75rem;font-weight:800;color:var(--text);margin-bottom:4px">Skimlinks — Zero Setup, Instant Coverage</div>
+          <div style="font-size:.68rem;color:var(--text-soft);line-height:1.6;margin-bottom:10px">Sign up free at skimlinks.com. Get your Publisher ID. Paste it in the Affiliate ID box above. Done. Skimlinks automatically tracks <strong style="color:var(--text)">48,500+ merchants</strong> including Charlotte Tilbury, NARS, Urban Decay, Fenty, Rare Beauty and more. They take 25% of each commission — a fair trade for zero work. Pays monthly to your bank account.</div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px">
+            ${['Charlotte Tilbury ✓','NARS ✓','Urban Decay ✓','Fenty Beauty ✓','Rare Beauty ✓','NYX ✓','e.l.f. ✓','Benefit ✓'].map(b=>`<span style="font-size:.6rem;font-weight:700;background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.2);border-radius:20px;padding:2px 8px;color:var(--green)">${b}</span>`).join('')}
+          </div>
+          <a href="https://skimlinks.com" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;background:var(--green);color:#fff;text-decoration:none;border-radius:8px;padding:8px 16px;font-size:.68rem;font-weight:800;letter-spacing:.5px;text-transform:uppercase">Sign up to Skimlinks →</a>
+        </div>
+
+        <!-- Phase 2 -->
+        <div style="border:1px solid rgba(168,85,247,.2);border-radius:12px;padding:14px;margin-bottom:10px;background:rgba(168,85,247,.03)">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
+            <div style="display:flex;align-items:center;gap:8px">
+              <div style="width:24px;height:24px;border-radius:50%;background:var(--acc);color:#fff;font-size:.65rem;font-weight:900;display:flex;align-items:center;justify-content:center;flex-shrink:0">2</div>
+              <div style="font-size:.82rem;font-weight:900;color:var(--acc2)">PHASE 2 — Month 3–6</div>
+            </div>
+            <div style="font-size:.6rem;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--acc2);background:rgba(168,85,247,.15);border-radius:20px;padding:3px 10px">WHEN YOU HAVE DATA</div>
+          </div>
+          <div style="font-size:.75rem;font-weight:800;color:var(--text);margin-bottom:4px">AWIN — Direct Brand Programmes, Full Commission Rate</div>
+          <div style="font-size:.68rem;color:var(--text-soft);line-height:1.6;margin-bottom:10px">Once you can show brands real click data from your Analytics tab, apply to individual brand programmes on AWIN. You earn the <strong style="color:var(--text)">full rate</strong> — no Skimlinks 25% cut. Charlotte Tilbury on AWIN pays 10% direct vs ~7.5% via Skimlinks. On £1,000/mo commission that's an extra £250/mo just from switching. Apply brand-by-brand starting with your top performers from the Analytics tab.</div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px">
+            ${['Charlotte Tilbury','NARS','MAC','NYX','Benefit','Lookfantastic','Boots','Cult Beauty'].map(b=>`<span style="font-size:.6rem;font-weight:700;background:rgba(168,85,247,.1);border:1px solid rgba(168,85,247,.2);border-radius:20px;padding:2px 8px;color:var(--acc2)">${b}</span>`).join('')}
+          </div>
+          <a href="https://awin.com" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;background:var(--acc);color:#fff;text-decoration:none;border-radius:8px;padding:8px 16px;font-size:.68rem;font-weight:800;letter-spacing:.5px;text-transform:uppercase">Sign up to AWIN →</a>
+        </div>
+
+        <!-- Phase 3 -->
+        <div style="border:1px solid rgba(212,175,55,.25);border-radius:12px;padding:14px;background:rgba(212,175,55,.03)">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
+            <div style="display:flex;align-items:center;gap:8px">
+              <div style="width:24px;height:24px;border-radius:50%;background:var(--gold);color:#3a2000;font-size:.65rem;font-weight:900;display:flex;align-items:center;justify-content:center;flex-shrink:0">3</div>
+              <div style="font-size:.82rem;font-weight:900;color:var(--gold)">PHASE 3 — Month 12+</div>
+            </div>
+            <div style="font-size:.6rem;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--gold);background:rgba(212,175,55,.12);border-radius:20px;padding:3px 10px">SCALE MODE</div>
+          </div>
+          <div style="font-size:.75rem;font-weight:800;color:var(--text);margin-bottom:4px">Direct Brand Deals + Rakuten + LTK</div>
+          <div style="font-size:.68rem;color:var(--text-soft);line-height:1.6;margin-bottom:10px">At scale you approach brands <strong style="color:var(--text)">directly</strong> with your occasion intent data. Export your Analytics CSV and present it as a pitch deck. "Wedding Guest is your #1 occasion — here's how many times Charlotte Tilbury appeared in results vs clicks vs purchases." Brands pay <strong style="color:var(--text)">flat sponsorship fees</strong> on top of affiliate commission. Add Rakuten for US brands (Sephora, Bobbi Brown). Add LTK for Instagram-native linking if you build a social audience.</div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            ${['Direct brand deals','Rakuten','LTK / LikeToKnowIt','Amazon Associates','Data licensing'].map(b=>`<span style="font-size:.6rem;font-weight:700;background:rgba(212,175,55,.1);border:1px solid rgba(212,175,55,.2);border-radius:20px;padding:2px 8px;color:var(--gold)">${b}</span>`).join('')}
+          </div>
+        </div>
+
+        <!-- Commission comparison table -->
+        <div style="margin-top:14px;background:var(--surface2);border:1px solid var(--border);border-radius:10px;overflow:hidden">
+          <div style="padding:10px 14px;border-bottom:1px solid var(--border);font-size:.6rem;font-weight:900;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-soft)">Commission Rate Comparison — Charlotte Tilbury £30 Lipstick</div>
+          <div style="padding:12px 14px;display:flex;flex-direction:column;gap:8px">
+            ${[
+              ['Phase 1 — Skimlinks','10% brand rate − 25% Skimlinks cut','£2.25 per sale','var(--green)'],
+              ['Phase 2 — AWIN direct','Full 10% rate, no middleman cut','£3.00 per sale','var(--acc2)'],
+              ['Phase 3 — Sponsorship + affiliate','£500/mo flat + full affiliate rate','£500 + £3.00/sale','var(--gold)'],
+            ].map(([phase,desc,earn,col])=>`
+            <div style="display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.02);border-radius:8px;padding:9px 12px">
+              <div style="flex:1">
+                <div style="font-size:.72rem;font-weight:800;color:var(--text)">${phase}</div>
+                <div style="font-size:.62rem;color:var(--text-soft)">${desc}</div>
+              </div>
+              <div style="font-size:.82rem;font-weight:900;color:${col};white-space:nowrap">${earn}</div>
+            </div>`).join('')}
+          </div>
         </div>
       </div>
 
