@@ -271,7 +271,7 @@ code{background:rgba(255,255,255,.08);padding:2px 7px;border-radius:5px;font-siz
       onkeydown="if(event.key==='Enter')doLogin()"/>
     <button class="lb-btn" onclick="doLogin()">ENTER DASHBOARD →</button>
     <div class="lb-err" id="l-err"></div>
-    <p style="font-size:.6rem;color:var(--text-soft);text-align:center;margin-top:16px">Default: admin / astyra2024</p>
+    <p style="font-size:.6rem;color:var(--text-soft);text-align:center;margin-top:16px">Owner access only · Contact admin for credentials</p>
   </div>
 </div>
 
@@ -751,7 +751,7 @@ function doLogin(){
     document.getElementById('dashboard').classList.add('active');
     bootDashboard();
   } else {
-    document.getElementById('l-err').textContent = 'Invalid credentials. Default: admin / astyra2024';
+    document.getElementById('l-err').textContent = 'Invalid credentials. Please try again.';
     setTimeout(()=>document.getElementById('l-err').textContent='',4000);
   }
 }

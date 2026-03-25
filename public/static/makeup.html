@@ -72,6 +72,68 @@ body{
 }
 .nav-scan-dot{width:6px;height:6px;border-radius:50%;background:var(--accent)}
 
+/* ── OCCASION MARQUEE ── */
+.occ-marquee{
+  background:linear-gradient(135deg,#0a0a0f,#1a0834);
+  border-bottom:1px solid rgba(168,85,247,.15);
+  padding:0;
+  overflow:hidden;
+  position:relative;
+  height:38px;
+  display:flex;
+  align-items:center;
+}
+.occ-marquee::before,
+.occ-marquee::after{
+  content:'';
+  position:absolute;
+  top:0;bottom:0;
+  width:60px;
+  z-index:2;
+  pointer-events:none;
+}
+.occ-marquee::before{
+  left:0;
+  background:linear-gradient(to right,#0a0a0f,transparent);
+}
+.occ-marquee::after{
+  right:0;
+  background:linear-gradient(to left,#0a0a0f,transparent);
+}
+.marquee-track{
+  display:flex;
+  gap:0;
+  animation:marquee-scroll 32s linear infinite;
+  white-space:nowrap;
+  will-change:transform;
+}
+.marquee-track:hover{animation-play-state:paused;cursor:default;}
+@keyframes marquee-scroll{
+  0%{transform:translateX(0)}
+  100%{transform:translateX(-50%)}
+}
+.marquee-item{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  padding:0 22px;
+  font-size:.62rem;
+  font-weight:700;
+  letter-spacing:.5px;
+  color:rgba(255,255,255,.65);
+  white-space:nowrap;
+}
+.marquee-item em{
+  font-style:normal;
+  color:rgba(168,85,247,.9);
+  font-weight:900;
+}
+.marquee-dot{
+  width:3px;height:3px;border-radius:50%;
+  background:rgba(168,85,247,.4);
+  flex-shrink:0;
+}
+
 /* ── HERO ── */
 .hero{
   padding:40px 24px 32px;text-align:center;
@@ -698,9 +760,6 @@ body{
         <div class="nav-scan-dot"></div>
         <span id="scan-display">3</span> scans left
       </div>
-      <a href="/makeup-admin" style="text-decoration:none">
-        <div class="nav-badge">Admin</div>
-      </a>
     </div>
   </div>
 
@@ -724,6 +783,13 @@ body{
     <div class="step-node" id="step4">
       <div class="sn-num">4</div>
       <div class="sn-label">Looks</div>
+    </div>
+  </div>
+
+  <!-- OCCASION MARQUEE -->
+  <div class="occ-marquee">
+    <div class="marquee-track" id="marquee-track">
+      <!-- duplicated for seamless loop -->
     </div>
   </div>
 
@@ -1596,9 +1662,16 @@ function buildProductCard(p){
 }
 
 function buildAffUrl(url){
-  if(!url) return '#';
-  if(!AFF_ID) return url;
-  return url + (url.includes('?')?'&':'?') + 'ref=' + AFF_ID;
+  if(!url || url === '#') return '#';
+  const safeId = encodeURIComponent(AFF_ID || '');
+  if(!safeId) return url;
+  try {
+    const u = new URL(url);
+    u.searchParams.set('ref', AFF_ID);
+    return u.toString();
+  } catch(e) {
+    return url + (url.includes('?')?'&':'?') + 'ref=' + safeId;
+  }
 }
 
 // ── SWATCH INFO ────────────────────────────────────────────────────
@@ -1723,6 +1796,7 @@ window.addEventListener('load',()=>{
   buildStars();
   buildOccasionGrid();
   buildSkinRow();
+  buildMarquee();
   const scanEl = document.getElementById('scan-display');
   scanEl.textContent = STATE.isPro ? '∞' : STATE.scansLeft;
   if(!STATE.isPro && STATE.scansLeft <= 0){
@@ -1754,6 +1828,37 @@ window.addEventListener('load',()=>{
 </div>
 
 <script>
+// ══════════════════════════════════════════════════════
+//  OCCASION MARQUEE
+// ══════════════════════════════════════════════════════
+function buildMarquee(){
+  const MESSAGES = [
+    { emoji:'💍', text:'Weddings are once in a lifetime —', accent:'look like it.' },
+    { emoji:'🥂', text:'Tonight is your night —', accent:'own the room.' },
+    { emoji:'💕', text:'First impressions last forever —', accent:'make yours count.' },
+    { emoji:'🎓', text:'You worked for this moment —', accent:'dress the part.' },
+    { emoji:'💼', text:'Confidence starts with how you feel —', accent:'walk in ready.' },
+    { emoji:'🎂', text:'Birthdays only come once a year —', accent:'celebrate beautifully.' },
+    { emoji:'📸', text:'The camera loves a look —', accent:'give it one.' },
+    { emoji:'👰', text:'Your big day deserves', accent:'your best look.' },
+    { emoji:'✨', text:'Black tie is a standard —', accent:'set a new one.' },
+    { emoji:'🎪', text:'Festival season is calling —', accent:'arrive in colour.' },
+    { emoji:'🌸', text:'Even brunch deserves intention —', accent:'show up glowing.' },
+    { emoji:'📋', text:'They judge in the first 7 seconds —', accent:'use all seven.' },
+  ];
+  // Build double set for seamless infinite loop
+  const all = [...MESSAGES, ...MESSAGES];
+  const track = document.getElementById('marquee-track');
+  if(!track) return;
+  track.innerHTML = all.map(m=>`
+    <span class="marquee-item">
+      <span>${m.emoji}</span>
+      <span>${m.text} <em>${m.accent}</em></span>
+      <span class="marquee-dot"></span>
+    </span>
+  `).join('');
+}
+
 // ══════════════════════════════════════════════════════
 //  OCCASION-AWARE CONFETTI ENGINE
 // ══════════════════════════════════════════════════════
