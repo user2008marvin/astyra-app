@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Power India 2047 — Front Cover</title>
+<style>
+/* ─── RESET & BASE ─────────────────────────────────────────── */
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{
+  background:#111827;
+  min-height:100vh;
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+  display:flex;flex-direction:column;align-items:center;
+  padding:32px 16px 60px;gap:32px;
+}
+
+/* ─── PRINT BUTTON ─────────────────────────────────────────── */
+.print-btn{
+  background:linear-gradient(135deg,#f97316,#dc2626);
+  color:#fff;border:none;border-radius:8px;
+  padding:12px 32px;font-size:.9rem;font-weight:700;
+  cursor:pointer;letter-spacing:.5px;
+  box-shadow:0 4px 20px rgba(249,115,22,.4);
+  transition:all .2s;
+}
+.print-btn:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(249,115,22,.5)}
+@media print{.print-btn,.print-note{display:none!important}body{background:#fff;padding:0}}
+
+.print-note{font-size:.75rem;color:rgba(255,255,255,.4);text-align:center;max-width:600px;line-height:1.6}
+
+/* ─── A4 PAGE ──────────────────────────────────────────────── */
+/* A4 at 96dpi = 794 × 1123px */
+.page{
+  width:794px;
+  min-height:1123px;
+  position:relative;
+  overflow:hidden;
+  flex-shrink:0;
+  box-shadow:0 30px 80px rgba(0,0,0,.8);
+  display:flex;
+  flex-direction:column;
+
+  /* Deep navy-to-black base */
+  background:#03071e;
+}
+
+/* ─── BACKGROUND ELEMENTS ──────────────────────────────────── */
+/* Warm amber glow from top */
+.bg-glow{
+  position:absolute;
+  top:-150px;left:50%;
+  transform:translateX(-50%);
+  width:900px;height:600px;
+  background:radial-gradient(ellipse,
+    rgba(251,146,60,.18) 0%,
+    rgba(234,88,12,.10) 35%,
+    transparent 70%);
+  pointer-events:none;z-index:1;
+}
+/* Secondary blue-teal glow bottom-left */
+.bg-glow2{
+  position:absolute;
+  bottom:-100px;left:-100px;
+  width:500px;height:400px;
+  background:radial-gradient(ellipse,rgba(14,116,144,.12) 0%,transparent 70%);
+  pointer-events:none;z-index:1;
+}
+/* Subtle grid */
+.bg-grid{
+  position:absolute;inset:0;z-index:2;
+  background-image:
+    linear-gradient(rgba(251,146,60,.035) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(251,146,60,.035) 1px,transparent 1px);
+  background-size:44px 44px;
+}
+
+/* ─── CONTENT WRAPPER ──────────────────────────────────────── */
+.wrap{position:relative;z-index:10;display:flex;flex-direction:column;height:100%}
+
+/* ─── TOP BAR ──────────────────────────────────────────────── */
+.topbar{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:22px 40px 18px;
+  border-bottom:1px solid rgba(251,146,60,.2);
+}
+.tb-brand{
+  font-size:.65rem;font-weight:800;letter-spacing:4px;
+  text-transform:uppercase;color:rgba(255,255,255,.45);
+}
+.tb-badge{
+  background:linear-gradient(135deg,#ea580c,#dc2626);
+  color:#fff;font-size:.58rem;font-weight:800;
+  letter-spacing:2px;text-transform:uppercase;
+  padding:5px 16px;border-radius:3px;
+  box-shadow:0 0 18px rgba(234,88,12,.5);
+}
+.tb-issue{
+  font-size:.6rem;font-weight:600;letter-spacing:1.5px;
+  color:rgba(255,255,255,.35);text-transform:uppercase;
+}
+
+/* ─── HERO ILLUSTRATION ────────────────────────────────────── */
+.hero{
+  position:relative;
+  height:420px;
+  overflow:hidden;
+  flex-shrink:0;
+}
+
+/* Power line / horizon glow */
+.horizon-glow{
+  position:absolute;
+  bottom:80px;left:0;right:0;
+  height:2px;
+  background:linear-gradient(90deg,
+    transparent 0%,
+    rgba(251,191,36,.5) 15%,
+    rgba(251,191,36,.9) 50%,
+    rgba(251,191,36,.5) 85%,
+    transparent 100%);
+  filter:blur(2px);
+  z-index:5;
+}
+.horizon-glow2{
+  position:absolute;
+  bottom:78px;left:0;right:0;
+  height:6px;
+  background:linear-gradient(90deg,
+    transparent 0%,
+    rgba(251,146,60,.3) 20%,
+    rgba(251,146,60,.6) 50%,
+    rgba(251,146,60,.3) 80%,
+    transparent 100%);
+  filter:blur(6px);
+  z-index:4;
+}
+
+/* SVG scene */
+.hero-svg{
+  position:absolute;bottom:0;left:0;right:0;
+  width:100%;height:100%;
+}
+
+/* ─── TITLE AREA ───────────────────────────────────────────── */
+.title-area{
+  padding:32px 40px 20px;
+  border-top:1px solid rgba(251,146,60,.12);
+}
+.ta-eyebrow{
+  font-size:.62rem;font-weight:800;letter-spacing:5px;
+  text-transform:uppercase;color:#f97316;
+  display:flex;align-items:center;gap:10px;
+  margin-bottom:16px;
+}
+.ta-eyebrow::before{
+  content:'';display:inline-block;
+  width:28px;height:2px;background:#f97316;flex-shrink:0;
+}
+.ta-eyebrow::after{
+  content:'';flex:1;height:1px;
+  background:linear-gradient(90deg,rgba(249,115,22,.4),transparent);
+}
+
+.ta-main{
+  font-family:Georgia,'Times New Roman',Times,serif;
+  font-weight:700;font-size:4rem;
+  color:#fff;line-height:1;
+  letter-spacing:-1px;
+  margin-bottom:0;
+}
+.ta-main .w1{display:block;font-size:2.6rem;letter-spacing:0;color:rgba(255,255,255,.9)}
+.ta-main .w2{
+  display:block;font-size:5.8rem;
+  background:linear-gradient(135deg,#f97316 0%,#fbbf24 45%,#fff 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+  line-height:.95;letter-spacing:-3px;
+}
+
+.ta-sub{
+  font-family:Georgia,'Times New Roman',Times,serif;
+  font-size:1rem;font-style:italic;font-weight:400;
+  color:rgba(255,255,255,.6);margin-top:12px;
+  line-height:1.5;letter-spacing:.2px;
+}
+
+/* Divider */
+.ta-rule{display:flex;align-items:center;gap:10px;margin:18px 0}
+.ta-rule-line{flex:1;height:1px;background:linear-gradient(90deg,rgba(251,146,60,.5),rgba(251,146,60,.08))}
+.ta-rule-dot{width:5px;height:5px;background:#f97316;transform:rotate(45deg);flex-shrink:0}
+
+/* Tags */
+.ta-tags{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:18px}
+.tag{
+  border:1px solid rgba(251,146,60,.3);
+  border-radius:3px;padding:4px 12px;
+  font-size:.58rem;font-weight:700;letter-spacing:1.5px;
+  text-transform:uppercase;color:rgba(255,255,255,.6);
+  background:rgba(251,146,60,.05);
+}
+.tag.hot{border-color:rgba(234,88,12,.6);color:#fb923c;background:rgba(234,88,12,.1)}
+
+/* ─── PREVIEW STRIP ────────────────────────────────────────── */
+.preview{
+  margin:0 40px;
+  border:1px solid rgba(251,146,60,.15);
+  border-radius:4px;padding:14px 16px;
+  background:rgba(251,146,60,.04);
+  display:flex;gap:0;
+}
+.prev-col{flex:1;padding:0 14px;border-right:1px solid rgba(251,146,60,.1)}
+.prev-col:first-child{padding-left:0}
+.prev-col:last-child{border-right:none}
+.pc-label{
+  font-size:.52rem;font-weight:800;letter-spacing:2px;
+  text-transform:uppercase;color:#f97316;margin-bottom:4px;
+}
+.pc-text{font-size:.65rem;font-weight:400;color:rgba(255,255,255,.5);line-height:1.5}
+
+/* ─── STATS ROW ────────────────────────────────────────────── */
+.stats{
+  display:flex;margin:16px 40px 0;
+  border:1px solid rgba(251,146,60,.18);
+  background:linear-gradient(135deg,rgba(251,146,60,.08),rgba(234,88,12,.04));
+  border-radius:4px;overflow:hidden;
+}
+.st{flex:1;padding:12px 8px;text-align:center;border-right:1px solid rgba(251,146,60,.1)}
+.st:last-child{border-right:none}
+.st-n{
+  font-family:Georgia,'Times New Roman',Times,serif;
+  font-size:1.5rem;font-weight:700;
+  color:#fbbf24;line-height:1;margin-bottom:3px;
+}
+.st-l{
+  font-size:.52rem;font-weight:700;letter-spacing:1px;
+  text-transform:uppercase;color:rgba(255,255,255,.35);
+}
+
+/* ─── BOTTOM BAR ───────────────────────────────────────────── */
+.botbar{
+  margin-top:auto;
+  padding:16px 40px;
+  background:rgba(0,0,0,.5);
+  border-top:1px solid rgba(251,146,60,.2);
+  display:flex;align-items:center;justify-content:space-between;
+}
+.bb-pub{
+  font-size:.58rem;font-weight:600;letter-spacing:.4px;
+  color:rgba(255,255,255,.35);line-height:1.7;text-transform:uppercase;
+}
+.bb-pub strong{color:rgba(255,255,255,.6)}
+.bb-logo{
+  font-family:Georgia,'Times New Roman',Times,serif;
+  font-size:1rem;font-weight:700;color:#f97316;letter-spacing:.5px;
+}
+.bb-bar{display:flex;gap:1.5px;align-items:flex-end;height:26px}
+.bb-bar span{display:block;width:1.8px;background:rgba(255,255,255,.3);border-radius:1px}
+</style>
+</head>
+<body>
+
+<button class="print-btn" onclick="window.print()">🖨️ Print / Save as PDF — Set paper to A4</button>
+
+<!-- ═══════════════════════════════════════════════════════════
+     A4 FRONT COVER
+═══════════════════════════════════════════════════════════ -->
+<div class="page" id="cover">
+
+  <div class="bg-glow"></div>
+  <div class="bg-glow2"></div>
+  <div class="bg-grid"></div>
+
+  <div class="wrap">
+
+    <!-- TOP BAR -->
+    <div class="topbar">
+      <div class="tb-brand">APP India · Association of Power Producers</div>
+      <div class="tb-badge">Official Publication · 2025</div>
+      <div class="tb-issue">Special Edition · Volume XII</div>
+    </div>
+
+    <!-- HERO ILLUSTRATION -->
+    <div class="hero">
+
+      <!-- Horizon transmission glow lines -->
+      <div class="horizon-glow"></div>
+      <div class="horizon-glow2"></div>
+
+      <svg class="hero-svg" viewBox="0 0 794 420" preserveAspectRatio="xMidYMax meet" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <!-- Sky gradient -->
+          <linearGradient id="skyG" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#03071e"/>
+            <stop offset="55%" stop-color="#0c1340"/>
+            <stop offset="100%" stop-color="#1a2050"/>
+          </linearGradient>
+          <!-- Ground gradient -->
+          <linearGradient id="groundG" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#0f172a"/>
+            <stop offset="100%" stop-color="#020408"/>
+          </linearGradient>
+          <!-- Solar panel gradient -->
+          <linearGradient id="solarG" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#1e3a5f" stop-opacity=".9"/>
+            <stop offset="50%" stop-color="#1d4ed8" stop-opacity=".6"/>
+            <stop offset="100%" stop-color="#1e3a5f" stop-opacity=".9"/>
+          </linearGradient>
+          <!-- Amber glow filter -->
+          <filter id="ambGlow" x="-30%" y="-30%" width="160%" height="160%">
+            <feGaussianBlur stdDeviation="4" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <!-- Soft glow filter -->
+          <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="8" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <!-- Sun/energy orb gradient -->
+          <radialGradient id="sunG" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#fbbf24" stop-opacity=".9"/>
+            <stop offset="30%" stop-color="#f97316" stop-opacity=".5"/>
+            <stop offset="65%" stop-color="#dc2626" stop-opacity=".15"/>
+            <stop offset="100%" stop-color="#03071e" stop-opacity="0"/>
+          </radialGradient>
+          <!-- Tower gradient -->
+          <linearGradient id="towerG" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="rgba(180,90,20,.7)"/>
+            <stop offset="100%" stop-color="rgba(251,146,60,.5)"/>
+          </linearGradient>
+          <!-- Fade overlay top -->
+          <linearGradient id="fadeTop" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#03071e" stop-opacity="1"/>
+            <stop offset="40%" stop-color="#03071e" stop-opacity="0"/>
+          </linearGradient>
+          <!-- Fade overlay bottom -->
+          <linearGradient id="fadeBot" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="60%" stop-color="#03071e" stop-opacity="0"/>
+            <stop offset="100%" stop-color="#03071e" stop-opacity=".95"/>
+          </linearGradient>
+        </defs>
+
+        <!-- Sky background -->
+        <rect width="794" height="420" fill="url(#skyG)"/>
+
+        <!-- Ambient sun/energy orb behind towers -->
+        <ellipse cx="397" cy="220" rx="300" ry="220" fill="url(#sunG)" opacity=".55"/>
+        <ellipse cx="397" cy="220" rx="180" ry="130" fill="url(#sunG)" opacity=".4"/>
+
+        <!-- ── CIRCUIT LINES ── -->
+        <g opacity=".22" stroke="rgba(251,146,60,.8)" stroke-width=".8" fill="none" stroke-dasharray="5,8">
+          <path d="M0,160 L100,160 L100,220 L180,220"/>
+          <path d="M794,180 L680,180 L680,240 L590,240"/>
+          <path d="M0,300 L70,300 L70,260 L160,260"/>
+          <path d="M794,310 L710,310 L710,270 L620,270"/>
+        </g>
+        <!-- Circuit nodes -->
+        <g fill="rgba(251,191,36,.55)">
+          <circle cx="100" cy="160" r="2.5"/>
+          <circle cx="180" cy="220" r="2"/>
+          <circle cx="680" cy="180" r="2.5"/>
+          <circle cx="590" cy="240" r="2"/>
+        </g>
+
+        <!-- ── TRANSMISSION TOWERS ── -->
+
+        <!-- Tower A — far left, small -->
+        <g transform="translate(48,80)" opacity=".55">
+          <line x1="18" y1="0" x2="18" y2="190" stroke="rgba(251,146,60,.6)" stroke-width="1.2"/>
+          <polygon points="4,190 18,0 32,190" fill="rgba(251,146,60,.08)" stroke="rgba(251,146,60,.4)" stroke-width=".7"/>
+          <line x1="-8" y1="42" x2="44" y2="42" stroke="rgba(251,146,60,.35)" stroke-width=".8"/>
+          <line x1="-4" y1="75" x2="40" y2="75" stroke="rgba(251,146,60,.3)" stroke-width=".7"/>
+          <line x1="0" y1="110" x2="36" y2="110" stroke="rgba(251,146,60,.25)" stroke-width=".6"/>
+          <circle cx="18" cy="0" r="2.5" fill="rgba(251,191,36,.75)" filter="url(#ambGlow)"/>
+          <circle cx="-8" cy="42" r="1.8" fill="rgba(251,146,60,.65)"/>
+          <circle cx="44" cy="42" r="1.8" fill="rgba(251,146,60,.65)"/>
+        </g>
+
+        <!-- Tower B — left -->
+        <g transform="translate(168,50)" opacity=".72">
+          <line x1="22" y1="0" x2="22" y2="220" stroke="rgba(251,191,36,.75)" stroke-width="1.5"/>
+          <polygon points="5,220 22,0 39,220" fill="rgba(251,146,60,.1)" stroke="rgba(251,146,60,.5)" stroke-width=".8"/>
+          <line x1="-10" y1="38" x2="54" y2="38" stroke="rgba(251,146,60,.45)" stroke-width=".9"/>
+          <line x1="-5" y1="78" x2="49" y2="78" stroke="rgba(251,146,60,.38)" stroke-width=".8"/>
+          <line x1="0" y1="118" x2="44" y2="118" stroke="rgba(251,146,60,.3)" stroke-width=".7"/>
+          <line x1="4" y1="158" x2="40" y2="158" stroke="rgba(251,146,60,.22)" stroke-width=".6"/>
+          <circle cx="22" cy="0" r="3.5" fill="rgba(251,220,50,.95)" filter="url(#ambGlow)"/>
+          <circle cx="-10" cy="38" r="2.2" fill="rgba(251,191,36,.85)"/>
+          <circle cx="54" cy="38" r="2.2" fill="rgba(251,191,36,.85)"/>
+        </g>
+
+        <!-- Tower C — centre-left (tallest) -->
+        <g transform="translate(316,22)" opacity=".88">
+          <line x1="26" y1="0" x2="26" y2="258" stroke="rgba(255,210,50,.85)" stroke-width="1.8"/>
+          <polygon points="6,258 26,0 46,258" fill="rgba(251,146,60,.12)" stroke="rgba(251,146,60,.6)" stroke-width=".9"/>
+          <line x1="-14" y1="34" x2="66" y2="34" stroke="rgba(251,146,60,.55)" stroke-width="1"/>
+          <line x1="-8" y1="74" x2="60" y2="74" stroke="rgba(251,146,60,.48)" stroke-width=".9"/>
+          <line x1="-3" y1="118" x2="55" y2="118" stroke="rgba(251,146,60,.38)" stroke-width=".8"/>
+          <line x1="2" y1="162" x2="50" y2="162" stroke="rgba(251,146,60,.28)" stroke-width=".7"/>
+          <line x1="6" y1="202" x2="46" y2="202" stroke="rgba(251,146,60,.2)" stroke-width=".6"/>
+          <circle cx="26" cy="0" r="5" fill="rgba(255,240,80,1)" filter="url(#softGlow)"/>
+          <circle cx="-14" cy="34" r="2.8" fill="rgba(255,210,50,.95)"/>
+          <circle cx="66" cy="34" r="2.8" fill="rgba(255,210,50,.95)"/>
+        </g>
+
+        <!-- Tower D — centre-right -->
+        <g transform="translate(480,38)" opacity=".82">
+          <line x1="24" y1="0" x2="24" y2="242" stroke="rgba(251,191,36,.8)" stroke-width="1.6"/>
+          <polygon points="5,242 24,0 43,242" fill="rgba(251,146,60,.11)" stroke="rgba(251,146,60,.55)" stroke-width=".85"/>
+          <line x1="-12" y1="36" x2="60" y2="36" stroke="rgba(251,146,60,.5)" stroke-width=".95"/>
+          <line x1="-6" y1="76" x2="54" y2="76" stroke="rgba(251,146,60,.42)" stroke-width=".85"/>
+          <line x1="-1" y1="118" x2="49" y2="118" stroke="rgba(251,146,60,.34)" stroke-width=".75"/>
+          <line x1="4" y1="160" x2="44" y2="160" stroke="rgba(251,146,60,.24)" stroke-width=".65"/>
+          <circle cx="24" cy="0" r="4" fill="rgba(255,230,60,.95)" filter="url(#ambGlow)"/>
+          <circle cx="-12" cy="36" r="2.5" fill="rgba(251,191,36,.88)"/>
+          <circle cx="60" cy="36" r="2.5" fill="rgba(251,191,36,.88)"/>
+        </g>
+
+        <!-- Tower E — right -->
+        <g transform="translate(636,62)" opacity=".65">
+          <line x1="20" y1="0" x2="20" y2="210" stroke="rgba(251,146,60,.65)" stroke-width="1.3"/>
+          <polygon points="4,210 20,0 36,210" fill="rgba(251,146,60,.09)" stroke="rgba(251,146,60,.45)" stroke-width=".75"/>
+          <line x1="-9" y1="40" x2="49" y2="40" stroke="rgba(251,146,60,.38)" stroke-width=".8"/>
+          <line x1="-4" y1="80" x2="44" y2="80" stroke="rgba(251,146,60,.3)" stroke-width=".7"/>
+          <line x1="0" y1="122" x2="40" y2="122" stroke="rgba(251,146,60,.22)" stroke-width=".6"/>
+          <circle cx="20" cy="0" r="3" fill="rgba(251,191,36,.8)" filter="url(#ambGlow)"/>
+        </g>
+
+        <!-- ── TRANSMISSION WIRES ── -->
+        <!-- Top wire pair -->
+        <path d="M66,122 Q130,140 190,88" stroke="rgba(251,191,36,.5)" stroke-width=".9" fill="none"/>
+        <path d="M212,88 Q270,125 342,56" stroke="rgba(251,191,36,.55)" stroke-width=".9" fill="none"/>
+        <path d="M368,56 Q436,90 504,74" stroke="rgba(251,191,36,.6)" stroke-width="1" fill="none"/>
+        <path d="M528,74 Q596,104 656,102" stroke="rgba(251,191,36,.5)" stroke-width=".9" fill="none"/>
+
+        <!-- Lower wire pair -->
+        <path d="M66,162 Q130,178 190,128" stroke="rgba(251,146,60,.35)" stroke-width=".7" fill="none"/>
+        <path d="M212,128 Q270,162 342,96" stroke="rgba(251,146,60,.38)" stroke-width=".7" fill="none"/>
+        <path d="M368,96 Q436,128 504,114" stroke="rgba(251,146,60,.4)" stroke-width=".75" fill="none"/>
+        <path d="M528,114 Q596,144 656,142" stroke="rgba(251,146,60,.35)" stroke-width=".7" fill="none"/>
+
+        <!-- ── WIND TURBINES ── -->
+        <!-- Turbine 1 -->
+        <g transform="translate(700,90)">
+          <line x1="12" y1="140" x2="12" y2="50" stroke="rgba(180,180,140,.5)" stroke-width="2"/>
+          <line x1="12" y1="50" x2="12" y2="12" stroke="rgba(180,180,140,.45)" stroke-width="2"/>
+          <!-- Blades (static simplified) -->
+          <line x1="12" y1="12" x2="12" y2="-26" stroke="rgba(200,200,160,.55)" stroke-width="1.5"/>
+          <line x1="12" y1="12" x2="45" y2="30" stroke="rgba(200,200,160,.5)" stroke-width="1.5"/>
+          <line x1="12" y1="12" x2="-21" y2="30" stroke="rgba(200,200,160,.5)" stroke-width="1.5"/>
+          <circle cx="12" cy="12" r="3" fill="rgba(200,200,160,.65)"/>
+        </g>
+        <!-- Turbine 2 (smaller) -->
+        <g transform="translate(730,120)" opacity=".75">
+          <line x1="9" y1="110" x2="9" y2="40" stroke="rgba(160,160,120,.45)" stroke-width="1.5"/>
+          <line x1="9" y1="40" x2="9" y2="10" stroke="rgba(160,160,120,.4)" stroke-width="1.5"/>
+          <line x1="9" y1="10" x2="9" y2="-20" stroke="rgba(180,180,140,.5)" stroke-width="1.2"/>
+          <line x1="9" y1="10" x2="35" y2="25" stroke="rgba(180,180,140,.45)" stroke-width="1.2"/>
+          <line x1="9" y1="10" x2="-17" y2="25" stroke="rgba(180,180,140,.45)" stroke-width="1.2"/>
+          <circle cx="9" cy="10" r="2.5" fill="rgba(180,180,140,.6)"/>
+        </g>
+
+        <!-- ── SOLAR PANELS (bottom left cluster) ── -->
+        <g transform="translate(14,290)" opacity=".65">
+          <g transform="skewX(-18)">
+            <rect x="0" y="0" width="38" height="24" fill="url(#solarG)" stroke="rgba(96,165,250,.3)" stroke-width=".6"/>
+            <line x1="0" y1="12" x2="38" y2="12" stroke="rgba(96,165,250,.2)" stroke-width=".4"/>
+            <line x1="19" y1="0" x2="19" y2="24" stroke="rgba(96,165,250,.2)" stroke-width=".4"/>
+            <rect x="42" y="0" width="38" height="24" fill="url(#solarG)" stroke="rgba(96,165,250,.3)" stroke-width=".6"/>
+            <line x1="42" y1="12" x2="80" y2="12" stroke="rgba(96,165,250,.2)" stroke-width=".4"/>
+            <line x1="61" y1="0" x2="61" y2="24" stroke="rgba(96,165,250,.2)" stroke-width=".4"/>
+            <rect x="84" y="0" width="38" height="24" fill="url(#solarG)" stroke="rgba(96,165,250,.3)" stroke-width=".6"/>
+            <line x1="84" y1="12" x2="122" y2="12" stroke="rgba(96,165,250,.2)" stroke-width=".4"/>
+            <rect x="126" y="0" width="38" height="24" fill="url(#solarG)" stroke="rgba(96,165,250,.28)" stroke-width=".6"/>
+          </g>
+          <line x1="60" y1="24" x2="60" y2="42" stroke="rgba(96,165,250,.18)" stroke-width=".6"/>
+        </g>
+        <!-- Second row solar -->
+        <g transform="translate(14,332)" opacity=".5">
+          <g transform="skewX(-18)">
+            <rect x="0" y="0" width="38" height="24" fill="url(#solarG)" stroke="rgba(96,165,250,.25)" stroke-width=".5"/>
+            <line x1="0" y1="12" x2="38" y2="12" stroke="rgba(96,165,250,.15)" stroke-width=".35"/>
+            <rect x="42" y="0" width="38" height="24" fill="url(#solarG)" stroke="rgba(96,165,250,.25)" stroke-width=".5"/>
+            <rect x="84" y="0" width="38" height="24" fill="url(#solarG)" stroke="rgba(96,165,250,.22)" stroke-width=".5"/>
+          </g>
+        </g>
+
+        <!-- ── SOLAR PANELS (bottom right cluster) ── -->
+        <g transform="translate(500,300)" opacity=".58">
+          <g transform="skewX(-18)">
+            <rect x="0" y="0" width="38" height="24" fill="url(#solarG)" stroke="rgba(96,165,250,.28)" stroke-width=".5"/>
+            <line x1="0" y1="12" x2="38" y2="12" stroke="rgba(96,165,250,.18)" stroke-width=".35"/>
+            <line x1="19" y1="0" x2="19" y2="24" stroke="rgba(96,165,250,.18)" stroke-width=".35"/>
+            <rect x="42" y="0" width="38" height="24" fill="url(#solarG)" stroke="rgba(96,165,250,.28)" stroke-width=".5"/>
+            <rect x="84" y="0" width="38" height="24" fill="url(#solarG)" stroke="rgba(96,165,250,.25)" stroke-width=".5"/>
+            <rect x="126" y="0" width="38" height="24" fill="url(#solarG)" stroke="rgba(96,165,250,.22)" stroke-width=".5"/>
+            <rect x="168" y="0" width="38" height="24" fill="url(#solarG)" stroke="rgba(96,165,250,.2)" stroke-width=".5"/>
+          </g>
+        </g>
+
+        <!-- ── GROUND PLANE ── -->
+        <rect x="0" y="345" width="794" height="75" fill="url(#groundG)"/>
+
+        <!-- Horizon line glow (amber) -->
+        <line x1="0" y1="344" x2="794" y2="344" stroke="rgba(251,191,36,.6)" stroke-width="1.2"/>
+        <rect x="0" y="340" width="794" height="8"
+              fill="none" filter="url(#ambGlow)"
+              stroke="rgba(251,146,60,.25)" stroke-width="6"/>
+
+        <!-- Top and bottom fade overlays -->
+        <rect width="794" height="420" fill="url(#fadeTop)" opacity=".6"/>
+        <rect width="794" height="420" fill="url(#fadeBot)"/>
+
+        <!-- "INDIA" watermark text behind -->
+        <text x="397" y="270" text-anchor="middle"
+              font-family="Georgia,'Times New Roman',serif"
+              font-size="160" font-weight="700"
+              fill="rgba(251,146,60,.04)"
+              letter-spacing="-4">INDIA</text>
+
+      </svg>
+    </div>
+
+    <!-- TITLE AREA -->
+    <div class="title-area">
+
+      <div class="ta-eyebrow">Energy Transformation at National Scale</div>
+
+      <div class="ta-main">
+        <span class="w1">Power India</span>
+        <span class="w2">2047</span>
+      </div>
+
+      <div class="ta-sub">
+        Reliability, Flexibility &amp; the Next Phase of Energy Transformation
+      </div>
+
+      <div class="ta-rule">
+        <div class="ta-rule-line"></div>
+        <div class="ta-rule-dot"></div>
+        <div class="ta-rule-line" style="background:linear-gradient(90deg,rgba(251,146,60,.08),rgba(251,146,60,.5))"></div>
+      </div>
+
+      <div class="ta-tags">
+        <span class="tag hot">Grid Reliability</span>
+        <span class="tag hot">Renewable Integration</span>
+        <span class="tag hot">300 GW by 2030</span>
+        <span class="tag">BESS &amp; Storage</span>
+        <span class="tag">DISCOM Reform</span>
+        <span class="tag">Digitalisation</span>
+        <span class="tag">Transmission</span>
+        <span class="tag">Green Hydrogen</span>
+        <span class="tag">Viksit Bharat 2047</span>
+      </div>
+    </div>
+
+    <!-- PREVIEW STRIP -->
+    <div class="preview">
+      <div class="prev-col">
+        <div class="pc-label">In This Issue</div>
+        <div class="pc-text">Renewable acceleration · Grid flexibility · Storage deployment · DISCOM transformation · Market evolution</div>
+      </div>
+      <div class="prev-col">
+        <div class="pc-label">Special Focus</div>
+        <div class="pc-text">Coal flexibilisation · Green Energy Corridors · Digital grid systems · Ancillary services markets</div>
+      </div>
+      <div class="prev-col">
+        <div class="pc-label">Investment Outlook</div>
+        <div class="pc-text">₹40T+ pipeline · Private sector access · Corporate PPA growth · Global capital allocation</div>
+      </div>
+    </div>
+
+    <!-- STATS ROW -->
+    <div class="stats">
+      <div class="st">
+        <div class="st-n">300<span style="font-size:.85rem"> GW</span></div>
+        <div class="st-l">RE Target 2030</div>
+      </div>
+      <div class="st">
+        <div class="st-n">20%+</div>
+        <div class="st-l">Annual RE Growth</div>
+      </div>
+      <div class="st">
+        <div class="st-n">₹40T</div>
+        <div class="st-l">Investment Pipeline</div>
+      </div>
+      <div class="st">
+        <div class="st-n">9</div>
+        <div class="st-l">Strategic Chapters</div>
+      </div>
+      <div class="st">
+        <div class="st-n">2047</div>
+        <div class="st-l">Viksit Bharat</div>
+      </div>
+    </div>
+
+    <!-- BOTTOM BAR -->
+    <div class="botbar">
+      <div class="bb-pub">
+        <strong>Association of Power Producers India (APP)</strong><br/>
+        Official Publication · New Delhi · 2025 · All Rights Reserved
+      </div>
+      <div class="bb-logo">APP India</div>
+      <div class="bb-bar">
+        <span style="height:20px"></span><span style="height:26px"></span><span style="height:16px"></span>
+        <span style="height:26px"></span><span style="height:22px"></span><span style="height:26px"></span>
+        <span style="height:18px"></span><span style="height:26px"></span><span style="height:14px"></span>
+        <span style="height:26px"></span><span style="height:20px"></span><span style="height:24px"></span>
+        <span style="height:26px"></span><span style="height:15px"></span><span style="height:26px"></span>
+        <span style="height:19px"></span><span style="height:26px"></span><span style="height:22px"></span>
+      </div>
+    </div>
+
+  </div><!-- /wrap -->
+</div><!-- /page cover -->
+
+<p class="print-note">☝️ To save as PDF: Click Print → Change destination to "Save as PDF" → Set paper size to A4 → Save</p>
+
+</body>
+</html>

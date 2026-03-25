@@ -12,6 +12,12 @@ app.get('/night-mate', (c) => c.redirect('/static/landing.html'))
 // Legacy redirect — old landing now leads to night mate info page
 app.get('/landing', (c) => c.redirect('/static/landing.html'))
 
+// Power India publication pages
+app.get('/power-india', (c) => c.redirect('/static/india-cover.html'))
+app.get('/india-cover', (c) => c.redirect('/static/india-cover.html'))
+app.get('/india-synopsis', (c) => c.redirect('/static/india-synopsis.html'))
+app.get('/makeup', (c) => c.redirect('/static/makeup.html'))
+
 app.get('/old-app', (c) => c.html(`<!DOCTYPE html>
 <html lang="en">
 <head>

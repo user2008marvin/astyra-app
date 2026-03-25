@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Power India 2047 — Publication Synopsis</title>
+<style>
+/* ─── RESET ────────────────────────────────────────────────── */
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{
+  background:#1f2937;
+  min-height:100vh;
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+  display:flex;flex-direction:column;align-items:center;
+  padding:32px 16px 60px;gap:32px;
+}
+@media print{
+  body{background:#fff;padding:0}
+  .print-btn,.print-note{display:none!important}
+  .page{box-shadow:none!important}
+}
+.print-btn{
+  background:linear-gradient(135deg,#f97316,#dc2626);
+  color:#fff;border:none;border-radius:8px;
+  padding:12px 32px;font-size:.9rem;font-weight:700;cursor:pointer;
+  letter-spacing:.5px;box-shadow:0 4px 20px rgba(249,115,22,.4);transition:all .2s;
+}
+.print-btn:hover{transform:translateY(-2px)}
+.print-note{font-size:.75rem;color:rgba(255,255,255,.35);text-align:center;max-width:600px;line-height:1.6}
+
+/* ─── A4 PAGE ──────────────────────────────────────────────── */
+.page{
+  width:794px;
+  min-height:1123px;
+  background:#fdfcf8;
+  box-shadow:0 30px 80px rgba(0,0,0,.7);
+  display:flex;
+  flex-direction:column;
+  flex-shrink:0;
+  position:relative;
+  overflow:hidden;
+}
+
+/* ─── HEADER ───────────────────────────────────────────────── */
+.hdr{
+  background:linear-gradient(135deg,#03071e 0%,#1a0800 65%,#2d0a00 100%);
+  padding:34px 50px 26px;
+  border-bottom:4px solid #f97316;
+  position:relative;
+  overflow:hidden;
+  flex-shrink:0;
+}
+/* Watermark text */
+.hdr::after{
+  content:'SYNOPSIS';
+  position:absolute;
+  right:-28px;top:50%;transform:translateY(-50%);
+  font-family:Georgia,'Times New Roman',serif;
+  font-size:5.5rem;font-weight:700;
+  color:rgba(249,115,22,.06);
+  letter-spacing:10px;white-space:nowrap;
+  pointer-events:none;
+}
+/* Decorative right line */
+.hdr::before{
+  content:'';position:absolute;
+  top:0;right:0;bottom:0;
+  width:3px;
+  background:linear-gradient(180deg,transparent,rgba(249,115,22,.4),transparent);
+}
+.hdr-eyebrow{
+  font-size:.58rem;font-weight:800;letter-spacing:4px;
+  text-transform:uppercase;color:#f97316;margin-bottom:8px;
+  display:flex;align-items:center;gap:10px;
+}
+.hdr-eyebrow::before{
+  content:'';display:inline-block;
+  width:20px;height:2px;background:#f97316;flex-shrink:0;
+}
+.hdr-title{
+  font-family:Georgia,'Times New Roman',Times,serif;
+  font-weight:700;font-size:1.75rem;
+  color:#fff;line-height:1.2;margin-bottom:5px;
+}
+.hdr-sub{
+  font-family:Georgia,'Times New Roman',Times,serif;
+  font-size:.82rem;font-style:italic;font-weight:400;
+  color:rgba(255,255,255,.55);letter-spacing:.3px;
+}
+.hdr-meta{
+  display:flex;align-items:center;gap:16px;
+  margin-top:14px;
+}
+.hdr-badge{
+  background:linear-gradient(135deg,#ea580c,#dc2626);
+  color:#fff;font-size:.55rem;font-weight:800;
+  letter-spacing:2px;text-transform:uppercase;
+  padding:4px 12px;border-radius:3px;
+}
+.hdr-meta-text{
+  font-size:.58rem;font-weight:600;letter-spacing:1px;
+  color:rgba(255,255,255,.35);text-transform:uppercase;
+}
+
+/* ─── BODY ──────────────────────────────────────────────────── */
+.body{
+  flex:1;
+  padding:32px 50px 24px;
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+}
+
+/* ─── INTRO BLOCK ───────────────────────────────────────────── */
+.intro{
+  border-left:3px solid #f97316;
+  background:linear-gradient(135deg,rgba(249,115,22,.06),rgba(249,115,22,.02));
+  padding:16px 20px;
+  border-radius:0 6px 6px 0;
+}
+.intro p{
+  font-size:.82rem;line-height:1.85;color:#2d1a00;font-weight:400;
+}
+.intro p strong{color:#b45309;font-weight:700}
+
+/* ─── SECTION GRID ──────────────────────────────────────────── */
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px 24px;
+  flex:1;
+}
+
+/* Individual chapter block */
+.block{
+  padding:0 0 0 12px;
+  border-left:2px solid rgba(249,115,22,.3);
+  position:relative;
+}
+.block::before{
+  content:'';
+  position:absolute;left:-5px;top:0;
+  width:8px;height:8px;
+  background:#f97316;
+  transform:rotate(45deg);
+  border-radius:1px;
+}
+.blk-num{
+  font-size:.52rem;font-weight:800;letter-spacing:3px;
+  text-transform:uppercase;color:#f97316;margin-bottom:4px;
+}
+.blk-title{
+  font-family:Georgia,'Times New Roman',Times,serif;
+  font-size:.88rem;font-weight:700;
+  color:#1a0800;line-height:1.3;
+  margin-bottom:6px;
+  padding-bottom:5px;
+  border-bottom:1px solid rgba(249,115,22,.18);
+}
+.blk-text{
+  font-size:.68rem;line-height:1.72;color:#555;font-weight:400;
+}
+.blk-text ul{
+  list-style:none;padding:0;
+  display:flex;flex-direction:column;gap:2px;
+}
+.blk-text ul li::before{
+  content:'›';
+  color:#f97316;font-weight:700;
+  margin-right:5px;
+}
+
+/* ─── INVESTMENT HIGHLIGHT ──────────────────────────────────── */
+.highlight{
+  grid-column:1/-1;
+  background:linear-gradient(135deg,#03071e 0%,#1a0800 100%);
+  border-radius:6px;
+  padding:16px 20px;
+  display:flex;align-items:flex-start;gap:16px;
+  border:1px solid rgba(249,115,22,.25);
+  position:relative;overflow:hidden;
+}
+.highlight::after{
+  content:'';position:absolute;
+  top:0;left:0;bottom:0;
+  width:3px;
+  background:linear-gradient(180deg,#f97316,#fbbf24);
+}
+.hl-icon{
+  font-size:1.8rem;flex-shrink:0;padding-top:2px;
+}
+.hl-content{}
+.hl-label{
+  font-size:.52rem;font-weight:800;letter-spacing:3px;
+  text-transform:uppercase;color:#f97316;margin-bottom:5px;
+}
+.hl-text{
+  font-size:.72rem;line-height:1.75;color:rgba(255,255,255,.7);
+}
+.hl-text strong{color:#fbbf24;font-weight:700}
+
+/* ─── STATS STRIP ───────────────────────────────────────────── */
+.stats{
+  display:flex;
+  border-top:1px solid #e8d5b0;
+  padding-top:16px;
+  gap:0;
+}
+.stat{
+  flex:1;text-align:center;
+  border-right:1px solid #e8d5b0;
+  padding:0 8px;
+}
+.stat:last-child{border-right:none}
+.stat-n{
+  font-family:Georgia,'Times New Roman',Times,serif;
+  font-size:1.55rem;font-weight:700;
+  color:#b45309;line-height:1;margin-bottom:3px;
+}
+.stat-l{
+  font-size:.52rem;font-weight:700;letter-spacing:1px;
+  text-transform:uppercase;color:#9ca3af;
+}
+
+/* ─── FOOTER ────────────────────────────────────────────────── */
+.ftr{
+  padding:14px 50px;
+  background:linear-gradient(135deg,#03071e,#1a0800);
+  border-top:2px solid #f97316;
+  display:flex;align-items:center;justify-content:space-between;
+  flex-shrink:0;
+}
+.ftr-left{
+  font-size:.56rem;font-weight:600;letter-spacing:.4px;
+  color:rgba(255,255,255,.35);text-transform:uppercase;line-height:1.7;
+}
+.ftr-left strong{color:rgba(255,255,255,.6)}
+.ftr-logo{
+  font-family:Georgia,'Times New Roman',Times,serif;
+  font-size:1rem;font-weight:700;color:#f97316;letter-spacing:.5px;
+}
+.ftr-page{
+  font-size:.58rem;font-weight:700;letter-spacing:2px;
+  color:rgba(255,255,255,.3);text-transform:uppercase;
+}
+</style>
+</head>
+<body>
+
+<button class="print-btn" onclick="window.print()">🖨️ Print / Save as PDF — Set paper to A4</button>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SYNOPSIS PAGE
+═══════════════════════════════════════════════════════════ -->
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="hdr">
+    <div class="hdr-eyebrow">Association of Power Producers India · Official Publication</div>
+    <div class="hdr-title">
+      Power India 2047: Reliability, Flexibility &amp;<br/>
+      the Next Phase of Energy Transformation
+    </div>
+    <div class="hdr-sub">Publication Synopsis · Strategic Overview · 2025 Edition</div>
+    <div class="hdr-meta">
+      <div class="hdr-badge">Official Publication 2025</div>
+      <div class="hdr-meta-text">Special Edition · Volume XII · New Delhi</div>
+    </div>
+  </div>
+
+  <!-- BODY -->
+  <div class="body">
+
+    <!-- INTRO -->
+    <div class="intro">
+      <p>
+        <strong>Power India 2047</strong> is the flagship strategic publication of the
+        <strong>Association of Power Producers India (APP)</strong>, examining the sector's
+        transition from capacity expansion to systemic transformation. As India approaches
+        <strong>300 GW of renewable capacity by 2030</strong> and aligns its energy architecture
+        with the <strong>Viksit Bharat 2047</strong> national vision, this publication provides
+        the definitive strategic reference for policy makers, investors, regulators, and
+        industry leaders navigating the next critical phase of India's power evolution.
+        The publication presents India's power sector not only as a story of scale, but as
+        a <strong>model of system transformation at national level</strong>.
+      </p>
+    </div>
+
+    <!-- CHAPTER GRID -->
+    <div class="grid">
+
+      <!-- Ch 1 -->
+      <div class="block">
+        <div class="blk-num">Chapter 01</div>
+        <div class="blk-title">From Capacity Expansion to System Transformation</div>
+        <div class="blk-text">
+          India's power sector has moved beyond capacity expansion into a complex phase
+          of reliability, flexibility and efficiency optimisation within a diversified
+          energy mix. Peak demand is at record levels; renewables growing at 20%+ annually.
+          The publication frames India as a global model of national-scale energy transformation.
+        </div>
+      </div>
+
+      <!-- Ch 2 -->
+      <div class="block">
+        <div class="blk-num">Chapter 02</div>
+        <div class="blk-title">Renewable Energy Acceleration &amp; Integration</div>
+        <div class="blk-text">
+          <ul>
+            <li>Solar and wind capacity additions at record pace — 20%+ annual growth</li>
+            <li>Green Energy Corridors for large-scale power evacuation</li>
+            <li>Hybrid and round-the-clock (RTC) renewable tenders</li>
+            <li>ALMM domestic manufacturing framework targeting 100 GW+</li>
+            <li>Grid congestion, curtailment risks and integration strategies</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Ch 3 -->
+      <div class="block">
+        <div class="blk-num">Chapter 03</div>
+        <div class="blk-title">Grid Reliability, Flexibility &amp; Storage</div>
+        <div class="blk-text">
+          <ul>
+            <li>Peak demand management and dispatchable capacity requirements</li>
+            <li>BESS deployment underpinned by Viability Gap Funding (VGF)</li>
+            <li>Pumped storage projects as long-duration storage solutions</li>
+            <li>Coal plant flexibilisation below technical minimum thresholds</li>
+            <li>Ancillary services markets for frequency regulation</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Ch 4 -->
+      <div class="block">
+        <div class="blk-num">Chapter 04</div>
+        <div class="blk-title">Transmission Expansion &amp; Infrastructure Modernisation</div>
+        <div class="blk-text">
+          <ul>
+            <li>Inter-state transmission network acceleration</li>
+            <li>High-voltage infrastructure linking generation hubs to demand centres</li>
+            <li>Digital monitoring and grid management technologies</li>
+            <li>Investment opportunities across transmission corridors</li>
+            <li>Structural alignment of expansion pace with generation growth</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Ch 5 -->
+      <div class="block">
+        <div class="blk-num">Chapter 05</div>
+        <div class="blk-title">Distribution Sector Reform — DISCOM Transformation</div>
+        <div class="blk-text">
+          <ul>
+            <li>Revamped Distribution Sector Scheme (RDSS) implementation</li>
+            <li>Smart prepaid metering rollout at national scale</li>
+            <li>AT&amp;C loss reduction and billing efficiency improvements</li>
+            <li>Financial restructuring for long-term DISCOM viability</li>
+            <li>Time-of-Day tariffs and DBT subsidy mechanisms</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Ch 6 -->
+      <div class="block">
+        <div class="blk-num">Chapter 06</div>
+        <div class="blk-title">Policy, Regulation &amp; Market Evolution</div>
+        <div class="blk-text">
+          <ul>
+            <li>Electricity Act amendments and structural policy reforms</li>
+            <li>Competitive bidding frameworks across generation and storage</li>
+            <li>Open access market and corporate PPA expansion</li>
+            <li>Power exchanges and market-based dispatch mechanisms</li>
+            <li>Private sector participation in nuclear energy</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Ch 7 + 8 combined -->
+      <div class="block">
+        <div class="blk-num">Chapters 07 – 08</div>
+        <div class="blk-title">Digitalisation, Smart Systems &amp; Emerging Themes</div>
+        <div class="blk-text">
+          <ul>
+            <li>AI-based forecasting for demand and renewable generation</li>
+            <li>Predictive maintenance, SCADA and ADMS smart grid deployment</li>
+            <li>Climate resilience and grid adaptation to extreme weather</li>
+            <li>Just transition strategies for coal-dependent regions</li>
+            <li>Green hydrogen and electric mobility ecosystem development</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Investment highlight — full width -->
+      <div class="highlight">
+        <div class="hl-icon">⚡</div>
+        <div class="hl-content">
+          <div class="hl-label">Chapter 09 — Investment Landscape &amp; Opportunities</div>
+          <div class="hl-text">
+            India represents one of the <strong>world's largest and most attractive power sector investment markets</strong>,
+            with opportunities spanning renewable energy and hybrid systems, battery storage,
+            transmission modernisation, smart metering, and industrial decarbonisation.
+            Key verticals include corporate PPA procurement and green hydrogen infrastructure.
+            With <strong>strong policy direction, deep market capacity, and robust institutional
+            frameworks</strong>, India is firmly positioned as a leading global destination for
+            long-term energy capital — offering both scale and structural investment certainty
+            across the full value chain of the power sector.
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /grid -->
+
+    <!-- STATS -->
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-n">300 <span style="font-size:.9rem">GW</span></div>
+        <div class="stat-l">RE Target 2030</div>
+      </div>
+      <div class="stat">
+        <div class="stat-n">20%+</div>
+        <div class="stat-l">Annual RE Growth</div>
+      </div>
+      <div class="stat">
+        <div class="stat-n">9</div>
+        <div class="stat-l">Strategic Chapters</div>
+      </div>
+      <div class="stat">
+        <div class="stat-n">₹40T+</div>
+        <div class="stat-l">Investment Pipeline</div>
+      </div>
+      <div class="stat">
+        <div class="stat-n">2047</div>
+        <div class="stat-l">Viksit Bharat Vision</div>
+      </div>
+    </div>
+
+  </div><!-- /body -->
+
+  <!-- FOOTER -->
+  <div class="ftr">
+    <div class="ftr-left">
+      <strong>Association of Power Producers India (APP)</strong><br/>
+      Official Publication · New Delhi · 2025 · All Rights Reserved
+    </div>
+    <div class="ftr-logo">APP India</div>
+    <div class="ftr-page">Publication Synopsis</div>
+  </div>
+
+</div><!-- /page -->
+
+<p class="print-note">☝️ To save as PDF: Click Print → "Save as PDF" → Paper size A4 → Save</p>
+
+</body>
+</html>
