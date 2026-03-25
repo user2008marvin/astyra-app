@@ -42,10 +42,12 @@ body {
   background: #fff;
 }
 
-/* ── PRINT BUTTON ── */
+/* ── STICKY NAV BAR ── */
 .print-bar {
-  background: #1a1a2e;
-  padding: 14px 24px;
+  background: rgba(10,10,15,0.96);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 12px 28px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -54,29 +56,92 @@ body {
   position: sticky;
   top: 0;
   z-index: 999;
+  border-bottom: 1px solid rgba(168,85,247,.18);
+}
+.print-bar-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.print-bar-logo {
+  font-family: Arial, sans-serif;
+  font-size: 15pt;
+  font-weight: 900;
+  letter-spacing: -1px;
+  background: linear-gradient(135deg, #a855f7, #ec4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+}
+.print-bar-pill {
+  font-family: Arial, sans-serif;
+  font-size: 7pt;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(168,85,247,.8);
+  background: rgba(168,85,247,.1);
+  border: 1px solid rgba(168,85,247,.25);
+  border-radius: 20px;
+  padding: 3px 10px;
+}
+.print-bar-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 .print-bar-title {
-  color: rgba(255,255,255,.7);
-  font-size: 9pt;
+  color: rgba(255,255,255,.4);
+  font-size: 8pt;
   font-family: Arial, sans-serif;
-  letter-spacing: 1px;
+  letter-spacing: .5px;
 }
 .print-btn {
-  background: linear-gradient(135deg, #7c3aed, #ec4899);
-  color: #fff;
-  border: none;
+  background: rgba(255,255,255,.07);
+  color: rgba(255,255,255,.7);
+  border: 1px solid rgba(255,255,255,.12);
   border-radius: 8px;
-  padding: 10px 24px;
-  font-size: 9pt;
+  padding: 8px 18px;
+  font-size: 8pt;
   font-weight: 700;
   font-family: Arial, sans-serif;
   cursor: pointer;
   letter-spacing: 1px;
   text-transform: uppercase;
+  transition: all .15s;
+}
+.print-btn:hover {
+  background: rgba(255,255,255,.12);
+  color: #fff;
+}
+.try-btn {
+  background: linear-gradient(135deg, #7c3aed, #ec4899);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 9px 22px;
+  font-size: 8.5pt;
+  font-weight: 800;
+  font-family: Arial, sans-serif;
+  cursor: pointer;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all .15s;
+  box-shadow: 0 4px 14px rgba(124,58,237,.35);
+}
+.try-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(124,58,237,.5);
 }
 .print-tip {
   font-size: 8pt;
-  color: rgba(255,255,255,.5);
+  color: rgba(255,255,255,.3);
   font-family: Arial, sans-serif;
 }
 
@@ -745,17 +810,253 @@ li {
   font-size: 8pt;
   color: rgba(255,255,255,.3);
 }
+
+/* ── SUBSCRIBER HERO ── */
+.sub-hero {
+  background: linear-gradient(160deg, #0a0a0f 0%, #1a0834 50%, #0f0520 100%);
+  padding: 80px 24px 70px;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+.sub-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 40% at 20% 20%, rgba(168,85,247,.12), transparent),
+    radial-gradient(ellipse 50% 60% at 80% 80%, rgba(236,72,153,.1), transparent);
+  pointer-events: none;
+}
+.sub-hero-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 680px;
+  margin: 0 auto;
+}
+.sub-hero-badge {
+  display: inline-block;
+  font-family: Arial, sans-serif;
+  font-size: 7.5pt;
+  font-weight: 800;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #a855f7;
+  background: rgba(168,85,247,.1);
+  border: 1px solid rgba(168,85,247,.25);
+  border-radius: 20px;
+  padding: 5px 16px;
+  margin-bottom: 22px;
+}
+.sub-hero-logo {
+  font-family: Arial, sans-serif;
+  font-size: 52pt;
+  font-weight: 900;
+  letter-spacing: -3px;
+  background: linear-gradient(135deg, #a855f7 30%, #ec4899 70%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+  margin-bottom: 18px;
+}
+.sub-hero-title {
+  font-family: Arial, sans-serif;
+  font-size: 22pt;
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.2;
+  letter-spacing: -.5px;
+  margin-bottom: 16px;
+}
+.sub-hero-sub {
+  font-family: Arial, sans-serif;
+  font-size: 10.5pt;
+  color: rgba(255,255,255,.5);
+  line-height: 1.65;
+  max-width: 520px;
+  margin: 0 auto 32px;
+}
+.sub-hero-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 36px;
+}
+.sub-cta-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(135deg, #7c3aed, #ec4899);
+  color: #fff;
+  text-decoration: none;
+  border: none;
+  border-radius: 12px;
+  padding: 14px 28px;
+  font-family: Arial, sans-serif;
+  font-size: 10pt;
+  font-weight: 800;
+  letter-spacing: .5px;
+  cursor: pointer;
+  box-shadow: 0 6px 24px rgba(124,58,237,.4);
+  transition: all .2s;
+}
+.sub-cta-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 32px rgba(124,58,237,.55);
+}
+.sub-cta-secondary {
+  background: rgba(255,255,255,.07);
+  color: rgba(255,255,255,.65);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 12px;
+  padding: 14px 24px;
+  font-family: Arial, sans-serif;
+  font-size: 10pt;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all .15s;
+}
+.sub-cta-secondary:hover {
+  background: rgba(255,255,255,.12);
+  color: #fff;
+}
+.sub-hero-stats {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  flex-wrap: wrap;
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.07);
+  border-radius: 14px;
+  padding: 18px 28px;
+  margin-bottom: 28px;
+}
+.sh-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 24px;
+}
+.sh-stat-n {
+  font-family: Arial, sans-serif;
+  font-size: 18pt;
+  font-weight: 900;
+  color: #fff;
+  line-height: 1;
+  margin-bottom: 3px;
+}
+.sh-stat-l {
+  font-family: Arial, sans-serif;
+  font-size: 7pt;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.35);
+}
+.sh-stat-divider {
+  width: 1px;
+  height: 32px;
+  background: rgba(255,255,255,.1);
+}
+.sub-hero-scroll {
+  font-family: Arial, sans-serif;
+  font-size: 8pt;
+  color: rgba(255,255,255,.25);
+  letter-spacing: 1px;
+  animation: float-scroll 2.5s ease-in-out infinite;
+}
+@keyframes float-scroll {
+  0%,100% { transform: translateY(0); opacity: .25; }
+  50% { transform: translateY(4px); opacity: .5; }
+}
+
+/* ── BOTTOM CTA ── */
+.bottom-cta {
+  background: linear-gradient(160deg, #0a0a0f, #1a0834);
+  padding: 70px 24px 80px;
+  text-align: center;
+  border-top: 1px solid rgba(168,85,247,.15);
+}
+.bottom-cta-inner {
+  max-width: 520px;
+  margin: 0 auto;
+}
+.bc-eyebrow {
+  font-family: Arial, sans-serif;
+  font-size: 8pt;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(168,85,247,.7);
+  margin-bottom: 12px;
+}
+.bc-title {
+  font-family: Arial, sans-serif;
+  font-size: 20pt;
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: -.5px;
+  line-height: 1.2;
+  margin-bottom: 12px;
+}
+.bc-sub {
+  font-family: Arial, sans-serif;
+  font-size: 10pt;
+  color: rgba(255,255,255,.45);
+  line-height: 1.6;
+  margin-bottom: 28px;
+}
+.bc-fine {
+  font-family: Arial, sans-serif;
+  font-size: 8pt;
+  color: rgba(255,255,255,.2);
+  margin-top: 14px;
+}
 </style>
 </head>
 <body>
 
-<!-- PRINT BAR -->
+<!-- STICKY NAV -->
 <div class="print-bar no-print">
-  <div>
-    <div class="print-bar-title">LUMÉ — USER MANUAL</div>
-    <div class="print-tip">Click "Print / Save as PDF" → Set paper to A4 → Save</div>
+  <div class="print-bar-left">
+    <div class="print-bar-logo">LUMÉ</div>
+    <div class="print-bar-pill">User Manual v2.0</div>
   </div>
-  <button class="print-btn" onclick="window.print()">🖨 Print / Save as PDF</button>
+  <div class="print-bar-right">
+    <span class="print-bar-title">🖨 Print / Save as PDF → Set paper to A4</span>
+    <button class="print-btn" onclick="window.print()">🖨 Save as PDF</button>
+    <a class="try-btn" href="/makeup">✦ Try the App →</a>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     SUBSCRIBER HERO (screen only, not printed)
+═══════════════════════════════════════ -->
+<div class="sub-hero no-print">
+  <div class="sub-hero-inner">
+    <div class="sub-hero-badge">✦ Official Product Guide</div>
+    <div class="sub-hero-logo">LUMÉ</div>
+    <div class="sub-hero-title">See exactly what you get<br/>before you subscribe.</div>
+    <div class="sub-hero-sub">This is the complete user manual for LUMÉ — the AI occasion makeup look engine. Every feature, every screen, every revenue stream explained in full. Scroll to read it all, or save it as a PDF.</div>
+    <div class="sub-hero-actions">
+      <a class="sub-cta-primary" href="/makeup">✦ Try LUMÉ Free — No Sign-Up Needed →</a>
+      <button class="sub-cta-secondary" onclick="window.print()">🖨 Save as PDF</button>
+    </div>
+    <div class="sub-hero-stats">
+      <div class="sh-stat"><span class="sh-stat-n">12</span><span class="sh-stat-l">Occasions</span></div>
+      <div class="sh-stat-divider"></div>
+      <div class="sh-stat"><span class="sh-stat-n">6</span><span class="sh-stat-l">Skin Tones</span></div>
+      <div class="sh-stat-divider"></div>
+      <div class="sh-stat"><span class="sh-stat-n">216</span><span class="sh-stat-l">Look Combinations</span></div>
+      <div class="sh-stat-divider"></div>
+      <div class="sh-stat"><span class="sh-stat-n">4</span><span class="sh-stat-l">Revenue Streams</span></div>
+    </div>
+    <div class="sub-hero-scroll">↓ Scroll to read the full manual</div>
+  </div>
 </div>
 
 <div class="page">
@@ -1585,6 +1886,19 @@ li {
 </div>
 
 </div><!-- /page -->
+
+<!-- ═══════════════════════════════════════
+     BOTTOM CTA (screen only)
+═══════════════════════════════════════ -->
+<div class="bottom-cta no-print">
+  <div class="bottom-cta-inner">
+    <div class="bc-eyebrow">You've read the whole thing.</div>
+    <div class="bc-title">Ready to generate your first look?</div>
+    <div class="bc-sub">Free to use. No account. No camera required. Results in 60 seconds.</div>
+    <a class="sub-cta-primary" href="/makeup">✦ Open LUMÉ — Start Free →</a>
+    <div class="bc-fine">3 free scans per month · Pro from $4.99/mo · Cancel anytime</div>
+  </div>
+</div>
 
 </body>
 </html>
