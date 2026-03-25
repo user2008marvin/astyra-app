@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0"/>
+<title>Astyra — Makeup chosen for your occasion</title>
+<meta name="description" content="AI-powered occasion makeup. Upload your face, pick your occasion, get 3 expert looks with exact colours and products."/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;
+  background:#0a0a0f;color:#fff;
+  min-height:100vh;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+
+/* ── HERO ── */
+.hero{
+  min-height:100vh;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  padding:40px 20px 60px;
+  position:relative;
+  background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(124,58,237,.25),transparent),
+             radial-gradient(ellipse 60% 40% at 80% 80%,rgba(236,72,153,.15),transparent),
+             #0a0a0f;
+}
+.hero::before{
+  content:'';
+  position:absolute;inset:0;
+  background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.015'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  pointer-events:none;
+}
+
+.logo-wrap{
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  margin-bottom:32px;
+}
+.logo{
+  font-size:3rem;font-weight:900;letter-spacing:-2px;
+  background:linear-gradient(135deg,#a855f7,#ec4899,#f59e0b);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.logo-tag{
+  font-size:.55rem;font-weight:800;letter-spacing:3px;text-transform:uppercase;
+  color:rgba(255,255,255,.3);display:block;text-align:center;margin-top:-8px;
+}
+
+.eyebrow{
+  font-size:.62rem;font-weight:800;letter-spacing:3px;text-transform:uppercase;
+  background:linear-gradient(135deg,#a855f7,#ec4899);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+  margin-bottom:16px;text-align:center;
+}
+.headline{
+  font-size:clamp(2rem,8vw,3.2rem);font-weight:900;letter-spacing:-2px;
+  line-height:1.1;text-align:center;color:#fff;margin-bottom:14px;
+  max-width:520px;
+}
+.headline em{
+  font-style:normal;
+  background:linear-gradient(135deg,#a855f7,#ec4899,#f59e0b);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.sub{
+  font-size:1rem;color:rgba(255,255,255,.55);
+  text-align:center;line-height:1.6;max-width:380px;margin-bottom:32px;
+}
+
+/* ── STATS ── */
+.stats{
+  display:flex;gap:24px;justify-content:center;flex-wrap:wrap;
+  margin-bottom:36px;
+}
+.stat{text-align:center;}
+.stat-n{font-size:1.6rem;font-weight:900;background:linear-gradient(135deg,#a855f7,#ec4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.stat-l{font-size:.58rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.35);margin-top:2px;}
+
+/* ── CTA BUTTONS ── */
+.cta-wrap{
+  display:flex;flex-direction:column;align-items:center;gap:12px;
+  width:100%;max-width:320px;
+}
+.btn-primary{
+  width:100%;padding:17px 24px;border:none;border-radius:16px;
+  background:linear-gradient(135deg,#7c3aed,#a855f7,#ec4899);
+  color:#fff;font-size:1rem;font-weight:900;cursor:pointer;
+  letter-spacing:.5px;text-align:center;text-decoration:none;display:block;
+  box-shadow:0 6px 32px rgba(124,58,237,.45);
+  transition:transform .15s,box-shadow .15s;
+}
+.btn-primary:active{transform:scale(.97);box-shadow:0 2px 16px rgba(124,58,237,.3);}
+.btn-secondary{
+  width:100%;padding:14px 24px;border:1.5px solid rgba(255,255,255,.12);border-radius:16px;
+  background:rgba(255,255,255,.04);backdrop-filter:blur(10px);
+  color:rgba(255,255,255,.75);font-size:.85rem;font-weight:700;cursor:pointer;
+  text-align:center;text-decoration:none;display:block;
+  transition:all .15s;
+}
+.btn-secondary:active{background:rgba(255,255,255,.08);}
+.free-note{font-size:.65rem;color:rgba(255,255,255,.3);text-align:center;}
+
+/* ── HOW IT WORKS ── */
+.how{
+  padding:60px 20px;
+  background:rgba(255,255,255,.02);
+  border-top:1px solid rgba(255,255,255,.06);
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+.how-title{
+  font-size:1.4rem;font-weight:900;text-align:center;color:#fff;
+  margin-bottom:32px;letter-spacing:-1px;
+}
+.steps{
+  display:flex;flex-direction:column;gap:16px;max-width:400px;margin:0 auto;
+}
+.step{
+  display:flex;gap:16px;align-items:flex-start;
+  background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);
+  border-radius:16px;padding:16px;
+}
+.step-num{
+  width:36px;height:36px;border-radius:50%;flex-shrink:0;
+  background:linear-gradient(135deg,#7c3aed,#ec4899);
+  color:#fff;font-size:.8rem;font-weight:900;
+  display:flex;align-items:center;justify-content:center;
+}
+.step-text{flex:1;}
+.step-t{font-size:.85rem;font-weight:800;color:#fff;margin-bottom:4px;}
+.step-s{font-size:.72rem;color:rgba(255,255,255,.45);line-height:1.5;}
+
+/* ── OCCASIONS ── */
+.occasions{
+  padding:50px 20px;background:#0a0a0f;
+}
+.occ-title{font-size:1.2rem;font-weight:900;text-align:center;color:#fff;margin-bottom:6px;}
+.occ-sub{font-size:.72rem;color:rgba(255,255,255,.4);text-align:center;margin-bottom:24px;}
+.occ-chips{
+  display:flex;flex-wrap:wrap;gap:8px;
+  justify-content:center;max-width:400px;margin:0 auto 32px;
+}
+.occ-chip{
+  background:rgba(124,58,237,.12);border:1px solid rgba(124,58,237,.25);
+  border-radius:20px;padding:7px 14px;
+  font-size:.72rem;font-weight:700;color:rgba(255,255,255,.7);
+}
+.occ-chip.pro{border-color:rgba(212,175,55,.25);background:rgba(212,175,55,.08);color:rgba(212,175,55,.8);}
+
+/* ── BOTTOM CTA ── */
+.bottom-cta{
+  padding:60px 20px 80px;text-align:center;
+  background:radial-gradient(ellipse 80% 60% at 50% 100%,rgba(124,58,237,.2),transparent),#0a0a0f;
+}
+.bc-title{font-size:1.8rem;font-weight:900;letter-spacing:-1px;color:#fff;margin-bottom:10px;}
+.bc-sub{font-size:.82rem;color:rgba(255,255,255,.45);margin-bottom:28px;line-height:1.6;max-width:320px;margin-left:auto;margin-right:auto;}
+.bc-cta{
+  display:inline-block;padding:17px 36px;border:none;border-radius:16px;
+  background:linear-gradient(135deg,#7c3aed,#a855f7,#ec4899);
+  color:#fff;font-size:1rem;font-weight:900;cursor:pointer;
+  text-decoration:none;letter-spacing:.5px;
+  box-shadow:0 6px 32px rgba(124,58,237,.45);
+}
+
+/* ── FOOTER ── */
+.footer{
+  padding:20px;text-align:center;
+  border-top:1px solid rgba(255,255,255,.06);
+}
+.footer-links{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin-bottom:10px;}
+.footer-links a{font-size:.65rem;color:rgba(255,255,255,.3);text-decoration:none;}
+.footer-links a:hover{color:rgba(255,255,255,.6);}
+.footer-copy{font-size:.6rem;color:rgba(255,255,255,.2);}
+</style>
+</head>
+<body>
+
+<!-- ══════════════ HERO ══════════════ -->
+<section class="hero">
+  <div class="logo-wrap">
+    <div>
+      <div class="logo">Astyra</div>
+      <div class="logo-tag">Makeup chosen for your occasion</div>
+    </div>
+  </div>
+
+  <div class="eyebrow">✦ AI-Powered · Free to Try</div>
+  <h1 class="headline">AI picks your makeup<br/><em>for every occasion</em></h1>
+  <p class="sub">Upload a bare face. Pick your occasion. Get 3 expert-level looks with exact colours and the products to buy.</p>
+
+  <div class="stats">
+    <div class="stat"><div class="stat-n">12</div><div class="stat-l">Occasions</div></div>
+    <div class="stat"><div class="stat-n">216</div><div class="stat-l">Combinations</div></div>
+    <div class="stat"><div class="stat-n">Free</div><div class="stat-l">To Start</div></div>
+  </div>
+
+  <div class="cta-wrap">
+    <a class="btn-primary" href="/makeup">✦ Try Astyra Free →</a>
+    <a class="btn-secondary" href="/astyra-manual" target="_blank">📖 Read the User Manual</a>
+    <div class="free-note">No app download · 3 free scans · No credit card</div>
+  </div>
+</section>
+
+<!-- ══════════════ HOW IT WORKS ══════════════ -->
+<section class="how">
+  <div class="how-title">How it works</div>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-text">
+        <div class="step-t">📷 Upload your bare face</div>
+        <div class="step-s">No makeup. Good lighting. Your photo never leaves your device.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-text">
+        <div class="step-t">🎉 Pick your occasion</div>
+        <div class="step-s">Wedding guest? First date? Job interview? 12 occasions, 3 locked for Pro.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-text">
+        <div class="step-t">🎨 Select your skin tone</div>
+        <div class="step-s">6 dermal base tones. Astyra calibrates every colour to your skin.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-text">
+        <div class="step-t">✦ Get 3 expert looks</div>
+        <div class="step-s">Natural, Glam, and Trendy — with exact hex codes and the products to buy.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ OCCASIONS ══════════════ -->
+<section class="occasions">
+  <div class="occ-title">12 occasions in the library</div>
+  <div class="occ-sub">Each one mapped across 6 skin tones × 3 looks = 216 combinations</div>
+  <div class="occ-chips">
+    <span class="occ-chip">💍 Wedding Guest</span>
+    <span class="occ-chip">🥂 Night Out</span>
+    <span class="occ-chip">💕 First Date</span>
+    <span class="occ-chip">🎓 Graduation</span>
+    <span class="occ-chip">💼 Corporate</span>
+    <span class="occ-chip">🌸 Brunch</span>
+    <span class="occ-chip">📸 Photoshoot</span>
+    <span class="occ-chip">📋 Job Interview</span>
+    <span class="occ-chip">🎂 Birthday Party</span>
+    <span class="occ-chip pro">👰 Bridal 👑</span>
+    <span class="occ-chip pro">✨ Black Tie Gala 👑</span>
+    <span class="occ-chip pro">🎪 Festival 👑</span>
+  </div>
+  <div style="text-align:center">
+    <a class="btn-primary" href="/makeup" style="display:inline-block;max-width:280px;font-size:.85rem;padding:14px 24px">Start your first look →</a>
+  </div>
+</section>
+
+<!-- ══════════════ BOTTOM CTA ══════════════ -->
+<section class="bottom-cta">
+  <div class="bc-title">Ready to find your look?</div>
+  <div class="bc-sub">3 free scans every month. No download. No credit card. Just upload and get your expert occasion look in 60 seconds.</div>
+  <a class="bc-cta" href="/makeup">✦ Try Astyra Free →</a>
+  <div style="margin-top:12px;font-size:.65rem;color:rgba(255,255,255,.25)">3 free scans/month · Pro from $4.99/mo · Cancel anytime</div>
+</section>
+
+<!-- ══════════════ FOOTER ══════════════ -->
+<footer class="footer">
+  <div class="footer-links">
+    <a href="/makeup">App</a>
+    <a href="/astyra-manual">User Manual</a>
+    <a href="/privacy">Privacy Policy</a>
+    <a href="/terms">Terms of Service</a>
+  </div>
+  <div class="footer-copy">© 2025 Astyra · Makeup chosen for your occasion · <a href="/privacy" style="color:rgba(255,255,255,.2);text-decoration:none">Affiliate Disclosure</a></div>
+</footer>
+
+</body>
+</html>

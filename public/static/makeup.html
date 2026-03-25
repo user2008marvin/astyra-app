@@ -4,6 +4,43 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0"/>
 <title>Astyra — AI Occasion Look Engine</title>
+<!-- Skimlinks: activated dynamically when publisher ID is saved in admin -->
+<script id="skimlinks-script"></script>
+<style>
+/* ── AFFILIATE DISCLOSURE BANNER ── */
+.aff-disclosure{
+  background:#fff8f0;border-bottom:1px solid #fde68a;
+  padding:7px 18px;
+  font-size:.6rem;color:#92400e;text-align:center;line-height:1.4;
+}
+.aff-disclosure a{color:#b45309;text-decoration:underline;}
+
+/* ── FOUNDING MEMBER BANNER ── */
+.founding-banner{
+  background:linear-gradient(135deg,#0a0a0f,#1a0a2e);
+  padding:10px 18px;
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  flex-wrap:wrap;
+  border-bottom:1px solid rgba(212,175,55,.2);
+}
+.fb-left{display:flex;align-items:center;gap:10px;}
+.fb-badge{
+  background:linear-gradient(135deg,var(--gold),var(--gold2));
+  color:#0a0a0f;font-size:.52rem;font-weight:900;
+  letter-spacing:1.5px;text-transform:uppercase;
+  padding:3px 8px;border-radius:20px;white-space:nowrap;
+}
+.fb-text{font-size:.62rem;color:rgba(255,255,255,.75);}
+.fb-count{font-size:.62rem;font-weight:800;color:var(--gold);}
+.fb-bar-wrap{flex:1;min-width:80px;max-width:140px;height:4px;background:rgba(255,255,255,.1);border-radius:2px;}
+.fb-bar-fill{height:4px;border-radius:2px;background:linear-gradient(90deg,var(--gold),var(--gold2));transition:width .5s;}
+.fb-cta{
+  font-size:.6rem;font-weight:800;letter-spacing:.5px;text-transform:uppercase;
+  background:linear-gradient(135deg,var(--gold),var(--gold2));
+  color:#0a0a0f;border:none;border-radius:20px;
+  padding:5px 14px;cursor:pointer;white-space:nowrap;
+}
+</style>
 <style>
 /* ═══════════════════════════════════════════════════════════
    Astyra — OCCASION INTELLIGENCE MAKEUP ENGINE v2
@@ -786,6 +823,25 @@ body{
     </div>
   </div>
 
+  <!-- AFFILIATE DISCLOSURE -->
+  <div class="aff-disclosure">
+    ✦ Some links below are affiliate links — Astyra may earn a small commission if you buy, at no extra cost to you.
+    <a href="/privacy">Privacy &amp; Disclosure</a>
+  </div>
+
+  <!-- FOUNDING MEMBER BANNER -->
+  <div class="founding-banner" id="founding-banner" style="display:none">
+    <div class="fb-left">
+      <div class="fb-badge">🌟 Founding Member</div>
+      <div>
+        <div class="fb-text">First 1,000 members get Pro <strong style="color:var(--gold)">free forever</strong></div>
+        <div class="fb-count" id="founding-spots-left">Loading...</div>
+      </div>
+    </div>
+    <div class="fb-bar-wrap"><div class="fb-bar-fill" id="founding-bar" style="width:0%"></div></div>
+    <button class="fb-cta" onclick="showModal('pro-modal')">Claim Free Spot →</button>
+  </div>
+
   <!-- OCCASION MARQUEE -->
   <div class="occ-marquee">
     <div class="marquee-track" id="marquee-track">
@@ -964,8 +1020,8 @@ body{
       <div class="pf-item"><div class="pf-icon">🎯</div><div><div class="pf-label">Exclusive Occasion Packs</div><div class="pf-sub">Destination Wedding · Black Tie Gala · Graduation · Maternity Shoot · Festival · Engagement</div></div></div>
       <div class="pf-item"><div class="pf-icon">🎨</div><div><div class="pf-label">Expanded Colour Library</div><div class="pf-sub">200+ curated colour combinations across 6 skin tones × 12 occasions × 3 look types.</div></div></div>
     </div>
-    <button class="btn-primary" onclick="joinPro()">Start Pro — $4.99/mo →</button>
-    <p style="text-align:center;font-size:.65rem;color:var(--text-soft);margin-top:10px">7-day free trial · Cancel anytime · No commitment</p>
+    <button class="btn-primary" id="pro-join-btn" onclick="handleProUpgrade()">Start Pro — $4.99/mo →</button>
+    <p style="text-align:center;font-size:.65rem;color:var(--text-soft);margin-top:10px" id="pro-join-sub">7-day free trial · Cancel anytime · No commitment</p>
   </div>
 </div>
 
@@ -1724,14 +1780,28 @@ function copyIdea(el){
 }
 
 // ── PRO ────────────────────────────────────────────────────────────
+function handleProUpgrade(){
+  // Check if Stripe is configured (admin sets STRIPE_LINK in localStorage)
+  const stripeLink = localStorage.getItem('astyra_stripe_link');
+  if(stripeLink){
+    // Real Stripe checkout
+    window.location.href = stripeLink;
+  } else {
+    // Dev/demo mode — activate instantly + show Stripe setup note
+    joinPro();
+    showToast('👑 Pro activated! (Demo mode — add Stripe link in Admin → Settings)');
+  }
+}
+
 function joinPro(){
   STATE.isPro = true;
   STATE.scansLeft = 999;
   localStorage.setItem('astyra_pro','1');
   localStorage.setItem('astyra_scans','999');
-  document.getElementById('scan-display').textContent = '∞';
+  // Update scan display if visible
+  const sd = document.getElementById('scan-display');
+  if(sd) sd.textContent = '∞';
   closeModal('pro-modal');
-  showToast('👑 Pro activated! Unlimited scans unlocked.');
   buildOccasionGrid(); // Re-render to unlock Pro occasions
 }
 
@@ -1790,9 +1860,38 @@ function resetApp(){
 
 // ── BOOT ──────────────────────────────────────────────────────────────
 window.addEventListener('load',()=>{
+  // ── Monthly scan reset logic ──────────────────────────────────────
+  // Stores the month/year when scans were last reset
+  const now = new Date();
+  const resetKey = `${now.getFullYear()}-${now.getMonth()}`;
+  const lastReset = localStorage.getItem('astyra_scan_reset_month');
+  if(lastReset !== resetKey && !localStorage.getItem('astyra_pro')){
+    // New month — reset scans back to the configured limit (default 3)
+    const limit = parseInt(localStorage.getItem('astyra_scan_limit') || '3');
+    localStorage.setItem('astyra_scans', limit);
+    localStorage.setItem('astyra_scan_reset_month', resetKey);
+  }
+
+  // ── Load latest affiliate ID from admin ────────────────────────────
   AFF_ID = localStorage.getItem('astyra_aff_id') || '';
   STATE.isPro = localStorage.getItem('astyra_pro') === '1';
   STATE.scansLeft = STATE.isPro ? 999 : parseInt(localStorage.getItem('astyra_scans') ?? '3');
+
+  // ── Activate Skimlinks if publisher ID is configured ───────────────
+  activateSkimlinks();
+
+  // ── Pro button: show Stripe state if link configured ──────────────
+  const stripeLink = localStorage.getItem('astyra_stripe_link');
+  if(stripeLink){
+    const btn = document.getElementById('pro-join-btn');
+    const sub = document.getElementById('pro-join-sub');
+    if(btn){ btn.textContent = '💳 Subscribe — $4.99/mo →'; }
+    if(sub){ sub.textContent = '7-day free trial · Secure payment via Stripe · Cancel anytime'; }
+  }
+
+  // ── Founding member counter ────────────────────────────────────────
+  updateFoundingBanner();
+
   buildStars();
   buildOccasionGrid();
   buildSkinRow();
@@ -2032,6 +2131,67 @@ function revealResults(){
       document.getElementById('share-prompt').classList.remove('show');
     }, 8000);
   });
+}
+
+// ══════════════════════════════════════════════════════
+//  SKIMLINKS INTEGRATION
+// ══════════════════════════════════════════════════════
+function activateSkimlinks(){
+  const sklId = localStorage.getItem('astyra_skimlinks_id') || '';
+  const scriptEl = document.getElementById('skimlinks-script');
+  if(sklId && scriptEl && !scriptEl.src){
+    scriptEl.src = `https://s.skimresources.com/js/${sklId}.skimlinks.js`;
+    scriptEl.async = true;
+  }
+}
+
+// ══════════════════════════════════════════════════════
+//  AFFILIATE ID — live refresh when admin saves
+// ══════════════════════════════════════════════════════
+window.addEventListener('storage', (e)=>{
+  if(e.key === 'astyra_aff_id'){
+    AFF_ID = e.newValue || '';
+    buildSponsorStrip(); // Refresh strip with new ID
+  }
+  if(e.key === 'astyra_skimlinks_id'){
+    activateSkimlinks();
+  }
+  if(e.key === 'astyra_stripe_link'){
+    const btn = document.getElementById('pro-join-btn');
+    const sub = document.getElementById('pro-join-sub');
+    if(e.newValue){
+      if(btn) btn.textContent = '💳 Subscribe — $4.99/mo →';
+      if(sub) sub.textContent = '7-day free trial · Secure payment via Stripe · Cancel anytime';
+    }
+  }
+  if(e.key === 'astyra_founding_count'){
+    updateFoundingBanner();
+  }
+});
+
+// ══════════════════════════════════════════════════════
+//  FOUNDING MEMBER COUNTER
+// ══════════════════════════════════════════════════════
+function updateFoundingBanner(){
+  // Admin sets total_user_count in dashboard; founding spots = 1000 - count
+  const totalUsers = parseInt(localStorage.getItem('astyra_total_user_count') || '0');
+  const FOUNDING_LIMIT = 1000;
+  const remaining = Math.max(0, FOUNDING_LIMIT - totalUsers);
+  const pct = Math.min(100, (totalUsers / FOUNDING_LIMIT) * 100);
+
+  const banner = document.getElementById('founding-banner');
+  const spotsEl = document.getElementById('founding-spots-left');
+  const barEl = document.getElementById('founding-bar');
+
+  if(!banner) return;
+
+  if(remaining > 0 && !STATE.isPro){
+    banner.style.display = 'flex';
+    if(spotsEl) spotsEl.textContent = `${remaining} of ${FOUNDING_LIMIT} founding spots remaining`;
+    if(barEl) barEl.style.width = pct + '%';
+  } else {
+    banner.style.display = 'none';
+  }
 }
 </script>
 </body>

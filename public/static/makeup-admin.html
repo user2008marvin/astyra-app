@@ -687,6 +687,84 @@ code{background:rgba(255,255,255,.08);padding:2px 7px;border-radius:5px;font-siz
         <div class="ph-sub">Global configuration. Changes take effect immediately in the app.</div>
       </div>
 
+      <!-- Live App URL -->
+      <div class="s-card" style="border-color:rgba(16,185,129,.2)">
+        <div class="sc-title" style="color:var(--green)">🔗 Live App URL</div>
+        <p style="font-size:.74rem;color:var(--text-soft);margin-bottom:14px;line-height:1.6">
+          Your app is running here. Share this link with users, embed it on TikTok bio, or use it for testing.
+        </p>
+        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+          <a id="live-app-link" href="/makeup" target="_blank" rel="noopener"
+            style="flex:1;min-width:180px;background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2);border-radius:10px;padding:10px 14px;font-size:.75rem;font-weight:700;color:var(--green);text-decoration:none;word-break:break-all">
+            Loading...
+          </a>
+          <button class="f-btn f-btn-outline" onclick="copyLiveUrl()" style="border-color:rgba(16,185,129,.3);color:var(--green);white-space:nowrap">📋 Copy URL</button>
+        </div>
+        <div style="margin-top:8px;font-size:.65rem;color:var(--text-soft)">
+          Other routes: 
+          <a href="/astyra-manual" target="_blank" style="color:var(--acc2)">/astyra-manual</a> (subscriber manual) · 
+          <a href="/go" target="_blank" style="color:var(--acc2)">/go</a> (TikTok landing page)
+        </div>
+      </div>
+
+      <!-- Stripe Payment Link -->
+      <div class="s-card" style="border-color:rgba(99,91,255,.25);background:rgba(99,91,255,.03)">
+        <div class="sc-title" style="color:#635bff">💳 Stripe Pro Payment Link</div>
+        <p style="font-size:.74rem;color:var(--text-soft);margin-bottom:8px;line-height:1.6">
+          Paste your Stripe Payment Link here. When set, the "Start Pro" button in the app goes directly to Stripe checkout.
+          <strong style="color:var(--text)">Leave blank to use demo mode</strong> (instantly activates Pro for testing).
+        </p>
+        <div style="background:rgba(99,91,255,.08);border:1px solid rgba(99,91,255,.15);border-radius:10px;padding:12px;margin-bottom:14px;font-size:.68rem;color:var(--text-soft);line-height:1.7">
+          <strong style="color:#635bff">How to get your Stripe link:</strong><br/>
+          1. Sign up free at <a href="https://stripe.com" target="_blank" style="color:#635bff">stripe.com</a><br/>
+          2. Dashboard → Products → Add product → "Astyra Pro" · $4.99/month<br/>
+          3. Payment links → Create payment link → Copy link<br/>
+          4. Paste below ↓
+        </div>
+        <div class="field">
+          <label class="f-label">Stripe Payment Link URL</label>
+          <input class="f-input" id="set-stripe-link" type="url" placeholder="https://buy.stripe.com/xxxx"/>
+        </div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:8px">
+          <button class="f-btn" style="background:#635bff" onclick="saveStripeLink()">💳 Save Stripe Link</button>
+          <button class="f-btn f-btn-outline" onclick="clearStripeLink()">✕ Remove (demo mode)</button>
+        </div>
+        <div id="stripe-saved-status" style="margin-top:8px;font-size:.72rem;color:var(--green);min-height:18px"></div>
+      </div>
+
+      <!-- Skimlinks Publisher ID -->
+      <div class="s-card" style="border-color:rgba(16,185,129,.2)">
+        <div class="sc-title" style="color:var(--green)">🔗 Skimlinks Publisher ID</div>
+        <p style="font-size:.74rem;color:var(--text-soft);margin-bottom:8px;line-height:1.6">
+          Your Skimlinks Publisher ID (from skimlinks.com/dashboard). When saved, the Skimlinks script 
+          automatically tracks all product links in the app — zero additional setup needed.
+        </p>
+        <div class="field">
+          <label class="f-label">Skimlinks Publisher ID</label>
+          <input class="f-input" id="set-skimlinks-id" type="text" placeholder="e.g. 123456X123456"/>
+        </div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:8px">
+          <button class="f-btn f-btn-gold" onclick="saveSkimlinksId()">💾 Save Skimlinks ID</button>
+          <button class="f-btn f-btn-outline" onclick="clearSkimlinksId()">✕ Clear</button>
+        </div>
+        <div id="skimlinks-saved-status" style="margin-top:8px;font-size:.72rem;color:var(--green);min-height:18px"></div>
+      </div>
+
+      <!-- Founding Member Counter -->
+      <div class="s-card">
+        <div class="sc-title">🌟 Founding Member Counter</div>
+        <p style="font-size:.74rem;color:var(--text-soft);margin-bottom:14px;line-height:1.6">
+          Set the current user count. When below 1,000, the app shows a "Founding Member" banner 
+          encouraging early signups. Increment this manually or via your analytics platform.
+        </p>
+        <div class="field">
+          <label class="f-label">Current User Count</label>
+          <input class="f-input" id="set-user-count" type="number" placeholder="0" min="0" max="1000"/>
+        </div>
+        <div style="font-size:.68rem;color:var(--text-soft);margin:6px 0 12px">Founding spots remaining: <strong id="founding-remaining-display" style="color:var(--gold)">1,000</strong> of 1,000</div>
+        <button class="f-btn" onclick="saveUserCount()">💾 Save User Count</button>
+      </div>
+
       <!-- Security -->
       <div class="s-card">
         <div class="sc-title">🔐 Dashboard Security</div>
@@ -1070,6 +1148,15 @@ function loadSettings(){
   document.getElementById('set-tagline').value = localStorage.getItem('astyra_tagline') || 'Occasion Intelligence System';
   document.getElementById('set-share-msg').value = localStorage.getItem('astyra_share_msg') || 'AI picked my makeup! Try Astyra free: https://astyra.app';
   document.getElementById('set-app-url').value = localStorage.getItem('astyra_app_url') || window.location.origin+'/makeup';
+  // New fields
+  document.getElementById('set-stripe-link').value = localStorage.getItem('astyra_stripe_link') || '';
+  document.getElementById('set-skimlinks-id').value = localStorage.getItem('astyra_skimlinks_id') || '';
+  const userCount = parseInt(localStorage.getItem('astyra_total_user_count') || '0');
+  document.getElementById('set-user-count').value = userCount;
+  const remaining = Math.max(0, 1000 - userCount);
+  const rd = document.getElementById('founding-remaining-display');
+  if(rd) rd.textContent = remaining.toLocaleString();
+  loadLiveUrl();
 }
 
 function saveCredentials(){
@@ -1198,6 +1285,65 @@ window.addEventListener('load',()=>{
     bootDashboard();
   }
 });
+
+// ── LIVE URL ──────────────────────────────────────────────
+function loadLiveUrl(){
+  const url = window.location.origin + '/makeup';
+  const link = document.getElementById('live-app-link');
+  if(link){ link.textContent = url; link.href = url; }
+}
+function copyLiveUrl(){
+  const url = window.location.origin + '/makeup';
+  navigator.clipboard?.writeText(url);
+  toast('📋 App URL copied: '+url);
+}
+
+// ── STRIPE LINK ───────────────────────────────────────────
+function saveStripeLink(){
+  const link = document.getElementById('set-stripe-link').value.trim();
+  if(link && !link.startsWith('https://')){
+    toast('⚠️ URL must start with https://');
+    return;
+  }
+  if(link) localStorage.setItem('astyra_stripe_link', link);
+  else localStorage.removeItem('astyra_stripe_link');
+  const el = document.getElementById('stripe-saved-status');
+  el.textContent = link ? '✅ Stripe link saved. Pro button now links to Stripe checkout.' : '✅ Cleared — Pro button uses demo mode.';
+  setTimeout(()=>el.textContent='',4000);
+  toast('💳 Stripe link '+(link?'saved':'cleared')+'!');
+}
+function clearStripeLink(){
+  document.getElementById('set-stripe-link').value = '';
+  localStorage.removeItem('astyra_stripe_link');
+  toast('✕ Stripe link cleared. App now in demo mode for Pro.');
+}
+
+// ── SKIMLINKS ID ──────────────────────────────────────────
+function saveSkimlinksId(){
+  const id = document.getElementById('set-skimlinks-id').value.trim();
+  if(id) localStorage.setItem('astyra_skimlinks_id', id);
+  else localStorage.removeItem('astyra_skimlinks_id');
+  const el = document.getElementById('skimlinks-saved-status');
+  el.textContent = id ? `✅ Skimlinks ID saved (${id}). Script will load on next app visit.` : '✅ Skimlinks ID cleared.';
+  setTimeout(()=>el.textContent='',4000);
+  toast('🔗 Skimlinks ID '+(id?'saved: '+id:'cleared'));
+}
+function clearSkimlinksId(){
+  document.getElementById('set-skimlinks-id').value = '';
+  localStorage.removeItem('astyra_skimlinks_id');
+  toast('✕ Skimlinks ID cleared.');
+}
+
+// ── FOUNDING MEMBER COUNT ─────────────────────────────────
+function saveUserCount(){
+  const count = parseInt(document.getElementById('set-user-count').value || '0');
+  localStorage.setItem('astyra_total_user_count', count);
+  const remaining = Math.max(0, 1000 - count);
+  const el = document.getElementById('founding-remaining-display');
+  if(el) el.textContent = remaining.toLocaleString();
+  toast('✅ User count saved: '+count+' ('+remaining+' founding spots left)');
+}
+
 </script>
 </body>
 </html>
