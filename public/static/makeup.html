@@ -1632,33 +1632,32 @@ function animateLoading(){
 
 // ── BUILD RESULTS ──────────────────────────────────────────────────
 function buildResults(){
-  const occ = OCCASIONS.find(o=>o.id===STATE.occasion);
-  const skin = SKIN_TONES.find(s=>s.id===STATE.skinTone);
-  const skinMod = SKIN_MODS[STATE.skinTone] || SKIN_MODS.medium;
-  const lookData = BASE_LOOKS[STATE.occasion] || BASE_LOOKS['party'];
-  const sponsored = getSponsoredProducts(STATE.occasion);
+  const occ=OCCASIONS.find(o=>o.id===STATE.occasion);
+  const skin=SKIN_TONES.find(s=>s.id===STATE.skinTone);
+  const tonePack=RECS[STATE.skinTone]||RECS.medium;
+  const lookData=tonePack[STATE.occasion]||tonePack['wedding-guest'];
+  const sponsored=getSponsoredProducts(STATE.occasion);
 
-  document.getElementById('rh-title').textContent = `${occ.name} — 3 Curated Looks`;
-  document.getElementById('rh-sub').textContent = `Intelligence-matched for ${skin.label} Dermal Base · ${occ.desc}`;
+  document.getElementById('rh-title').textContent=`${occ.name} — 3 Curated Looks`;
+  document.getElementById('rh-sub').textContent=`Personalised for ${skin.label} skin · ${occ.desc}`;
   document.getElementById('rh-meta').innerHTML=`
     <div class="rh-chip">${occ.emoji} ${occ.name}</div>
-    <div class="rh-chip">Tone: ${skin.label}</div>
-    <div class="rh-chip">3 Looks Generated</div>
-    <div class="rh-chip">✓ Affiliate Matched</div>
+    <div class="rh-chip">💄 ${skin.label} Skin</div>
+    <div class="rh-chip">🎨 Foundation + Lips + Eyes + Blush</div>
+    <div class="rh-chip">✓ ${SKIN_TONES.length} Tones · ${Object.keys(BASE_LOOKS).length} Occasions</div>
   `;
 
-  const looks = [
-    { key:'natural', badge:'NATURAL / SOFT',     badgeClass:'badge-natural', num:'Look 01' },
-    { key:'glam',    badge:'GLAM / BOLD',         badgeClass:'badge-glam',    num:'Look 02' },
-    { key:'trendy',  badge:'TRENDY / EDITORIAL',  badgeClass:'badge-trendy',  num:'Look 03' },
+  const looks=[
+    {key:'natural',badge:'NATURAL / SOFT',badgeClass:'badge-natural',num:'Look 01'},
+    {key:'glam',badge:'GLAM / BOLD',badgeClass:'badge-glam',num:'Look 02'},
+    {key:'trendy',badge:'TRENDY / EDITORIAL',badgeClass:'badge-trendy',num:'Look 03'}
   ];
 
-  const container = document.getElementById('results-container');
-  container.innerHTML = looks.map(l=>{
-    const d = lookData[l.key];
-    const lipIdx = skinMod.lipMod;
-    const eyeIdx = skinMod.eyeMod;
-    const prods = getProductsForLook(l.key, sponsored, occ.id);
+  const container=document.getElementById('results-container');
+  container.innerHTML=looks.map(l=>{
+    const d=lookData[l.key];
+    if(!d) return '';
+    const prods=getProductsForLook(l.key,sponsored,occ.id,d);
 
     return `
     <div class="look-card">
@@ -1672,9 +1671,10 @@ function buildResults(){
       </div>
 
       <div class="lc-palette">
-        ${buildPaletteRow('LIPS', d.lip, lipIdx)}
-        ${buildPaletteRow('EYES', d.eye, eyeIdx)}
-        ${buildPaletteRow('BLUSH', d.blush, 0)}
+        ${buildPaletteRow('BASE',d.foundation,0)}
+        ${buildPaletteRow('LIPS',d.lip,0)}
+        ${buildPaletteRow('EYES',d.eye,0)}
+        ${buildPaletteRow('BLUSH',d.blush,0)}
       </div>
 
       <div class="lc-technique">
@@ -1688,7 +1688,6 @@ function buildResults(){
         <div style="background:rgba(124,58,237,.06);border:1px solid rgba(124,58,237,.15);border-radius:12px;padding:12px">
           <div style="font-size:.55rem;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);margin-bottom:5px">Astyra TIP</div>
           <div style="font-size:.73rem;color:var(--text);line-height:1.6">${d.tip}</div>
-          <div style="font-size:.65rem;color:var(--text-soft);margin-top:4px">${skinMod.note}</div>
         </div>
       </div>
 
@@ -1711,8 +1710,8 @@ function buildResults(){
   }).join('');
 }
 
-function buildPaletteRow(label, swatches, preferredIdx){
-  const primary = swatches[preferredIdx] || swatches[0];
+function buildPaletteRow(label,swatches,preferredIdx){
+  const primary=swatches[preferredIdx]||swatches[0];
   return `
     <div class="palette-row">
       <div class="palette-label">${label}</div>
@@ -1722,6 +1721,8 @@ function buildPaletteRow(label, swatches, preferredIdx){
         <div class="palette-code">${primary.h}</div>
       </div>
     </div>`;
+}
+
 }
 
 function getProductsForLook(lookKey, sponsored, occasionId){
